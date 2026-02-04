@@ -1,0 +1,69 @@
+name: Change
+description: Planned work requiring justification
+labels:
+    - change
+body:
+    - type: dropdown
+      id: type
+      attributes:
+          label: Type
+          options:
+              - Feature
+              - Task
+      validations:
+          required: true
+
+    - type: textarea
+      id: description
+      attributes:
+          label: Description
+      validations:
+          required: true
+
+    - type: dropdown
+      id: size
+      attributes:
+          label: Size
+          options:
+              - S
+              - M
+              - L
+              - XL
+      validations:
+          required: true
+
+    - type: textarea
+      id: justification
+      attributes:
+          label: Justification
+      validations:
+          required: true
+
+    - type: checkboxes
+      id: impacted_areas
+      attributes:
+          label: Impacted Areas
+          options:
+              - label: User-facing changes
+              - label: Data handling / security
+              - label: Supplier changes
+              - label: Dependency changes
+
+    - type: dropdown
+      id: risk_impact
+      attributes:
+          label: Risk Impact
+          options:
+              - No impact
+              - Minor
+              - Major
+              - Critical
+      validations:
+          required: true
+
+    - type: textarea
+      id: acceptance
+      attributes:
+          label: Acceptance Criteria
+      validations:
+          required: true
