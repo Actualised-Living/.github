@@ -1,0 +1,59 @@
+name: Fix
+description: Bug fix requiring RCA and learning outcomes
+labels:
+    - fix
+body:
+    - type: textarea
+      id: description
+      attributes:
+          label: Description
+      validations:
+          required: true
+
+    - type: dropdown
+      id: size
+      attributes:
+          label: Size
+          options:
+              - S
+              - M
+              - L
+              - XL
+      validations:
+          required: true
+
+    - type: checkboxes
+      id: impacted_areas
+      attributes:
+          label: Impacted Areas
+          options:
+              - label: User-facing changes
+              - label: Data handling / security
+              - label: Supplier changes
+              - label: Dependency changes
+
+    - type: dropdown
+      id: risk_impact
+      attributes:
+          label: Risk Impact
+          options:
+              - No impact
+              - Minor
+              - Major
+              - Critical
+      validations:
+          required: true
+
+    - type: textarea
+      id: root_cause
+      attributes:
+          label: Root Cause Analysis
+      validations:
+          required: false
+
+    - type: textarea
+      id: learning_outcomes
+      attributes:
+          label: Learning Outcomes
+      validations:
+          required: false
