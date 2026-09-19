@@ -19,7 +19,7 @@ MIME = {"manifest.json": "application/json",
         "skin.glb": "model/gltf-binary",
         "muscles.glb": "model/gltf-binary",
         "nerves.glb": "model/gltf-binary",
-        "skull.glb": "model/gltf-binary"}
+        "bones.glb": "model/gltf-binary"}
 
 def main():
     global ASSETS

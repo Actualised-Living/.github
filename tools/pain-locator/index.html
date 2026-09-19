@@ -4158,6 +4158,7 @@ function boot3d() {
   const MAT = {
     skin: new THREE.MeshStandardMaterial({ color: col(0xD3A183), roughness: 0.78, metalness: 0.02 }),
     bone: new THREE.MeshStandardMaterial({ color: col(0xE3DAC7), roughness: 0.72, metalness: 0.02 }),
+    disc: new THREE.MeshStandardMaterial({ color: col(0xA9BEC4), roughness: 0.55, metalness: 0.02 }),
     ghost: new THREE.MeshStandardMaterial({
       color: col(0x8CA3B2), roughness: 0.5, metalness: 0.0,
       transparent: true, opacity: 0.21, depthWrite: false, side: THREE.DoubleSide
@@ -4626,20 +4627,23 @@ function boot3d() {
     });
     figure.add(ANAT.skin, ANAT.muscles);
     ANAT.routedNerves = reroutePeripheral();
-    // The cranial bones give the facial and jaw muscles something to sit
-    // against; without them temporalis reads as a pair of horns.
+    // Cranial bones and the vertebral column, so the facial, neck and deep back
+    // muscles have something to sit against instead of hanging in space.
     try {
-      if (man.sets.skull) {
-        const sk = await loadGLTF(assetUrl(man.sets.skull.file || "skull.glb"));
+      const bs = man.sets.bones || man.sets.skull;
+      if (bs) {
+        const kinds = {};
+        (bs.structures || []).forEach((r) => { kinds[r.id] = r.kind || "bone"; });
+        const sk = await loadGLTF(assetUrl(bs.file || "bones.glb"));
         sk.scene.traverse((o) => {
           if (!o.isMesh) return;
           o.geometry.computeVertexNormals();
-          o.material = MAT.bone;
+          o.material = kinds[o.name] === "disc" ? MAT.disc : MAT.bone;
         });
         ANAT.skull = sk.scene;
         figure.add(ANAT.skull);
       }
-    } catch (e) { /* no skull asset: the muscle view simply lacks one */ }
+    } catch (e) { /* no bone asset: the muscle view simply lacks one */ }
 
     // The measured cord is optional on top of the measured muscles.
     try {

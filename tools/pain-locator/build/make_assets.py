@@ -49,11 +49,22 @@ SKULL_STEMS = [
     "inferior nasal concha", "hyoid bone",
 ]
 
-def is_skull(name):
+# The spine, plus the intervertebral discs: disc pathology drives a large share
+# of the back pain this tool is for, so they are worth showing.
+SPINE_STEMS = ["vertebra", "sacrum", "coccyx", "intervertebral"]
+
+def is_bone(name):
+    """Cranial bones and the vertebral column. Excludes the six hyoid muscles,
+    which match "hyoid" but belong to the muscle set."""
     low = name.lower()
-    if not any(st in low for st in SKULL_STEMS):
+    if not any(st in low for st in SKULL_STEMS + SPINE_STEMS):
         return False
-    return "hyoid" not in low or low.strip().endswith("hyoid bone")
+    if "hyoid" in low and not low.strip().endswith("hyoid bone"):
+        return False
+    return True
+
+def bone_kind(name):
+    return "disc" if "intervertebral" in name.lower() else "bone"
 
 # Coarse group for colour-coding and the legend, tested in order.
 GROUPS = [
@@ -217,12 +228,15 @@ def main():
     print("  height: %.3f m   offset applied: %s" % (hi[1] - lo[1], np.round(offset, 3)))
     del skin_raw, sv
 
-    skull = sorted(fid for fid in have if is_skull(names.get(fid, "")))
-    print("cranial bones selected: %d" % len(skull))
+    # belt and braces: never let a muscle fall into the bone set
+    bones = sorted(fid for fid in have
+                   if is_bone(names.get(fid, "")) and fid not in set(muscles))
+    print("bones selected: %d (%d discs)"
+          % (len(bones), sum(1 for f in bones if bone_kind(names.get(f, "")) == "disc")))
     sets = {
         "skin":    (["FMA7163"], 0.05, 40000, 70000),
         "muscles": (muscles,     0.04,   250,   2200),
-        "skull":   (skull,       0.06,   400,   6000),
+        "bones":   (bones,       0.05,   300,   3000),
     }
     # Keep sets this script does not build (nerves, from make_nerves.py).
     # Rewriting the manifest wholesale silently drops them.
@@ -250,6 +264,9 @@ def main():
         mb = os.path.getsize(dest) / 1e6
         print("  wrote %s  %.1f MB  (%d -> %d tris, %.1f%%)"
               % (dest, mb, before, after, 100.0 * after / max(before, 1)))
+        if kind == "bones":
+            for r in index:
+                r["kind"] = bone_kind(r["name"])
         manifest["sets"][kind] = {"file": kind + ".glb", "count": len(index),
                                   "triangles": after, "megabytes": round(mb, 2),
                                   "structures": index}

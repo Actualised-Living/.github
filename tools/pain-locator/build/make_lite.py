@@ -23,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "assets")
 OUT = os.path.join(SRC, "lite")
 # triangle budget per set
-BUDGET = {"muscles": 70000, "skin": 22000, "skull": 7000, "nerves": 9000}
+BUDGET = {"muscles": 70000, "skin": 22000, "bones": 14000, "nerves": 9000}
 FLOOR = 40          # never reduce one structure below this many triangles
 
 def shrink(path, dest, budget):
