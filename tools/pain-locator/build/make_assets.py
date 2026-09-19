@@ -57,16 +57,20 @@ GROUPS = [
                     "extensor carpi", "flexor digitorum", "extensor digitorum",
                     "flexor pollicis", "extensor pollicis", "palmaris",
                     "extensor indicis", "abductor pollicis"]),
-    ("hand",       ["lumbrical", "interosseus", "interossei", "opponens",
-                    "abductor digiti minimi of", "flexor digiti minimi"]),
+
+    ("foot",       ["hallucis", "plantae", "plantar", "of left foot", "of right foot",
+                    "digitorum brevis", "digiti minimi brevis of left foot",
+                    "digiti minimi brevis of right foot"]),
+    ("hand",       ["lumbrical", "interosseus", "interossei", "opponens", "pollicis",
+                    "abductor digiti minimi of", "flexor digiti minimi", "of left hand",
+                    "of right hand", "palmaris brevis"]),
     ("hip/buttock",["gluteus", "piriformis", "gemellus", "obturator", "tensor fasciae",
                     "pectineus", "quadratus femoris"]),
     ("thigh",      ["vastus", "rectus femoris", "sartorius", "gracilis", "adductor",
                     "semitendinosus", "semimembranosus", "biceps femoris"]),
     ("lower leg",  ["gastrocnemius", "soleus", "tibialis", "peroneus", "fibularis",
                     "plantaris", "popliteus", "flexor hallucis", "extensor hallucis"]),
-    ("foot",       ["abductor hallucis", "quadratus plantae", "of left foot",
-                    "of right foot"]),
+
 ]
 
 def group_of(name):
@@ -131,8 +135,10 @@ def build(kind, selection, names, budget, floor, ceil, offset=None, scale=None):
         node = fid
         scene.add_geometry(out, node_name=node, geom_name=node)
         nm = names.get(fid, fid)
+        lo, hi = v.min(axis=0), v.max(axis=0)
         index.append({"id": fid, "name": nm, "side": side_of(nm),
-                      "group": group_of(nm), "tris": int(len(f))})
+                      "group": group_of(nm), "tris": int(len(f)),
+                      "bbox": [round(float(x), 4) for x in (*lo, *hi)]})
         total_before += before
         total_after += len(f)
         if i % 40 == 0 or i == len(selection):
@@ -140,6 +146,40 @@ def build(kind, selection, names, budget, floor, ceil, offset=None, scale=None):
                   % (kind, i, len(selection), total_before, total_after, time.time() - t0),
                   flush=True)
     return scene, index, total_before, total_after
+
+def landmarks(index_by_set):
+    """Measure anatomical levels off the meshes themselves.
+
+    The dermatome bands and the region thresholds in the app are expressed
+    against these, so they follow the real body instead of numbers guessed
+    against a schematic figure of a different height.
+    """
+    allrec = [r for recs in index_by_set.values() for r in recs]
+    def over(sub, pick):
+        hits = [r for r in allrec if sub in r["name"].lower()]
+        if not hits: return None
+        ys = [(r["bbox"][1], r["bbox"][4]) for r in hits]
+        if pick == "top":    return round(max(h for _, h in ys), 4)
+        if pick == "bottom": return round(min(l for l, _ in ys), 4)
+        if pick == "mid":    return round(sum(l + h for l, h in ys) / (2 * len(ys)), 4)
+    skin = [r for r in allrec if r["id"] == "FMA7163"]
+    L = {
+        "height":       round(skin[0]["bbox"][4], 4) if skin else None,
+        "halfWidth":    round(max(abs(skin[0]["bbox"][0]), skin[0]["bbox"][3]), 4) if skin else None,
+        "shoulderTop":  over("deltoid", "top"),
+        "axilla":       over("deltoid", "bottom"),
+        "nippleT4":     over("pectoralis major", "mid"),
+        "costalMargin": over("rectus abdominis", "top"),
+        "pubis":        over("rectus abdominis", "bottom"),
+        "iliacCrest":   over("gluteus medius", "top"),
+        "glutealFold":  over("gluteus maximus", "bottom"),
+        "elbow":        over("brachialis", "bottom"),
+        "wrist":        over("pronator quadratus", "bottom") or over("flexor carpi radialis", "bottom"),
+        "kneeLine":     over("gastrocnemius", "top"),
+        "ankle":        over("tibialis anterior", "bottom"),
+    }
+    return {k: v for k, v in L.items() if v is not None}
+
 
 def main():
     os.makedirs(OUT, exist_ok=True)
@@ -185,6 +225,11 @@ def main():
         manifest["sets"][kind] = {"file": kind + ".glb", "count": len(index),
                                   "triangles": after, "megabytes": round(mb, 2),
                                   "structures": index}
+    manifest["landmarks"] = landmarks(
+        {k: v["structures"] for k, v in manifest["sets"].items()})
+    print("\nlandmarks (metres above the floor):")
+    for k, v in manifest["landmarks"].items():
+        print("  %-13s %.3f" % (k, v))
     with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=1)
     print("\nwrote manifest.json")

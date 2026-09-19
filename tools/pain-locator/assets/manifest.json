@@ -21,7 +21,15 @@
      "name": "skin",
      "side": "midline",
      "group": "other",
-     "tris": 70000
+     "tris": 70000,
+     "bbox": [
+      -0.3294,
+      -0.0001,
+      -0.143,
+      0.3289,
+      1.6553,
+      0.1429
+     ]
     }
    ]
   },
@@ -36,2375 +44,5102 @@
      "name": "humeral head of left extensor carpi ulnaris",
      "side": "left",
      "group": "forearm",
-     "tris": 1268
+     "tris": 1268,
+     "bbox": [
+      0.2193,
+      0.7951,
+      -0.0504,
+      0.2374,
+      1.0827,
+      0.0269
+     ]
     },
     {
      "id": "BP45",
      "name": "humeral head of right extensor carpi ulnaris",
      "side": "right",
      "group": "forearm",
-     "tris": 1263
+     "tris": 1263,
+     "bbox": [
+      -0.2376,
+      0.795,
+      -0.0505,
+      -0.2194,
+      1.0825,
+      0.0267
+     ]
     },
     {
      "id": "BP46",
      "name": "ulnar head of left extensor carpi ulnaris",
      "side": "left",
      "group": "forearm",
-     "tris": 696
+     "tris": 696,
+     "bbox": [
+      0.2203,
+      0.8009,
+      -0.034,
+      0.237,
+      0.9834,
+      0.0237
+     ]
     },
     {
      "id": "BP47",
      "name": "ulnar head of right extensor carpi ulnaris",
      "side": "right",
      "group": "forearm",
-     "tris": 688
+     "tris": 688,
+     "bbox": [
+      -0.2372,
+      0.8008,
+      -0.0342,
+      -0.2205,
+      0.9833,
+      0.0237
+     ]
     },
     {
      "id": "FMA13295",
      "name": "diaphragm",
      "side": "midline",
      "group": "chest",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.1218,
+      1.0069,
+      -0.0637,
+      0.1213,
+      1.2225,
+      0.1002
+     ]
     },
     {
      "id": "FMA13358",
      "name": "right latissimus dorsi",
      "side": "right",
      "group": "upper back",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.1791,
+      0.9022,
+      -0.1148,
+      0.0023,
+      1.3002,
+      -0.0151
+     ]
     },
     {
      "id": "FMA13359",
      "name": "left latissimus dorsi",
      "side": "left",
      "group": "upper back",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.0005,
+      0.902,
+      -0.1148,
+      0.1794,
+      1.2993,
+      -0.0152
+     ]
     },
     {
      "id": "FMA13375",
      "name": "right pectoralis minor",
      "side": "right",
      "group": "chest",
-     "tris": 1813
+     "tris": 1813,
+     "bbox": [
+      -0.1311,
+      1.2221,
+      -0.0171,
+      -0.0743,
+      1.3563,
+      0.0754
+     ]
     },
     {
      "id": "FMA13376",
      "name": "left pectoralis minor",
      "side": "left",
      "group": "chest",
-     "tris": 1790
+     "tris": 1790,
+     "bbox": [
+      0.0743,
+      1.2219,
+      -0.017,
+      0.131,
+      1.3563,
+      0.0753
+     ]
     },
     {
      "id": "FMA13377",
      "name": "right rectus abdominis",
      "side": "right",
      "group": "abdomen",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.0795,
+      0.8239,
+      0.045,
+      -0.0029,
+      1.2185,
+      0.1171
+     ]
     },
     {
      "id": "FMA13378",
      "name": "left rectus abdominis",
      "side": "left",
      "group": "abdomen",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.0058,
+      0.8237,
+      0.0454,
+      0.0794,
+      1.2188,
+      0.1175
+     ]
     },
     {
      "id": "FMA13381",
      "name": "right rhomboid major",
      "side": "right",
      "group": "shoulder",
-     "tris": 1928
+     "tris": 1928,
+     "bbox": [
+      -0.0846,
+      1.2201,
+      -0.1083,
+      0.001,
+      1.3941,
+      -0.0785
+     ]
     },
     {
      "id": "FMA13382",
      "name": "left rhomboid major",
      "side": "left",
      "group": "shoulder",
-     "tris": 1934
+     "tris": 1934,
+     "bbox": [
+      -0.0002,
+      1.2198,
+      -0.1084,
+      0.0852,
+      1.3939,
+      -0.0757
+     ]
     },
     {
      "id": "FMA13383",
      "name": "right rhomboid minor",
      "side": "right",
      "group": "shoulder",
-     "tris": 601
+     "tris": 601,
+     "bbox": [
+      -0.0622,
+      1.3169,
+      -0.0977,
+      0.0009,
+      1.4147,
+      -0.0642
+     ]
     },
     {
      "id": "FMA13384",
      "name": "left rhomboid minor",
      "side": "left",
      "group": "shoulder",
-     "tris": 600
+     "tris": 600,
+     "bbox": [
+      0.0005,
+      1.317,
+      -0.0977,
+      0.0629,
+      1.4145,
+      -0.0615
+     ]
     },
     {
      "id": "FMA13388",
      "name": "right scalenus posterior",
      "side": "right",
      "group": "head/neck",
-     "tris": 532
+     "tris": 532,
+     "bbox": [
+      -0.0675,
+      1.3791,
+      -0.0371,
+      -0.0249,
+      1.4309,
+      -0.0105
+     ]
     },
     {
      "id": "FMA13389",
      "name": "left scalenus posterior",
      "side": "left",
      "group": "head/neck",
-     "tris": 525
+     "tris": 525,
+     "bbox": [
+      0.0263,
+      1.379,
+      -0.0371,
+      0.0673,
+      1.4303,
+      -0.0105
+     ]
     },
     {
      "id": "FMA13390",
      "name": "right scalenus medius",
      "side": "right",
      "group": "head/neck",
-     "tris": 847
+     "tris": 847,
+     "bbox": [
+      -0.0522,
+      1.3749,
+      -0.0243,
+      -0.0233,
+      1.4707,
+      -0.0002
+     ]
     },
     {
      "id": "FMA13391",
      "name": "left scalenus medius",
      "side": "left",
      "group": "head/neck",
-     "tris": 846
+     "tris": 846,
+     "bbox": [
+      0.0233,
+      1.3749,
+      -0.0246,
+      0.0523,
+      1.47,
+      -0.0003
+     ]
     },
     {
      "id": "FMA13392",
      "name": "right scalenus anterior",
      "side": "right",
      "group": "head/neck",
-     "tris": 558
+     "tris": 558,
+     "bbox": [
+      -0.0531,
+      1.3664,
+      -0.0085,
+      -0.02,
+      1.4466,
+      0.0095
+     ]
     },
     {
      "id": "FMA13393",
      "name": "left scalenus anterior",
      "side": "left",
      "group": "head/neck",
-     "tris": 548
+     "tris": 548,
+     "bbox": [
+      0.0207,
+      1.3665,
+      -0.0084,
+      0.0531,
+      1.4463,
+      0.0096
+     ]
     },
     {
      "id": "FMA13398",
      "name": "right serratus anterior",
      "side": "right",
      "group": "shoulder",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.1431,
+      1.1123,
+      -0.1052,
+      -0.0603,
+      1.3777,
+      0.0609
+     ]
     },
     {
      "id": "FMA13399",
      "name": "left serratus anterior",
      "side": "left",
      "group": "shoulder",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.06,
+      1.112,
+      -0.1053,
+      0.1436,
+      1.3778,
+      0.0615
+     ]
     },
     {
      "id": "FMA13403",
      "name": "right serratus posterior superior",
      "side": "right",
      "group": "shoulder",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.1009,
+      1.2968,
+      -0.0894,
+      0.0014,
+      1.4181,
+      -0.0253
+     ]
     },
     {
      "id": "FMA13404",
      "name": "left serratus posterior superior",
      "side": "left",
      "group": "shoulder",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.0002,
+      1.2968,
+      -0.0893,
+      0.1013,
+      1.418,
+      -0.0251
+     ]
     },
     {
      "id": "FMA13405",
      "name": "right serratus posterior inferior",
      "side": "right",
      "group": "shoulder",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1074,
+      0.9894,
+      -0.0904,
+      0.0021,
+      1.1628,
+      -0.0543
+     ]
     },
     {
      "id": "FMA13406",
      "name": "left serratus posterior inferior",
      "side": "left",
      "group": "shoulder",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.0003,
+      0.9894,
+      -0.0904,
+      0.1081,
+      1.1626,
+      -0.0543
+     ]
     },
     {
      "id": "FMA13408",
      "name": "right sternocleidomastoid",
      "side": "right",
      "group": "head/neck",
-     "tris": 2052
+     "tris": 2052,
+     "bbox": [
+      -0.0592,
+      1.3385,
+      -0.0463,
+      -0.0035,
+      1.5254,
+      0.0635
+     ]
     },
     {
      "id": "FMA13409",
      "name": "left sternocleidomastoid",
      "side": "left",
      "group": "head/neck",
-     "tris": 2010
+     "tris": 2010,
+     "bbox": [
+      0.0037,
+      1.3387,
+      -0.0463,
+      0.0592,
+      1.5257,
+      0.0636
+     ]
     },
     {
      "id": "FMA13414",
      "name": "right subscapularis",
      "side": "right",
      "group": "shoulder",
-     "tris": 1222
+     "tris": 1222,
+     "bbox": [
+      -0.1648,
+      1.2377,
+      -0.1015,
+      -0.0631,
+      1.3483,
+      0.0001
+     ]
     },
     {
      "id": "FMA13415",
      "name": "left subscapularis",
      "side": "left",
      "group": "shoulder",
-     "tris": 1224
+     "tris": 1224,
+     "bbox": [
+      0.063,
+      1.2376,
+      -0.1014,
+      0.1646,
+      1.3483,
+      0.0001
+     ]
     },
     {
      "id": "FMA21930",
      "name": "external anal sphincter",
      "side": "midline",
      "group": "other",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      -0.0115,
+      0.775,
+      -0.0644,
+      0.0116,
+      0.7963,
+      -0.0422
+     ]
     },
     {
      "id": "FMA22322",
      "name": "right iliacus",
      "side": "right",
      "group": "abdomen",
-     "tris": 1774
+     "tris": 1774,
+     "bbox": [
+      -0.1148,
+      0.7479,
+      -0.0349,
+      -0.0606,
+      0.9722,
+      0.0486
+     ]
     },
     {
      "id": "FMA22323",
      "name": "left iliacus",
      "side": "left",
      "group": "abdomen",
-     "tris": 1771
+     "tris": 1771,
+     "bbox": [
+      0.0605,
+      0.7485,
+      -0.0348,
+      0.1148,
+      0.972,
+      0.0483
+     ]
     },
     {
      "id": "FMA22324",
      "name": "right obturator internus",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 1509
+     "tris": 1509,
+     "bbox": [
+      -0.115,
+      0.7929,
+      -0.0547,
+      -0.0203,
+      0.8508,
+      0.0243
+     ]
     },
     {
      "id": "FMA22325",
      "name": "left obturator internus",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 1416
+     "tris": 1416,
+     "bbox": [
+      0.0202,
+      0.7929,
+      -0.0549,
+      0.1148,
+      0.8508,
+      0.0242
+     ]
     },
     {
      "id": "FMA22326",
      "name": "right obturator externus",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 469
+     "tris": 469,
+     "bbox": [
+      -0.1189,
+      0.7902,
+      -0.0295,
+      -0.0233,
+      0.8199,
+      0.0264
+     ]
     },
     {
      "id": "FMA22327",
      "name": "left obturator externus",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 462
+     "tris": 462,
+     "bbox": [
+      0.0232,
+      0.7902,
+      -0.0293,
+      0.1197,
+      0.82,
+      0.0269
+     ]
     },
     {
      "id": "FMA22328",
      "name": "right gluteus maximus",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 1368
+     "tris": 1368,
+     "bbox": [
+      -0.1415,
+      0.6871,
+      -0.1072,
+      -0.0014,
+      0.9485,
+      -0.0133
+     ]
     },
     {
      "id": "FMA22329",
      "name": "left gluteus maximus",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 1320
+     "tris": 1320,
+     "bbox": [
+      0.0011,
+      0.687,
+      -0.107,
+      0.1414,
+      0.9484,
+      -0.0132
+     ]
     },
     {
      "id": "FMA22330",
      "name": "right gluteus medius",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 2072
+     "tris": 2072,
+     "bbox": [
+      -0.1451,
+      0.8039,
+      -0.0661,
+      -0.0588,
+      0.9657,
+      0.0226
+     ]
     },
     {
      "id": "FMA22331",
      "name": "left gluteus medius",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 2023
+     "tris": 2023,
+     "bbox": [
+      0.0586,
+      0.8048,
+      -0.066,
+      0.145,
+      0.9657,
+      0.0224
+     ]
     },
     {
      "id": "FMA22332",
      "name": "right gluteus minimus",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1455,
+      0.8081,
+      -0.0369,
+      -0.0653,
+      0.9377,
+      0.0219
+     ]
     },
     {
      "id": "FMA22333",
      "name": "left gluteus minimus",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      0.0653,
+      0.808,
+      -0.0371,
+      0.1455,
+      0.9378,
+      0.0219
+     ]
     },
     {
      "id": "FMA22334",
      "name": "right gemellus superior",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 249
+     "tris": 249,
+     "bbox": [
+      -0.1223,
+      0.8214,
+      -0.0511,
+      -0.0415,
+      0.8478,
+      -0.0068
+     ]
     },
     {
      "id": "FMA22335",
      "name": "left gemellus superior",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      0.0415,
+      0.8215,
+      -0.0509,
+      0.1221,
+      0.8476,
+      -0.0067
+     ]
     },
     {
      "id": "FMA22336",
      "name": "right gemellus inferior",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 390
+     "tris": 390,
+     "bbox": [
+      -0.1228,
+      0.8039,
+      -0.0601,
+      -0.0525,
+      0.8264,
+      -0.0076
+     ]
     },
     {
      "id": "FMA22337",
      "name": "left gemellus inferior",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 374
+     "tris": 374,
+     "bbox": [
+      0.0524,
+      0.8038,
+      -0.0601,
+      0.1229,
+      0.8262,
+      -0.0073
+     ]
     },
     {
      "id": "FMA22338",
      "name": "right quadratus femoris",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 670
+     "tris": 670,
+     "bbox": [
+      -0.1182,
+      0.7681,
+      -0.0373,
+      -0.0523,
+      0.8125,
+      -0.0215
+     ]
     },
     {
      "id": "FMA22339",
      "name": "left quadratus femoris",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 668
+     "tris": 668,
+     "bbox": [
+      0.0524,
+      0.7681,
+      -0.0372,
+      0.1182,
+      0.8126,
+      -0.0216
+     ]
     },
     {
      "id": "FMA22340",
      "name": "right piriformis",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 603
+     "tris": 603,
+     "bbox": [
+      -0.1293,
+      0.8293,
+      -0.0699,
+      -0.0229,
+      0.8907,
+      -0.0131
+     ]
     },
     {
      "id": "FMA22341",
      "name": "left piriformis",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 568
+     "tris": 568,
+     "bbox": [
+      0.0231,
+      0.8298,
+      -0.07,
+      0.1292,
+      0.8902,
+      -0.0133
+     ]
     },
     {
      "id": "FMA22342",
      "name": "right psoas major",
      "side": "right",
      "group": "abdomen",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1046,
+      0.7515,
+      -0.0382,
+      -0.0082,
+      1.1191,
+      0.0373
+     ]
     },
     {
      "id": "FMA22343",
      "name": "left psoas major",
      "side": "left",
      "group": "abdomen",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.008,
+      0.7516,
+      -0.0382,
+      0.1044,
+      1.1191,
+      0.0372
+     ]
     },
     {
      "id": "FMA22344",
      "name": "right transversus abdominis",
      "side": "right",
      "group": "abdomen",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1283,
+      0.8151,
+      -0.06,
+      -0.0033,
+      1.2213,
+      0.1021
+     ]
     },
     {
      "id": "FMA22345",
      "name": "left transversus abdominis",
      "side": "left",
      "group": "abdomen",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0035,
+      0.8146,
+      -0.0596,
+      0.1287,
+      1.222,
+      0.1017
+     ]
     },
     {
      "id": "FMA22348",
      "name": "right quadratus lumborum",
      "side": "right",
      "group": "abdomen",
-     "tris": 1033
+     "tris": 1033,
+     "bbox": [
+      -0.0671,
+      0.9111,
+      -0.07,
+      -0.0168,
+      1.1103,
+      -0.0262
+     ]
     },
     {
      "id": "FMA22349",
      "name": "left quadratus lumborum",
      "side": "left",
      "group": "abdomen",
-     "tris": 1022
+     "tris": 1022,
+     "bbox": [
+      -0.0447,
+      0.911,
+      -0.0699,
+      0.0671,
+      1.1109,
+      -0.0263
+     ]
     },
     {
      "id": "FMA22354",
      "name": "right sartorius",
      "side": "right",
      "group": "thigh",
-     "tris": 2094
+     "tris": 2094,
+     "bbox": [
+      -0.1203,
+      0.3385,
+      -0.0301,
+      -0.0205,
+      0.9181,
+      0.057
+     ]
     },
     {
      "id": "FMA22355",
      "name": "left sartorius",
      "side": "left",
      "group": "thigh",
-     "tris": 2058
+     "tris": 2058,
+     "bbox": [
+      0.0206,
+      0.3393,
+      -0.0302,
+      0.1205,
+      0.918,
+      0.0571
+     ]
     },
     {
      "id": "FMA22358",
      "name": "right semitendinosus",
      "side": "right",
      "group": "thigh",
-     "tris": 1740
+     "tris": 1740,
+     "bbox": [
+      -0.0667,
+      0.3413,
+      -0.0718,
+      -0.0319,
+      0.7861,
+      -0.0155
+     ]
     },
     {
      "id": "FMA22359",
      "name": "left semitendinosus",
      "side": "left",
      "group": "thigh",
-     "tris": 1700
+     "tris": 1700,
+     "bbox": [
+      0.0315,
+      0.341,
+      -0.0719,
+      0.0665,
+      0.7855,
+      -0.0155
+     ]
     },
     {
      "id": "FMA22425",
      "name": "right tensor fasciae latae",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 745
+     "tris": 745,
+     "bbox": [
+      -0.1472,
+      0.7782,
+      0.0138,
+      -0.1093,
+      0.9341,
+      0.0478
+     ]
     },
     {
      "id": "FMA22426",
      "name": "left tensor fasciae latae",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 739
+     "tris": 739,
+     "bbox": [
+      0.1094,
+      0.7779,
+      0.014,
+      0.1471,
+      0.9342,
+      0.0479
+     ]
     },
     {
      "id": "FMA22448",
      "name": "right semimembranosus",
      "side": "right",
      "group": "thigh",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.0763,
+      0.3735,
+      -0.0657,
+      -0.0145,
+      0.7765,
+      -0.0122
+     ]
     },
     {
      "id": "FMA22449",
      "name": "left semimembranosus",
      "side": "left",
      "group": "thigh",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      0.0145,
+      0.3733,
+      -0.0657,
+      0.0763,
+      0.7778,
+      -0.0122
+     ]
     },
     {
      "id": "FMA22450",
      "name": "right pectineus",
      "side": "right",
      "group": "hip/buttock",
-     "tris": 805
+     "tris": 805,
+     "bbox": [
+      -0.0954,
+      0.7104,
+      -0.003,
+      -0.0153,
+      0.837,
+      0.0555
+     ]
     },
     {
      "id": "FMA22451",
      "name": "left pectineus",
      "side": "left",
      "group": "hip/buttock",
-     "tris": 823
+     "tris": 823,
+     "bbox": [
+      0.0158,
+      0.7102,
+      -0.0029,
+      0.0953,
+      0.8373,
+      0.0556
+     ]
     },
     {
      "id": "FMA22452",
      "name": "right adductor brevis",
      "side": "right",
      "group": "thigh",
-     "tris": 864
+     "tris": 864,
+     "bbox": [
+      -0.0952,
+      0.6444,
+      -0.0071,
+      -0.0187,
+      0.8152,
+      0.039
+     ]
     },
     {
      "id": "FMA22454",
      "name": "left adductor brevis",
      "side": "left",
      "group": "thigh",
-     "tris": 868
+     "tris": 868,
+     "bbox": [
+      0.019,
+      0.6447,
+      -0.0071,
+      0.0951,
+      0.8152,
+      0.039
+     ]
     },
     {
      "id": "FMA22456",
      "name": "right adductor longus",
      "side": "right",
      "group": "thigh",
-     "tris": 1484
+     "tris": 1484,
+     "bbox": [
+      -0.0916,
+      0.5586,
+      -0.005,
+      -0.0114,
+      0.815,
+      0.0524
+     ]
     },
     {
      "id": "FMA22457",
      "name": "left adductor longus",
      "side": "left",
      "group": "thigh",
-     "tris": 1514
+     "tris": 1514,
+     "bbox": [
+      0.0113,
+      0.5587,
+      -0.0053,
+      0.0919,
+      0.815,
+      0.0524
+     ]
     },
     {
      "id": "FMA22459",
      "name": "right adductor magnus",
      "side": "right",
      "group": "thigh",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.1067,
+      0.4482,
+      -0.0333,
+      -0.0123,
+      0.7944,
+      0.0176
+     ]
     },
     {
      "id": "FMA22460",
      "name": "left adductor magnus",
      "side": "left",
      "group": "thigh",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0122,
+      0.4483,
+      -0.0333,
+      0.1066,
+      0.7942,
+      0.0175
+     ]
     },
     {
      "id": "FMA22544",
      "name": "right tibialis anterior",
      "side": "right",
      "group": "lower leg",
-     "tris": 1435
+     "tris": 1435,
+     "bbox": [
+      -0.1135,
+      0.0413,
+      -0.0323,
+      -0.055,
+      0.3974,
+      0.0387
+     ]
     },
     {
      "id": "FMA22545",
      "name": "left tibialis anterior",
      "side": "left",
      "group": "lower leg",
-     "tris": 1380
+     "tris": 1380,
+     "bbox": [
+      0.0549,
+      0.0415,
+      -0.0324,
+      0.1135,
+      0.3974,
+      0.0364
+     ]
     },
     {
      "id": "FMA22546",
      "name": "right extensor hallucis longus",
      "side": "right",
-     "group": "lower leg",
-     "tris": 952
+     "group": "foot",
+     "tris": 952,
+     "bbox": [
+      -0.108,
+      0.0235,
+      -0.0386,
+      -0.0666,
+      0.2947,
+      0.0985
+     ]
     },
     {
      "id": "FMA22547",
      "name": "left extensor hallucis longus",
      "side": "left",
-     "group": "lower leg",
-     "tris": 924
+     "group": "foot",
+     "tris": 924,
+     "bbox": [
+      0.0666,
+      0.0235,
+      -0.0387,
+      0.108,
+      0.2947,
+      0.0981
+     ]
     },
     {
      "id": "FMA22548",
      "name": "right extensor digitorum longus",
      "side": "right",
      "group": "forearm",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.1393,
+      0.0124,
+      -0.0425,
+      -0.0845,
+      0.4054,
+      0.1237
+     ]
     },
     {
      "id": "FMA22549",
      "name": "left extensor digitorum longus",
      "side": "left",
      "group": "forearm",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.0845,
+      0.0125,
+      -0.0425,
+      0.1394,
+      0.4053,
+      0.124
+     ]
     },
     {
      "id": "FMA22550",
      "name": "right fibularis tertius",
      "side": "right",
      "group": "lower leg",
-     "tris": 251
+     "tris": 251,
+     "bbox": [
+      -0.1144,
+      0.032,
+      -0.0388,
+      -0.0897,
+      0.1505,
+      0.0144
+     ]
     },
     {
      "id": "FMA22551",
      "name": "left fibularis tertius",
      "side": "left",
      "group": "lower leg",
-     "tris": 249
+     "tris": 249,
+     "bbox": [
+      0.0897,
+      0.032,
+      -0.0389,
+      0.1143,
+      0.1498,
+      0.014
+     ]
     },
     {
      "id": "FMA22552",
      "name": "right fibularis longus",
      "side": "right",
      "group": "lower leg",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1307,
+      0.0282,
+      -0.0604,
+      -0.0739,
+      0.3954,
+      0.0265
+     ]
     },
     {
      "id": "FMA22553",
      "name": "left fibularis longus",
      "side": "left",
      "group": "lower leg",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      0.0738,
+      0.0282,
+      -0.0605,
+      0.1307,
+      0.395,
+      0.0264
+     ]
     },
     {
      "id": "FMA22554",
      "name": "right fibularis brevis",
      "side": "right",
      "group": "lower leg",
-     "tris": 1428
+     "tris": 1428,
+     "bbox": [
+      -0.1156,
+      0.0252,
+      -0.0621,
+      -0.0891,
+      0.286,
+      -0.0092
+     ]
     },
     {
      "id": "FMA22555",
      "name": "left fibularis brevis",
      "side": "left",
      "group": "lower leg",
-     "tris": 1431
+     "tris": 1431,
+     "bbox": [
+      0.0891,
+      0.0253,
+      -0.0621,
+      0.1156,
+      0.2854,
+      -0.0092
+     ]
     },
     {
      "id": "FMA22558",
      "name": "right soleus",
      "side": "right",
      "group": "lower leg",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.1245,
+      0.1295,
+      -0.0751,
+      -0.0422,
+      0.3962,
+      -0.0217
+     ]
     },
     {
      "id": "FMA22559",
      "name": "left soleus",
      "side": "left",
      "group": "lower leg",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0423,
+      0.1297,
+      -0.0752,
+      0.1246,
+      0.3968,
+      -0.0216
+     ]
     },
     {
      "id": "FMA22560",
      "name": "right plantaris",
      "side": "right",
-     "group": "lower leg",
-     "tris": 1879
+     "group": "foot",
+     "tris": 1879,
+     "bbox": [
+      -0.1014,
+      0.0273,
+      -0.0813,
+      -0.0481,
+      0.4944,
+      -0.0041
+     ]
     },
     {
      "id": "FMA22561",
      "name": "left plantaris",
      "side": "left",
-     "group": "lower leg",
-     "tris": 1868
+     "group": "foot",
+     "tris": 1868,
+     "bbox": [
+      0.0481,
+      0.0273,
+      -0.0812,
+      0.1012,
+      0.4946,
+      -0.0039
+     ]
     },
     {
      "id": "FMA22591",
      "name": "right popliteus",
      "side": "right",
      "group": "lower leg",
-     "tris": 455
+     "tris": 455,
+     "bbox": [
+      -0.1132,
+      0.3294,
+      -0.0593,
+      -0.0558,
+      0.4497,
+      -0.0239
+     ]
     },
     {
      "id": "FMA22592",
      "name": "left popliteus",
      "side": "left",
      "group": "lower leg",
-     "tris": 446
+     "tris": 446,
+     "bbox": [
+      0.056,
+      0.3298,
+      -0.0591,
+      0.1132,
+      0.4502,
+      -0.0241
+     ]
     },
     {
      "id": "FMA22726",
      "name": "right splenius cervicis",
      "side": "right",
      "group": "head/neck",
-     "tris": 1780
+     "tris": 1780,
+     "bbox": [
+      -0.0413,
+      1.2451,
+      -0.0997,
+      0.001,
+      1.4946,
+      -0.0103
+     ]
     },
     {
      "id": "FMA22727",
      "name": "left splenius cervicis",
      "side": "left",
      "group": "head/neck",
-     "tris": 1780
+     "tris": 1780,
+     "bbox": [
+      -0.0004,
+      1.245,
+      -0.0997,
+      0.0419,
+      1.4945,
+      -0.0105
+     ]
     },
     {
      "id": "FMA22728",
      "name": "right splenius capitis",
      "side": "right",
      "group": "head/neck",
-     "tris": 2130
+     "tris": 2130,
+     "bbox": [
+      -0.0586,
+      1.3149,
+      -0.0986,
+      0.0007,
+      1.5238,
+      -0.017
+     ]
     },
     {
      "id": "FMA22729",
      "name": "left splenius capitis",
      "side": "left",
      "group": "head/neck",
-     "tris": 2128
+     "tris": 2128,
+     "bbox": [
+      -0.0002,
+      1.3149,
+      -0.0987,
+      0.0591,
+      1.5237,
+      -0.0169
+     ]
     },
     {
      "id": "FMA22740",
      "name": "right iliocostalis lumborum",
      "side": "right",
      "group": "spine",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1014,
+      0.8563,
+      -0.0905,
+      -0.0097,
+      1.2332,
+      -0.0446
+     ]
     },
     {
      "id": "FMA22741",
      "name": "left iliocostalis lumborum",
      "side": "left",
      "group": "spine",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0074,
+      0.8558,
+      -0.0907,
+      0.1014,
+      1.2335,
+      -0.0447
+     ]
     },
     {
      "id": "FMA22742",
      "name": "right iliocostalis thoracis",
      "side": "right",
      "group": "spine",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.0905,
+      1.0886,
+      -0.0981,
+      -0.0375,
+      1.3944,
+      -0.0214
+     ]
     },
     {
      "id": "FMA22743",
      "name": "left iliocostalis thoracis",
      "side": "left",
      "group": "spine",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.0376,
+      1.0884,
+      -0.0983,
+      0.0904,
+      1.3945,
+      -0.0213
+     ]
     },
     {
      "id": "FMA22744",
      "name": "right iliocostalis cervicis",
      "side": "right",
      "group": "spine",
-     "tris": 828
+     "tris": 828,
+     "bbox": [
+      -0.0722,
+      1.2748,
+      -0.0924,
+      -0.0243,
+      1.4449,
+      -0.0085
+     ]
     },
     {
      "id": "FMA22745",
      "name": "left iliocostalis cervicis",
      "side": "left",
      "group": "spine",
-     "tris": 792
+     "tris": 792,
+     "bbox": [
+      0.0243,
+      1.2748,
+      -0.0926,
+      0.0727,
+      1.4451,
+      -0.0083
+     ]
     },
     {
      "id": "FMA22751",
      "name": "right longissimus thoracis",
      "side": "right",
      "group": "spine",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.0673,
+      0.8736,
+      -0.0971,
+      0.0016,
+      1.4027,
+      -0.0262
+     ]
     },
     {
      "id": "FMA22753",
      "name": "left longissimus thoracis",
      "side": "left",
      "group": "spine",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.0,
+      0.874,
+      -0.097,
+      0.0675,
+      1.4024,
+      -0.0262
+     ]
     },
     {
      "id": "FMA22754",
      "name": "right longissimus capitis",
      "side": "right",
      "group": "spine",
-     "tris": 632
+     "tris": 632,
+     "bbox": [
+      -0.0585,
+      1.3687,
+      -0.0638,
+      -0.0244,
+      1.5207,
+      -0.0135
+     ]
     },
     {
      "id": "FMA22756",
      "name": "left longissimus capitis",
      "side": "left",
      "group": "spine",
-     "tris": 612
+     "tris": 612,
+     "bbox": [
+      0.0244,
+      1.3657,
+      -0.0622,
+      0.0584,
+      1.5205,
+      -0.0131
+     ]
     },
     {
      "id": "FMA22757",
      "name": "right longissimus cervicis",
      "side": "right",
      "group": "spine",
-     "tris": 749
+     "tris": 749,
+     "bbox": [
+      -0.0409,
+      1.2886,
+      -0.0881,
+      -0.0223,
+      1.4716,
+      -0.0094
+     ]
     },
     {
      "id": "FMA22758",
      "name": "left longissimus cervicis",
      "side": "left",
      "group": "spine",
-     "tris": 722
+     "tris": 722,
+     "bbox": [
+      0.024,
+      1.2885,
+      -0.0883,
+      0.0408,
+      1.4715,
+      -0.0095
+     ]
     },
     {
      "id": "FMA22779",
      "name": "right spinalis thoracis",
      "side": "right",
      "group": "spine",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.0112,
+      1.0016,
+      -0.0983,
+      0.001,
+      1.3667,
+      -0.0503
+     ]
     },
     {
      "id": "FMA22780",
      "name": "left spinalis thoracis",
      "side": "left",
      "group": "spine",
-     "tris": 2160
+     "tris": 2160,
+     "bbox": [
+      -0.0005,
+      1.004,
+      -0.0982,
+      0.0111,
+      1.3663,
+      -0.0508
+     ]
     },
     {
      "id": "FMA22781",
      "name": "right spinalis cervicis",
      "side": "right",
      "group": "spine",
-     "tris": 249
+     "tris": 249,
+     "bbox": [
+      -0.009,
+      1.3637,
+      -0.0836,
+      -0.0019,
+      1.4647,
+      -0.0411
+     ]
     },
     {
      "id": "FMA22782",
      "name": "left spinalis cervicis",
      "side": "left",
      "group": "spine",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      0.0,
+      1.3638,
+      -0.0837,
+      0.0086,
+      1.4656,
+      -0.0419
+     ]
     },
     {
      "id": "FMA22872",
      "name": "right semispinalis thoracis",
      "side": "right",
      "group": "spine",
-     "tris": 2022
+     "tris": 2022,
+     "bbox": [
+      -0.0331,
+      1.1139,
+      -0.0946,
+      0.0011,
+      1.3854,
+      -0.0554
+     ]
     },
     {
      "id": "FMA22873",
      "name": "left semispinalis thoracis",
      "side": "left",
      "group": "spine",
-     "tris": 1938
+     "tris": 1938,
+     "bbox": [
+      -0.0005,
+      1.1146,
+      -0.0947,
+      0.0321,
+      1.3878,
+      -0.0555
+     ]
     },
     {
      "id": "FMA22874",
      "name": "right semispinalis cervicis",
      "side": "right",
      "group": "spine",
-     "tris": 1046
+     "tris": 1046,
+     "bbox": [
+      -0.0325,
+      1.3182,
+      -0.0797,
+      -0.0,
+      1.4559,
+      -0.0289
+     ]
     },
     {
      "id": "FMA22875",
      "name": "left semispinalis cervicis",
      "side": "left",
      "group": "spine",
-     "tris": 1006
+     "tris": 1006,
+     "bbox": [
+      0.0,
+      1.3197,
+      -0.0805,
+      0.0321,
+      1.4554,
+      -0.0265
+     ]
     },
     {
      "id": "FMA22876",
      "name": "right semispinalis capitis",
      "side": "right",
      "group": "spine",
-     "tris": 1096
+     "tris": 1096,
+     "bbox": [
+      -0.0428,
+      1.4036,
+      -0.0754,
+      -0.0028,
+      1.5236,
+      -0.0226
+     ]
     },
     {
      "id": "FMA22877",
      "name": "left semispinalis capitis",
      "side": "left",
      "group": "spine",
-     "tris": 1094
+     "tris": 1094,
+     "bbox": [
+      0.0027,
+      1.4036,
+      -0.0755,
+      0.0428,
+      1.5235,
+      -0.0189
+     ]
     },
     {
      "id": "FMA22878",
      "name": "right multifidus",
      "side": "right",
      "group": "spine",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.0368,
+      0.8578,
+      -0.0911,
+      -0.0007,
+      1.4726,
+      -0.0271
+     ]
     },
     {
      "id": "FMA22879",
      "name": "left multifidus",
      "side": "left",
      "group": "spine",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      0.0004,
+      0.8596,
+      -0.091,
+      0.0376,
+      1.4706,
+      -0.0266
+     ]
     },
     {
      "id": "FMA32534",
      "name": "right obliquus capitis superior",
      "side": "right",
      "group": "abdomen",
-     "tris": 286
+     "tris": 286,
+     "bbox": [
+      -0.0413,
+      1.4927,
+      -0.0619,
+      -0.0276,
+      1.5148,
+      -0.0139
+     ]
     },
     {
      "id": "FMA32535",
      "name": "left obliquus capitis superior",
      "side": "left",
      "group": "abdomen",
-     "tris": 284
+     "tris": 284,
+     "bbox": [
+      0.0276,
+      1.4928,
+      -0.0618,
+      0.0412,
+      1.5148,
+      -0.0141
+     ]
     },
     {
      "id": "FMA32536",
      "name": "right obliquus capitis inferior",
      "side": "right",
      "group": "abdomen",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      -0.0402,
+      1.463,
+      -0.0488,
+      -0.003,
+      1.4934,
+      -0.0122
+     ]
     },
     {
      "id": "FMA32537",
      "name": "left obliquus capitis inferior",
      "side": "left",
      "group": "abdomen",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      0.0029,
+      1.463,
+      -0.0488,
+      0.0401,
+      1.4934,
+      -0.0123
+     ]
     },
     {
      "id": "FMA32540",
      "name": "right levator scapulae",
      "side": "right",
      "group": "shoulder",
-     "tris": 1252
+     "tris": 1252,
+     "bbox": [
+      -0.0836,
+      1.343,
+      -0.091,
+      -0.0243,
+      1.4907,
+      -0.0079
+     ]
     },
     {
      "id": "FMA32541",
      "name": "left levator scapulae",
      "side": "left",
      "group": "shoulder",
-     "tris": 1214
+     "tris": 1214,
+     "bbox": [
+      0.0243,
+      1.343,
+      -0.0908,
+      0.0839,
+      1.4875,
+      -0.0079
+     ]
     },
     {
      "id": "FMA32544",
      "name": "right supraspinatus",
      "side": "right",
      "group": "shoulder",
-     "tris": 570
+     "tris": 570,
+     "bbox": [
+      -0.1884,
+      1.3356,
+      -0.0915,
+      -0.0676,
+      1.3667,
+      -0.0095
+     ]
     },
     {
      "id": "FMA32545",
      "name": "left supraspinatus",
      "side": "left",
      "group": "shoulder",
-     "tris": 592
+     "tris": 592,
+     "bbox": [
+      0.0678,
+      1.3355,
+      -0.0914,
+      0.1886,
+      1.3667,
+      -0.0094
+     ]
     },
     {
      "id": "FMA32547",
      "name": "right infraspinatus muscle",
      "side": "right",
      "group": "shoulder",
-     "tris": 1266
+     "tris": 1266,
+     "bbox": [
+      -0.1893,
+      1.2457,
+      -0.1123,
+      -0.0613,
+      1.3556,
+      -0.0233
+     ]
     },
     {
      "id": "FMA32548",
      "name": "left infraspinatus muscle",
      "side": "left",
      "group": "shoulder",
-     "tris": 1274
+     "tris": 1274,
+     "bbox": [
+      0.0611,
+      1.2456,
+      -0.1121,
+      0.1894,
+      1.3556,
+      -0.0233
+     ]
     },
     {
      "id": "FMA32551",
      "name": "right teres major",
      "side": "right",
      "group": "shoulder",
-     "tris": 684
+     "tris": 684,
+     "bbox": [
+      -0.1722,
+      1.2223,
+      -0.1074,
+      -0.0796,
+      1.3091,
+      -0.0209
+     ]
     },
     {
      "id": "FMA32552",
      "name": "left teres major",
      "side": "left",
      "group": "shoulder",
-     "tris": 684
+     "tris": 684,
+     "bbox": [
+      0.0796,
+      1.2224,
+      -0.1074,
+      0.172,
+      1.3092,
+      -0.0206
+     ]
     },
     {
      "id": "FMA32553",
      "name": "right teres minor",
      "side": "right",
      "group": "shoulder",
-     "tris": 606
+     "tris": 606,
+     "bbox": [
+      -0.191,
+      1.254,
+      -0.0927,
+      -0.0979,
+      1.3407,
+      -0.0193
+     ]
     },
     {
      "id": "FMA32554",
      "name": "left teres minor",
      "side": "left",
      "group": "shoulder",
-     "tris": 606
+     "tris": 606,
+     "bbox": [
+      0.0978,
+      1.254,
+      -0.0931,
+      0.191,
+      1.3407,
+      -0.0194
+     ]
     },
     {
      "id": "FMA33581",
      "name": "ascending part of right trapezius",
      "side": "right",
      "group": "upper back",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1331,
+      1.0848,
+      -0.1241,
+      0.0012,
+      1.3698,
+      -0.0655
+     ]
     },
     {
      "id": "FMA33583",
      "name": "ascending part of left trapezius",
      "side": "left",
      "group": "upper back",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.0004,
+      1.0851,
+      -0.1244,
+      0.1343,
+      1.3697,
+      -0.0654
+     ]
     },
     {
      "id": "FMA33584",
      "name": "transverse part of right trapezius",
      "side": "right",
      "group": "upper back",
-     "tris": 1221
+     "tris": 1221,
+     "bbox": [
+      -0.1616,
+      1.3267,
+      -0.1075,
+      0.0047,
+      1.4053,
+      -0.0297
+     ]
     },
     {
      "id": "FMA33585",
      "name": "transverse part of left trapezius",
      "side": "left",
      "group": "upper back",
-     "tris": 1210
+     "tris": 1210,
+     "bbox": [
+      -0.0003,
+      1.3267,
+      -0.1074,
+      0.1624,
+      1.4051,
+      -0.0297
+     ]
     },
     {
      "id": "FMA33586",
      "name": "descending part of right trapezius",
      "side": "right",
      "group": "upper back",
-     "tris": 1858
+     "tris": 1858,
+     "bbox": [
+      -0.1272,
+      1.3712,
+      -0.0875,
+      0.0038,
+      1.525,
+      0.0016
+     ]
     },
     {
      "id": "FMA33587",
      "name": "descending part of left trapezius",
      "side": "left",
      "group": "upper back",
-     "tris": 1796
+     "tris": 1796,
+     "bbox": [
+      -0.0002,
+      1.3713,
+      -0.0875,
+      0.1277,
+      1.5249,
+      0.0018
+     ]
     },
     {
      "id": "FMA34680",
      "name": "clavicular part of right deltoid",
      "side": "right",
      "group": "shoulder",
-     "tris": 1162
+     "tris": 1162,
+     "bbox": [
+      -0.2039,
+      1.2294,
+      -0.0317,
+      -0.0815,
+      1.3788,
+      0.0215
+     ]
     },
     {
      "id": "FMA34681",
      "name": "clavicular part of left deltoid",
      "side": "left",
      "group": "shoulder",
-     "tris": 1138
+     "tris": 1138,
+     "bbox": [
+      0.0815,
+      1.23,
+      -0.0317,
+      0.2039,
+      1.3788,
+      0.0212
+     ]
     },
     {
      "id": "FMA34682",
      "name": "acromial part of right deltoid",
      "side": "right",
      "group": "shoulder",
-     "tris": 1186
+     "tris": 1186,
+     "bbox": [
+      -0.2274,
+      1.2287,
+      -0.0595,
+      -0.1551,
+      1.3718,
+      0.0021
+     ]
     },
     {
      "id": "FMA34683",
      "name": "acromial part of left deltoid",
      "side": "left",
      "group": "shoulder",
-     "tris": 1162
+     "tris": 1162,
+     "bbox": [
+      0.1544,
+      1.2288,
+      -0.0595,
+      0.2274,
+      1.3718,
+      0.0021
+     ]
     },
     {
      "id": "FMA34684",
      "name": "spinal part of right deltoid",
      "side": "right",
      "group": "shoulder",
-     "tris": 1759
+     "tris": 1759,
+     "bbox": [
+      -0.2197,
+      1.2116,
+      -0.0983,
+      -0.0875,
+      1.3631,
+      -0.0211
+     ]
     },
     {
      "id": "FMA34685",
      "name": "spinal part of left deltoid",
      "side": "left",
      "group": "shoulder",
-     "tris": 1784
+     "tris": 1784,
+     "bbox": [
+      0.0874,
+      1.2116,
+      -0.0985,
+      0.2198,
+      1.3631,
+      -0.0211
+     ]
     },
     {
      "id": "FMA34690",
      "name": "clavicular part of right pectoralis major",
      "side": "right",
      "group": "chest",
-     "tris": 373
+     "tris": 373,
+     "bbox": [
+      -0.1936,
+      1.2634,
+      -0.0145,
+      -0.0263,
+      1.3655,
+      0.0486
+     ]
     },
     {
      "id": "FMA34691",
      "name": "clavicular part of left pectoralis major",
      "side": "left",
      "group": "chest",
-     "tris": 368
+     "tris": 368,
+     "bbox": [
+      0.0253,
+      1.2636,
+      -0.0141,
+      0.1938,
+      1.3645,
+      0.0485
+     ]
     },
     {
      "id": "FMA37386",
      "name": "right abductor pollicis brevis",
      "side": "right",
      "group": "forearm",
-     "tris": 254
+     "tris": 254,
+     "bbox": [
+      -0.3025,
+      0.7939,
+      0.0228,
+      -0.2633,
+      0.832,
+      0.0523
+     ]
     },
     {
      "id": "FMA37387",
      "name": "left abductor pollicis brevis",
      "side": "left",
      "group": "forearm",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      0.2632,
+      0.7938,
+      0.023,
+      0.3027,
+      0.8321,
+      0.0525
+     ]
     },
     {
      "id": "FMA37390",
      "name": "right opponens pollicis",
      "side": "right",
      "group": "hand",
-     "tris": 316
+     "tris": 316,
+     "bbox": [
+      -0.3057,
+      0.7977,
+      0.0302,
+      -0.2581,
+      0.8298,
+      0.049
+     ]
     },
     {
      "id": "FMA37391",
      "name": "left opponens pollicis",
      "side": "left",
      "group": "hand",
-     "tris": 302
+     "tris": 302,
+     "bbox": [
+      0.2582,
+      0.7977,
+      0.0302,
+      0.3059,
+      0.83,
+      0.0488
+     ]
     },
     {
      "id": "FMA37396",
      "name": "abductor digiti minimi of right hand",
      "side": "right",
      "group": "hand",
-     "tris": 280
+     "tris": 280,
+     "bbox": [
+      -0.2382,
+      0.7538,
+      0.0304,
+      -0.2206,
+      0.8179,
+      0.0489
+     ]
     },
     {
      "id": "FMA37397",
      "name": "abductor digiti minimi of left hand",
      "side": "left",
      "group": "hand",
-     "tris": 272
+     "tris": 272,
+     "bbox": [
+      0.2206,
+      0.754,
+      0.0305,
+      0.2383,
+      0.8178,
+      0.049
+     ]
     },
     {
      "id": "FMA37398",
      "name": "flexor digiti minimi brevis of right hand",
      "side": "right",
      "group": "hand",
-     "tris": 249
+     "tris": 249,
+     "bbox": [
+      -0.244,
+      0.7562,
+      0.0304,
+      -0.226,
+      0.8156,
+      0.048
+     ]
     },
     {
      "id": "FMA37399",
      "name": "flexor digiti minimi brevis of left hand",
      "side": "left",
      "group": "hand",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      0.226,
+      0.7562,
+      0.0305,
+      0.2439,
+      0.8158,
+      0.0482
+     ]
     },
     {
      "id": "FMA37400",
      "name": "opponens digiti minimi of right hand",
      "side": "right",
      "group": "hand",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      -0.2453,
+      0.7682,
+      0.0275,
+      -0.2276,
+      0.8142,
+      0.0425
+     ]
     },
     {
      "id": "FMA37401",
      "name": "opponens digiti minimi of left hand",
      "side": "left",
      "group": "hand",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      0.2276,
+      0.7684,
+      0.0275,
+      0.2453,
+      0.8142,
+      0.0423
+     ]
     },
     {
      "id": "FMA37459",
      "name": "right abductor hallucis",
      "side": "right",
      "group": "foot",
-     "tris": 684
+     "tris": 684,
+     "bbox": [
+      -0.0732,
+      0.0143,
+      -0.0572,
+      -0.0535,
+      0.0403,
+      0.0832
+     ]
     },
     {
      "id": "FMA37460",
      "name": "left abductor hallucis",
      "side": "left",
      "group": "foot",
-     "tris": 681
+     "tris": 681,
+     "bbox": [
+      0.0535,
+      0.0143,
+      -0.0571,
+      0.0731,
+      0.0404,
+      0.0832
+     ]
     },
     {
      "id": "FMA37461",
      "name": "right flexor digitorum brevis",
      "side": "right",
      "group": "forearm",
-     "tris": 1300
+     "tris": 1300,
+     "bbox": [
+      -0.1385,
+      0.0069,
+      -0.0649,
+      -0.063,
+      0.0261,
+      0.1173
+     ]
     },
     {
      "id": "FMA37462",
      "name": "left flexor digitorum brevis",
      "side": "left",
      "group": "forearm",
-     "tris": 1365
+     "tris": 1365,
+     "bbox": [
+      0.063,
+      0.007,
+      -0.065,
+      0.1386,
+      0.0262,
+      0.1171
+     ]
     },
     {
      "id": "FMA37463",
      "name": "abductor digiti minimi of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 529
+     "group": "foot",
+     "tris": 529,
+     "bbox": [
+      -0.1349,
+      0.0103,
+      -0.0647,
+      -0.0662,
+      0.0259,
+      0.058
+     ]
     },
     {
      "id": "FMA37464",
      "name": "abductor digiti minimi of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 555
+     "group": "foot",
+     "tris": 555,
+     "bbox": [
+      0.0661,
+      0.0102,
+      -0.0645,
+      0.1348,
+      0.0263,
+      0.0583
+     ]
     },
     {
      "id": "FMA37465",
      "name": "right flexor accessorius",
      "side": "right",
      "group": "other",
-     "tris": 471
+     "tris": 471,
+     "bbox": [
+      -0.0986,
+      0.0172,
+      -0.0587,
+      -0.0639,
+      0.0336,
+      0.0155
+     ]
     },
     {
      "id": "FMA37466",
      "name": "left flexor accessorius",
      "side": "left",
      "group": "other",
-     "tris": 500
+     "tris": 500,
+     "bbox": [
+      0.064,
+      0.0173,
+      -0.0584,
+      0.0987,
+      0.0335,
+      0.0155
+     ]
     },
     {
      "id": "FMA37471",
      "name": "flexor digiti minimi brevis of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 249
+     "group": "foot",
+     "tris": 249,
+     "bbox": [
+      -0.1339,
+      0.0087,
+      -0.0042,
+      -0.1021,
+      0.0263,
+      0.0663
+     ]
     },
     {
      "id": "FMA37472",
      "name": "flexor digiti minimi brevis of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 248
+     "group": "foot",
+     "tris": 248,
+     "bbox": [
+      0.1021,
+      0.0087,
+      -0.0041,
+      0.134,
+      0.0264,
+      0.066
+     ]
     },
     {
      "id": "FMA37483",
      "name": "fourth lumbrical of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 249
+     "group": "foot",
+     "tris": 249,
+     "bbox": [
+      -0.1245,
+      0.0122,
+      0.0121,
+      -0.0895,
+      0.0262,
+      0.0623
+     ]
     },
     {
      "id": "FMA37484",
      "name": "fourth lumbrical of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 249
+     "group": "foot",
+     "tris": 249,
+     "bbox": [
+      0.0895,
+      0.0121,
+      0.0121,
+      0.1244,
+      0.0262,
+      0.0621
+     ]
     },
     {
      "id": "FMA37485",
      "name": "third lumbrical of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 250
+     "group": "foot",
+     "tris": 250,
+     "bbox": [
+      -0.1119,
+      0.0117,
+      0.0124,
+      -0.0834,
+      0.0261,
+      0.0736
+     ]
     },
     {
      "id": "FMA37486",
      "name": "third lumbrical of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 250
+     "group": "foot",
+     "tris": 250,
+     "bbox": [
+      0.0833,
+      0.0118,
+      0.0125,
+      0.1118,
+      0.026,
+      0.0735
+     ]
     },
     {
      "id": "FMA37665",
      "name": "right coracobrachialis",
      "side": "right",
      "group": "upper arm",
-     "tris": 463
+     "tris": 463,
+     "bbox": [
+      -0.1891,
+      1.1939,
+      -0.0333,
+      -0.1306,
+      1.3475,
+      0.0004
+     ]
     },
     {
      "id": "FMA37666",
      "name": "left coracobrachialis",
      "side": "left",
      "group": "upper arm",
-     "tris": 442
+     "tris": 442,
+     "bbox": [
+      0.1304,
+      1.1941,
+      -0.0334,
+      0.1893,
+      1.3476,
+      0.0003
+     ]
     },
     {
      "id": "FMA37668",
      "name": "right brachialis",
      "side": "right",
      "group": "upper arm",
-     "tris": 1397
+     "tris": 1397,
+     "bbox": [
+      -0.2351,
+      1.0189,
+      -0.0398,
+      -0.1762,
+      1.244,
+      -0.0132
+     ]
     },
     {
      "id": "FMA37669",
      "name": "left brachialis",
      "side": "left",
      "group": "upper arm",
-     "tris": 1386
+     "tris": 1386,
+     "bbox": [
+      0.1761,
+      1.0194,
+      -0.0399,
+      0.2351,
+      1.2438,
+      -0.0132
+     ]
     },
     {
      "id": "FMA37684",
      "name": "short head of right biceps brachii",
      "side": "right",
      "group": "upper arm",
-     "tris": 1112
+     "tris": 1112,
+     "bbox": [
+      -0.2124,
+      1.0921,
+      -0.0241,
+      -0.13,
+      1.3532,
+      0.0091
+     ]
     },
     {
      "id": "FMA37685",
      "name": "short head of left biceps brachii",
      "side": "left",
      "group": "upper arm",
-     "tris": 1146
+     "tris": 1146,
+     "bbox": [
+      0.1338,
+      1.0923,
+      -0.0242,
+      0.2126,
+      1.3533,
+      0.0091
+     ]
     },
     {
      "id": "FMA37686",
      "name": "long head of right biceps brachii",
      "side": "right",
      "group": "upper arm",
-     "tris": 1289
+     "tris": 1289,
+     "bbox": [
+      -0.23,
+      1.0182,
+      -0.0383,
+      -0.1378,
+      1.3634,
+      0.0095
+     ]
     },
     {
      "id": "FMA37687",
      "name": "long head of left biceps brachii",
      "side": "left",
      "group": "upper arm",
-     "tris": 1316
+     "tris": 1316,
+     "bbox": [
+      0.1378,
+      1.0184,
+      -0.0378,
+      0.2297,
+      1.3637,
+      0.0093
+     ]
     },
     {
      "id": "FMA37695",
      "name": "medial head of right triceps brachii",
      "side": "right",
      "group": "upper arm",
-     "tris": 1073
+     "tris": 1073,
+     "bbox": [
+      -0.2271,
+      1.0531,
+      -0.0541,
+      -0.1668,
+      1.28,
+      -0.0285
+     ]
     },
     {
      "id": "FMA37696",
      "name": "medial head of left triceps brachii",
      "side": "left",
      "group": "upper arm",
-     "tris": 1048
+     "tris": 1048,
+     "bbox": [
+      0.1671,
+      1.0532,
+      -0.0543,
+      0.2269,
+      1.2799,
+      -0.0284
+     ]
     },
     {
      "id": "FMA37697",
      "name": "lateral head of right triceps brachii",
      "side": "right",
      "group": "upper arm",
-     "tris": 1451
+     "tris": 1451,
+     "bbox": [
+      -0.2289,
+      1.0596,
+      -0.0802,
+      -0.1746,
+      1.3162,
+      -0.0309
+     ]
     },
     {
      "id": "FMA37698",
      "name": "lateral head of left triceps brachii",
      "side": "left",
      "group": "upper arm",
-     "tris": 1438
+     "tris": 1438,
+     "bbox": [
+      0.1743,
+      1.0596,
+      -0.0801,
+      0.2287,
+      1.3161,
+      -0.0311
+     ]
     },
     {
      "id": "FMA37699",
      "name": "long head of right triceps brachii",
      "side": "right",
      "group": "upper arm",
-     "tris": 1578
+     "tris": 1578,
+     "bbox": [
+      -0.2165,
+      1.0591,
+      -0.0813,
+      -0.1276,
+      1.3221,
+      -0.0356
+     ]
     },
     {
      "id": "FMA37700",
      "name": "long head of left triceps brachii",
      "side": "left",
      "group": "upper arm",
-     "tris": 1524
+     "tris": 1524,
+     "bbox": [
+      0.1275,
+      1.0591,
+      -0.0814,
+      0.2162,
+      1.3225,
+      -0.0359
+     ]
     },
     {
      "id": "FMA37705",
      "name": "right anconeus",
      "side": "right",
      "group": "upper arm",
-     "tris": 576
+     "tris": 576,
+     "bbox": [
+      -0.2293,
+      0.9834,
+      -0.0585,
+      -0.2063,
+      1.0848,
+      -0.0333
+     ]
     },
     {
      "id": "FMA37706",
      "name": "left anconeus",
      "side": "left",
      "group": "upper arm",
-     "tris": 566
+     "tris": 566,
+     "bbox": [
+      0.2062,
+      0.9839,
+      -0.0584,
+      0.2293,
+      1.0847,
+      -0.0333
+     ]
     },
     {
      "id": "FMA37717",
      "name": "first lumbrical of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 250
+     "group": "foot",
+     "tris": 250,
+     "bbox": [
+      -0.0856,
+      0.0127,
+      -0.004,
+      -0.0704,
+      0.0323,
+      0.0871
+     ]
     },
     {
      "id": "FMA37718",
      "name": "first lumbrical of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 249
+     "group": "foot",
+     "tris": 249,
+     "bbox": [
+      0.0705,
+      0.0127,
+      -0.0038,
+      0.0856,
+      0.0323,
+      0.087
+     ]
     },
     {
      "id": "FMA37719",
      "name": "second lumbrical of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 250
+     "group": "foot",
+     "tris": 250,
+     "bbox": [
+      -0.1023,
+      0.0122,
+      0.0137,
+      -0.0775,
+      0.027,
+      0.0841
+     ]
     },
     {
      "id": "FMA37720",
      "name": "second lumbrical of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 250
+     "group": "foot",
+     "tris": 250,
+     "bbox": [
+      0.0775,
+      0.0123,
+      0.014,
+      0.1024,
+      0.0271,
+      0.084
+     ]
     },
     {
      "id": "FMA38454",
      "name": "right pronator quadratus",
      "side": "right",
      "group": "forearm",
-     "tris": 585
+     "tris": 585,
+     "bbox": [
+      -0.272,
+      0.8438,
+      0.002,
+      -0.2261,
+      0.8944,
+      0.0258
+     ]
     },
     {
      "id": "FMA38455",
      "name": "left pronator quadratus",
      "side": "left",
      "group": "forearm",
-     "tris": 576
+     "tris": 576,
+     "bbox": [
+      0.2267,
+      0.8441,
+      0.0022,
+      0.2716,
+      0.8944,
+      0.0259
+     ]
     },
     {
      "id": "FMA38460",
      "name": "right flexor carpi radialis",
      "side": "right",
      "group": "forearm",
-     "tris": 666
+     "tris": 666,
+     "bbox": [
+      -0.2722,
+      0.8045,
+      -0.0292,
+      -0.1844,
+      1.0812,
+      0.0364
+     ]
     },
     {
      "id": "FMA38461",
      "name": "left flexor carpi radialis",
      "side": "left",
      "group": "forearm",
-     "tris": 636
+     "tris": 636,
+     "bbox": [
+      0.1843,
+      0.8049,
+      -0.0287,
+      0.2718,
+      1.0812,
+      0.0365
+     ]
     },
     {
      "id": "FMA38463",
      "name": "right palmaris longus",
      "side": "right",
      "group": "forearm",
-     "tris": 1776
+     "tris": 1776,
+     "bbox": [
+      -0.2901,
+      0.7567,
+      -0.0285,
+      -0.1791,
+      1.0776,
+      0.0496
+     ]
     },
     {
      "id": "FMA38464",
      "name": "left palmaris longus",
      "side": "left",
      "group": "forearm",
-     "tris": 1720
+     "tris": 1720,
+     "bbox": [
+      0.1791,
+      0.7569,
+      -0.0283,
+      0.2905,
+      1.0777,
+      0.0495
+     ]
     },
     {
      "id": "FMA38479",
      "name": "right flexor digitorum profundus",
      "side": "right",
      "group": "forearm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.3069,
+      0.6893,
+      -0.0314,
+      -0.2038,
+      1.0427,
+      0.0867
+     ]
     },
     {
      "id": "FMA38480",
      "name": "left flexor digitorum profundus",
      "side": "left",
      "group": "forearm",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.2039,
+      0.6896,
+      -0.0316,
+      0.3069,
+      1.0428,
+      0.0865
+     ]
     },
     {
      "id": "FMA38482",
      "name": "right flexor pollicis longus",
      "side": "right",
      "group": "forearm",
-     "tris": 761
+     "tris": 761,
+     "bbox": [
+      -0.3137,
+      0.7593,
+      -0.0124,
+      -0.2387,
+      0.9896,
+      0.0655
+     ]
     },
     {
      "id": "FMA38484",
      "name": "left flexor pollicis longus",
      "side": "left",
      "group": "forearm",
-     "tris": 746
+     "tris": 746,
+     "bbox": [
+      0.2386,
+      0.7594,
+      -0.0124,
+      0.3135,
+      0.9897,
+      0.0651
+     ]
     },
     {
      "id": "FMA38486",
      "name": "right brachioradialis",
      "side": "right",
      "group": "forearm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.2805,
+      0.8336,
+      -0.0443,
+      -0.2086,
+      1.1709,
+      0.0225
+     ]
     },
     {
      "id": "FMA38487",
      "name": "left brachioradialis",
      "side": "left",
      "group": "forearm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.2083,
+      0.8336,
+      -0.0443,
+      0.2804,
+      1.1713,
+      0.0224
+     ]
     },
     {
      "id": "FMA38495",
      "name": "right extensor carpi radialis longus",
      "side": "right",
      "group": "forearm",
-     "tris": 1484
+     "tris": 1484,
+     "bbox": [
+      -0.278,
+      0.803,
+      -0.0472,
+      -0.2202,
+      1.1254,
+      0.0206
+     ]
     },
     {
      "id": "FMA38496",
      "name": "left extensor carpi radialis longus",
      "side": "left",
      "group": "forearm",
-     "tris": 1530
+     "tris": 1530,
+     "bbox": [
+      0.2201,
+      0.8033,
+      -0.0473,
+      0.2779,
+      1.1253,
+      0.0205
+     ]
     },
     {
      "id": "FMA38498",
      "name": "right extensor carpi radialis brevis",
      "side": "right",
      "group": "forearm",
-     "tris": 1259
+     "tris": 1259,
+     "bbox": [
+      -0.2729,
+      0.7997,
+      -0.05,
+      -0.2284,
+      1.1024,
+      0.0157
+     ]
     },
     {
      "id": "FMA38499",
      "name": "left extensor carpi radialis brevis",
      "side": "left",
      "group": "forearm",
-     "tris": 1354
+     "tris": 1354,
+     "bbox": [
+      0.2283,
+      0.7999,
+      -0.0501,
+      0.2727,
+      1.1024,
+      0.0157
+     ]
     },
     {
      "id": "FMA38501",
      "name": "right extensor digitorum",
      "side": "right",
      "group": "forearm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.305,
+      0.7018,
+      -0.0549,
+      -0.2226,
+      1.0837,
+      0.0621
+     ]
     },
     {
      "id": "FMA38502",
      "name": "left extensor digitorum",
      "side": "left",
      "group": "forearm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.2226,
+      0.7018,
+      -0.055,
+      0.3049,
+      1.0837,
+      0.0621
+     ]
     },
     {
      "id": "FMA38504",
      "name": "right extensor digiti minimi",
      "side": "right",
      "group": "other",
-     "tris": 859
+     "tris": 859,
+     "bbox": [
+      -0.2432,
+      0.7483,
+      -0.0466,
+      -0.2271,
+      1.0732,
+      0.043
+     ]
     },
     {
      "id": "FMA38505",
      "name": "left extensor digiti minimi",
      "side": "left",
      "group": "other",
-     "tris": 860
+     "tris": 860,
+     "bbox": [
+      0.2273,
+      0.7484,
+      -0.0466,
+      0.2432,
+      1.0736,
+      0.0432
+     ]
     },
     {
      "id": "FMA38513",
      "name": "right supinator",
      "side": "right",
      "group": "forearm",
-     "tris": 1105
+     "tris": 1105,
+     "bbox": [
+      -0.2542,
+      0.9565,
+      -0.0438,
+      -0.2222,
+      1.0803,
+      -0.0098
+     ]
     },
     {
      "id": "FMA38514",
      "name": "left supinator",
      "side": "left",
      "group": "forearm",
-     "tris": 1040
+     "tris": 1040,
+     "bbox": [
+      0.2223,
+      0.9565,
+      -0.044,
+      0.2539,
+      1.0801,
+      -0.0096
+     ]
     },
     {
      "id": "FMA38516",
      "name": "right abductor pollicis longus",
      "side": "right",
      "group": "forearm",
-     "tris": 990
+     "tris": 990,
+     "bbox": [
+      -0.2895,
+      0.8129,
+      -0.0303,
+      -0.2274,
+      0.9942,
+      0.0314
+     ]
     },
     {
      "id": "FMA38517",
      "name": "left abductor pollicis longus",
      "side": "left",
      "group": "forearm",
-     "tris": 946
+     "tris": 946,
+     "bbox": [
+      0.2274,
+      0.8129,
+      -0.0302,
+      0.2894,
+      0.9942,
+      0.031
+     ]
     },
     {
      "id": "FMA38519",
      "name": "right extensor pollicis brevis",
      "side": "right",
      "group": "forearm",
-     "tris": 468
+     "tris": 468,
+     "bbox": [
+      -0.3113,
+      0.7824,
+      -0.0092,
+      -0.2349,
+      0.9179,
+      0.0476
+     ]
     },
     {
      "id": "FMA38520",
      "name": "left extensor pollicis brevis",
      "side": "left",
      "group": "forearm",
-     "tris": 462
+     "tris": 462,
+     "bbox": [
+      0.235,
+      0.7826,
+      -0.0093,
+      0.3112,
+      0.9178,
+      0.0475
+     ]
     },
     {
      "id": "FMA38522",
      "name": "right extensor pollicis longus",
      "side": "right",
      "group": "forearm",
-     "tris": 648
+     "tris": 648,
+     "bbox": [
+      -0.3194,
+      0.7568,
+      -0.0244,
+      -0.2245,
+      0.959,
+      0.063
+     ]
     },
     {
      "id": "FMA38523",
      "name": "left extensor pollicis longus",
      "side": "left",
      "group": "forearm",
-     "tris": 642
+     "tris": 642,
+     "bbox": [
+      0.2245,
+      0.7568,
+      -0.0246,
+      0.3196,
+      0.9587,
+      0.0626
+     ]
     },
     {
      "id": "FMA38525",
      "name": "right extensor indicis",
      "side": "right",
      "group": "forearm",
-     "tris": 466
+     "tris": 466,
+     "bbox": [
+      -0.3076,
+      0.6923,
+      -0.005,
+      -0.2296,
+      0.8923,
+      0.0732
+     ]
     },
     {
      "id": "FMA38526",
      "name": "left extensor indicis",
      "side": "left",
      "group": "forearm",
-     "tris": 460
+     "tris": 460,
+     "bbox": [
+      0.2295,
+      0.6928,
+      -0.0051,
+      0.3076,
+      0.8921,
+      0.0732
+     ]
     },
     {
      "id": "FMA38560",
      "name": "humeral head of right pronator teres",
      "side": "right",
      "group": "shoulder",
-     "tris": 1038
+     "tris": 1038,
+     "bbox": [
+      -0.2576,
+      0.9433,
+      -0.0324,
+      -0.1874,
+      1.0891,
+      0.0023
+     ]
     },
     {
      "id": "FMA38561",
      "name": "humeral head of left pronator teres",
      "side": "left",
      "group": "shoulder",
-     "tris": 1014
+     "tris": 1014,
+     "bbox": [
+      0.1874,
+      0.9424,
+      -0.0323,
+      0.2573,
+      1.089,
+      0.0023
+     ]
     },
     {
      "id": "FMA38562",
      "name": "ulnar head of right pronator teres",
      "side": "right",
      "group": "shoulder",
-     "tris": 454
+     "tris": 454,
+     "bbox": [
+      -0.2563,
+      0.9543,
+      -0.0262,
+      -0.2043,
+      1.0473,
+      -0.0014
+     ]
     },
     {
      "id": "FMA38563",
      "name": "ulnar head of left pronator teres",
      "side": "left",
      "group": "shoulder",
-     "tris": 454
+     "tris": 454,
+     "bbox": [
+      0.2041,
+      0.9538,
+      -0.0262,
+      0.2563,
+      1.0471,
+      -0.0016
+     ]
     },
     {
      "id": "FMA38617",
      "name": "humeral head of right flexor carpi ulnaris",
      "side": "right",
      "group": "forearm",
-     "tris": 1564
+     "tris": 1564,
+     "bbox": [
+      -0.2464,
+      0.8053,
+      -0.0391,
+      -0.1779,
+      1.0722,
+      0.0364
+     ]
     },
     {
      "id": "FMA38618",
      "name": "humeral head of left flexor carpi ulnaris",
      "side": "left",
      "group": "forearm",
-     "tris": 1614
+     "tris": 1614,
+     "bbox": [
+      0.1778,
+      0.8056,
+      -0.0392,
+      0.2464,
+      1.0721,
+      0.0365
+     ]
     },
     {
      "id": "FMA38619",
      "name": "ulnar head of right flexor carpi ulnaris",
      "side": "right",
      "group": "forearm",
-     "tris": 606
+     "tris": 606,
+     "bbox": [
+      -0.2293,
+      0.8543,
+      -0.053,
+      -0.1895,
+      1.0674,
+      0.0156
+     ]
     },
     {
      "id": "FMA38620",
      "name": "ulnar head of left flexor carpi ulnaris",
      "side": "left",
      "group": "forearm",
-     "tris": 586
+     "tris": 586,
+     "bbox": [
+      0.1893,
+      0.8545,
+      -0.0528,
+      0.2292,
+      1.0674,
+      0.015
+     ]
     },
     {
      "id": "FMA38638",
      "name": "humeroulnar head of right flexor digitorum superficialis",
      "side": "right",
      "group": "forearm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.3058,
+      0.6995,
+      -0.0325,
+      -0.1782,
+      1.0767,
+      0.0678
+     ]
     },
     {
      "id": "FMA38639",
      "name": "humeroulnar head of left flexor digitorum superficialis",
      "side": "left",
      "group": "forearm",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.1782,
+      0.6994,
+      -0.0326,
+      0.3057,
+      1.0769,
+      0.0677
+     ]
     },
     {
      "id": "FMA38640",
      "name": "radial head of right flexor digitorum superficialis",
      "side": "right",
      "group": "forearm",
-     "tris": 510
+     "tris": 510,
+     "bbox": [
+      -0.2538,
+      0.8371,
+      -0.0183,
+      -0.2258,
+      1.0156,
+      0.0331
+     ]
     },
     {
      "id": "FMA38641",
      "name": "radial head of left flexor digitorum superficialis",
      "side": "left",
      "group": "forearm",
-     "tris": 508
+     "tris": 508,
+     "bbox": [
+      0.2257,
+      0.8371,
+      -0.0186,
+      0.2537,
+      1.0162,
+      0.0332
+     ]
     },
     {
      "id": "FMA38928",
      "name": "right rectus femoris",
      "side": "right",
      "group": "thigh",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1433,
+      0.3589,
+      -0.0071,
+      -0.0647,
+      0.887,
+      0.0599
+     ]
     },
     {
      "id": "FMA38929",
      "name": "left rectus femoris",
      "side": "left",
      "group": "thigh",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0646,
+      0.359,
+      -0.0072,
+      0.1434,
+      0.8872,
+      0.0598
+     ]
     },
     {
      "id": "FMA38930",
      "name": "right vastus lateralis",
      "side": "right",
      "group": "thigh",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.1535,
+      0.3721,
+      -0.0334,
+      -0.0826,
+      0.8136,
+      0.0434
+     ]
     },
     {
      "id": "FMA38931",
      "name": "left vastus lateralis",
      "side": "left",
      "group": "thigh",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      0.0825,
+      0.3721,
+      -0.0335,
+      0.154,
+      0.8146,
+      0.0432
+     ]
     },
     {
      "id": "FMA38932",
      "name": "right vastus medialis",
      "side": "right",
      "group": "thigh",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.1016,
+      0.3729,
+      -0.0176,
+      -0.0331,
+      0.7673,
+      0.0485
+     ]
     },
     {
      "id": "FMA38933",
      "name": "left vastus medialis",
      "side": "left",
      "group": "thigh",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0324,
+      0.3732,
+      -0.0176,
+      0.1017,
+      0.7673,
+      0.0483
+     ]
     },
     {
      "id": "FMA38934",
      "name": "right vastus intermedius",
      "side": "right",
      "group": "thigh",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.1285,
+      0.3865,
+      -0.008,
+      -0.074,
+      0.7815,
+      0.0384
+     ]
     },
     {
      "id": "FMA38935",
      "name": "left vastus intermedius",
      "side": "left",
      "group": "thigh",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0741,
+      0.3866,
+      -0.008,
+      0.1286,
+      0.7814,
+      0.0384
+     ]
     },
     {
      "id": "FMA40120",
      "name": "flexor retinaculum of right wrist",
      "side": "right",
      "group": "other",
-     "tris": 424
+     "tris": 424,
+     "bbox": [
+      -0.271,
+      0.803,
+      0.0264,
+      -0.2341,
+      0.8303,
+      0.0408
+     ]
     },
     {
      "id": "FMA40121",
      "name": "flexor retinaculum of left wrist",
      "side": "left",
      "group": "other",
-     "tris": 424
+     "tris": 424,
+     "bbox": [
+      0.234,
+      0.8032,
+      0.0264,
+      0.2709,
+      0.8305,
+      0.0408
+     ]
     },
     {
      "id": "FMA42398",
      "name": "set of lumbricals of right hand",
      "side": "right",
      "group": "hand",
-     "tris": 609
+     "tris": 609,
+     "bbox": [
+      -0.3001,
+      0.7088,
+      0.0264,
+      -0.2243,
+      0.7984,
+      0.0576
+     ]
     },
     {
      "id": "FMA42399",
      "name": "set of lumbricals of left hand",
      "side": "left",
      "group": "hand",
-     "tris": 596
+     "tris": 596,
+     "bbox": [
+      0.2242,
+      0.7088,
+      0.0268,
+      0.2976,
+      0.7982,
+      0.0576
+     ]
     },
     {
      "id": "FMA42402",
      "name": "set of palmar interossei of right hand",
      "side": "right",
      "group": "hand",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      -0.2813,
+      0.7394,
+      0.0243,
+      -0.2342,
+      0.7909,
+      0.0461
+     ]
     },
     {
      "id": "FMA42403",
      "name": "set of palmar interossei of left hand",
      "side": "left",
      "group": "hand",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      0.2343,
+      0.7395,
+      0.0243,
+      0.2813,
+      0.7905,
+      0.0465
+     ]
     },
     {
      "id": "FMA42404",
      "name": "set of dorsal interossei of right hand",
      "side": "right",
      "group": "hand",
-     "tris": 693
+     "tris": 693,
+     "bbox": [
+      -0.2972,
+      0.7405,
+      0.0188,
+      -0.2351,
+      0.8093,
+      0.0449
+     ]
     },
     {
      "id": "FMA42405",
      "name": "set of dorsal interossei of left hand",
      "side": "left",
      "group": "hand",
-     "tris": 678
+     "tris": 678,
+     "bbox": [
+      0.235,
+      0.7406,
+      0.0186,
+      0.2972,
+      0.8093,
+      0.0447
+     ]
     },
     {
      "id": "FMA43883",
      "name": "right gracilis",
      "side": "right",
      "group": "thigh",
-     "tris": 1970
+     "tris": 1970,
+     "bbox": [
+      -0.0604,
+      0.3348,
+      -0.0448,
+      -0.0092,
+      0.8105,
+      0.0425
+     ]
     },
     {
      "id": "FMA43884",
      "name": "left gracilis",
      "side": "left",
      "group": "thigh",
-     "tris": 1967
+     "tris": 1967,
+     "bbox": [
+      0.0091,
+      0.3348,
+      -0.0453,
+      0.0611,
+      0.8107,
+      0.0425
+     ]
     },
     {
      "id": "FMA43886",
      "name": "right adductor minimus",
      "side": "right",
      "group": "thigh",
-     "tris": 378
+     "tris": 378,
+     "bbox": [
+      -0.0955,
+      0.7024,
+      -0.0118,
+      -0.018,
+      0.8037,
+      0.0279
+     ]
     },
     {
      "id": "FMA43887",
      "name": "left adductor minimus",
      "side": "left",
      "group": "thigh",
-     "tris": 388
+     "tris": 388,
+     "bbox": [
+      0.0179,
+      0.7025,
+      -0.0118,
+      0.0954,
+      0.8036,
+      0.0279
+     ]
     },
     {
      "id": "FMA45739",
      "name": "right platysma",
      "side": "right",
      "group": "head/neck",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.1369,
+      1.3552,
+      -0.038,
+      0.0024,
+      1.4928,
+      0.0825
+     ]
     },
     {
      "id": "FMA45740",
      "name": "left platysma",
      "side": "left",
      "group": "head/neck",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.0001,
+      1.3552,
+      -0.0381,
+      0.1368,
+      1.4929,
+      0.0825
+     ]
     },
     {
      "id": "FMA45874",
      "name": "abdominal part of right pectoralis major",
      "side": "right",
      "group": "chest",
-     "tris": 300
+     "tris": 300,
+     "bbox": [
+      -0.1798,
+      1.1353,
+      -0.0143,
+      -0.0526,
+      1.3048,
+      0.1142
+     ]
     },
     {
      "id": "FMA45875",
      "name": "abdominal part of left pectoralis major",
      "side": "left",
      "group": "chest",
-     "tris": 298
+     "tris": 298,
+     "bbox": [
+      0.0524,
+      1.1357,
+      -0.0146,
+      0.1797,
+      1.3062,
+      0.1133
+     ]
     },
     {
      "id": "FMA45888",
      "name": "long head of right biceps femoris",
      "side": "right",
      "group": "upper arm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.1242,
+      0.3826,
+      -0.0724,
+      -0.0485,
+      0.7943,
+      -0.0188
+     ]
     },
     {
      "id": "FMA45889",
      "name": "long head of left biceps femoris",
      "side": "left",
      "group": "upper arm",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0483,
+      0.3838,
+      -0.0726,
+      0.124,
+      0.7944,
+      -0.0186
+     ]
     },
     {
      "id": "FMA45891",
      "name": "short head of right biceps femoris",
      "side": "right",
      "group": "upper arm",
-     "tris": 1018
+     "tris": 1018,
+     "bbox": [
+      -0.1195,
+      0.3911,
+      -0.0527,
+      -0.084,
+      0.6819,
+      -0.0128
+     ]
     },
     {
      "id": "FMA45892",
      "name": "short head of left biceps femoris",
      "side": "left",
      "group": "upper arm",
-     "tris": 985
+     "tris": 985,
+     "bbox": [
+      0.0838,
+      0.3909,
+      -0.0528,
+      0.1194,
+      0.682,
+      -0.0125
+     ]
     },
     {
      "id": "FMA45957",
      "name": "medial head of right gastrocnemius",
      "side": "right",
      "group": "lower leg",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.0832,
+      0.2,
+      -0.0993,
+      -0.0339,
+      0.4904,
+      -0.0164
+     ]
     },
     {
      "id": "FMA45958",
      "name": "medial head of left gastrocnemius",
      "side": "left",
      "group": "lower leg",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.0336,
+      0.2002,
+      -0.0993,
+      0.0832,
+      0.49,
+      -0.0163
+     ]
     },
     {
      "id": "FMA45960",
      "name": "lateral head of right gastrocnemius",
      "side": "right",
      "group": "lower leg",
-     "tris": 1964
+     "tris": 1964,
+     "bbox": [
+      -0.1305,
+      0.2137,
+      -0.1017,
+      -0.0781,
+      0.4741,
+      -0.0262
+     ]
     },
     {
      "id": "FMA45961",
      "name": "lateral head of left gastrocnemius",
      "side": "left",
      "group": "lower leg",
-     "tris": 1946
+     "tris": 1946,
+     "bbox": [
+      0.0779,
+      0.2137,
+      -0.1017,
+      0.1304,
+      0.4739,
+      -0.0263
+     ]
     },
     {
      "id": "FMA45971",
      "name": "medial head of right flexor hallucis brevis",
      "side": "right",
-     "group": "lower leg",
-     "tris": 304
+     "group": "foot",
+     "tris": 304,
+     "bbox": [
+      -0.0699,
+      0.0107,
+      0.0058,
+      -0.0573,
+      0.0487,
+      0.0854
+     ]
     },
     {
      "id": "FMA45972",
      "name": "medial head of left flexor hallucis brevis",
      "side": "left",
-     "group": "lower leg",
-     "tris": 296
+     "group": "foot",
+     "tris": 296,
+     "bbox": [
+      0.057,
+      0.0106,
+      0.0059,
+      0.07,
+      0.0487,
+      0.0856
+     ]
     },
     {
      "id": "FMA45973",
      "name": "lateral head of right flexor hallucis brevis",
      "side": "right",
-     "group": "lower leg",
-     "tris": 439
+     "group": "foot",
+     "tris": 439,
+     "bbox": [
+      -0.0784,
+      0.009,
+      0.0068,
+      -0.0581,
+      0.0462,
+      0.0876
+     ]
     },
     {
      "id": "FMA45974",
      "name": "lateral head of left flexor hallucis brevis",
      "side": "left",
-     "group": "lower leg",
-     "tris": 429
+     "group": "foot",
+     "tris": 429,
+     "bbox": [
+      0.0583,
+      0.0089,
+      0.0073,
+      0.0783,
+      0.0463,
+      0.0881
+     ]
     },
     {
      "id": "FMA46018",
      "name": "oblique head of right adductor hallucis",
      "side": "right",
-     "group": "thigh",
-     "tris": 378
+     "group": "foot",
+     "tris": 378,
+     "bbox": [
+      -0.1011,
+      0.0143,
+      0.0025,
+      -0.0741,
+      0.0432,
+      0.067
+     ]
     },
     {
      "id": "FMA46019",
      "name": "oblique head of left adductor hallucis",
      "side": "left",
-     "group": "thigh",
-     "tris": 389
+     "group": "foot",
+     "tris": 389,
+     "bbox": [
+      0.074,
+      0.0141,
+      0.0026,
+      0.1011,
+      0.0431,
+      0.0667
+     ]
     },
     {
      "id": "FMA46020",
      "name": "transverse head of right adductor hallucis",
      "side": "right",
-     "group": "thigh",
-     "tris": 250
+     "group": "foot",
+     "tris": 250,
+     "bbox": [
+      -0.1207,
+      0.0142,
+      0.0503,
+      -0.0742,
+      0.021,
+      0.072
+     ]
     },
     {
      "id": "FMA46021",
      "name": "transverse head of left adductor hallucis",
      "side": "left",
-     "group": "thigh",
-     "tris": 248
+     "group": "foot",
+     "tris": 248,
+     "bbox": [
+      0.0741,
+      0.0145,
+      0.0504,
+      0.1206,
+      0.0213,
+      0.0719
+     ]
     },
     {
      "id": "FMA46110",
      "name": "deep head of right flexor pollicis brevis",
      "side": "right",
      "group": "forearm",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      -0.3013,
+      0.7902,
+      0.0254,
+      -0.256,
+      0.8179,
+      0.0528
+     ]
     },
     {
      "id": "FMA46111",
      "name": "deep head of left flexor pollicis brevis",
      "side": "left",
      "group": "forearm",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      0.2565,
+      0.7902,
+      0.0259,
+      0.3008,
+      0.818,
+      0.053
+     ]
     },
     {
      "id": "FMA46121",
      "name": "oblique head of right adductor pollicis",
      "side": "right",
-     "group": "thigh",
-     "tris": 249
+     "group": "hand",
+     "tris": 249,
+     "bbox": [
+      -0.2994,
+      0.7837,
+      0.023,
+      -0.2564,
+      0.8136,
+      0.0466
+     ]
     },
     {
      "id": "FMA46122",
      "name": "oblique head of left adductor pollicis",
      "side": "left",
-     "group": "thigh",
-     "tris": 248
+     "group": "hand",
+     "tris": 248,
+     "bbox": [
+      0.2566,
+      0.7836,
+      0.0232,
+      0.2991,
+      0.8136,
+      0.0467
+     ]
     },
     {
      "id": "FMA46123",
      "name": "transverse head of right adductor pollicis",
      "side": "right",
-     "group": "thigh",
-     "tris": 405
+     "group": "hand",
+     "tris": 405,
+     "bbox": [
+      -0.3002,
+      0.7625,
+      0.024,
+      -0.2586,
+      0.8007,
+      0.0465
+     ]
     },
     {
      "id": "FMA46124",
      "name": "transverse head of left adductor pollicis",
      "side": "left",
-     "group": "thigh",
-     "tris": 370
+     "group": "hand",
+     "tris": 370,
+     "bbox": [
+      0.2589,
+      0.7624,
+      0.024,
+      0.3,
+      0.8006,
+      0.0464
+     ]
     },
     {
      "id": "FMA46283",
      "name": "superior oblique part of right longus colli",
      "side": "right",
      "group": "head/neck",
-     "tris": 466
+     "tris": 466,
+     "bbox": [
+      -0.0252,
+      1.4319,
+      -0.0094,
+      -0.0032,
+      1.4962,
+      0.0038
+     ]
     },
     {
      "id": "FMA46284",
      "name": "superior oblique part of left longus colli",
      "side": "left",
      "group": "head/neck",
-     "tris": 424
+     "tris": 424,
+     "bbox": [
+      0.0031,
+      1.4319,
+      -0.0093,
+      0.0253,
+      1.4962,
+      0.0039
+     ]
     },
     {
      "id": "FMA46285",
      "name": "vertical intermediate part of right longus colli",
      "side": "right",
      "group": "head/neck",
-     "tris": 696
+     "tris": 696,
+     "bbox": [
+      -0.0144,
+      1.3658,
+      -0.0179,
+      -0.0014,
+      1.4943,
+      0.0059
+     ]
     },
     {
      "id": "FMA46286",
      "name": "vertical intermediate part of left longus colli",
      "side": "left",
      "group": "head/neck",
-     "tris": 678
+     "tris": 678,
+     "bbox": [
+      0.0014,
+      1.3659,
+      -0.0182,
+      0.0144,
+      1.4945,
+      0.006
+     ]
     },
     {
      "id": "FMA46287",
      "name": "inferior oblique part of right longus colli",
      "side": "right",
      "group": "head/neck",
-     "tris": 444
+     "tris": 444,
+     "bbox": [
+      -0.0241,
+      1.3442,
+      -0.027,
+      -0.0037,
+      1.4173,
+      -0.0052
+     ]
     },
     {
      "id": "FMA46288",
      "name": "inferior oblique part of left longus colli",
      "side": "left",
      "group": "head/neck",
-     "tris": 424
+     "tris": 424,
+     "bbox": [
+      0.0037,
+      1.3441,
+      -0.027,
+      0.0241,
+      1.4173,
+      -0.0052
+     ]
     },
     {
      "id": "FMA46304",
      "name": "anterior belly of right digastric",
      "side": "right",
      "group": "head/neck",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      -0.0148,
+      1.452,
+      0.0341,
+      -0.0033,
+      1.4583,
+      0.0687
+     ]
     },
     {
      "id": "FMA46305",
      "name": "anterior belly of left digastric",
      "side": "left",
      "group": "head/neck",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      0.0032,
+      1.452,
+      0.0341,
+      0.0147,
+      1.4582,
+      0.0686
+     ]
     },
     {
      "id": "FMA46306",
      "name": "posterior belly of right digastric",
      "side": "right",
      "group": "head/neck",
-     "tris": 521
+     "tris": 521,
+     "bbox": [
+      -0.0571,
+      1.4554,
+      -0.0237,
+      -0.0115,
+      1.5174,
+      0.0374
+     ]
     },
     {
      "id": "FMA46307",
      "name": "posterior belly of left digastric",
      "side": "left",
      "group": "head/neck",
-     "tris": 516
+     "tris": 516,
+     "bbox": [
+      0.0115,
+      1.4554,
+      -0.0238,
+      0.0568,
+      1.5174,
+      0.0374
+     ]
     },
     {
      "id": "FMA46309",
      "name": "right longus capitis",
      "side": "right",
      "group": "head/neck",
-     "tris": 792
+     "tris": 792,
+     "bbox": [
+      -0.0258,
+      1.4133,
+      -0.0092,
+      -0.0021,
+      1.5197,
+      0.0077
+     ]
     },
     {
      "id": "FMA46310",
      "name": "left longus capitis",
      "side": "left",
      "group": "head/neck",
-     "tris": 772
+     "tris": 772,
+     "bbox": [
+      0.0021,
+      1.4132,
+      -0.0091,
+      0.0257,
+      1.5197,
+      0.0078
+     ]
     },
     {
      "id": "FMA46321",
      "name": "right mylohyoid",
      "side": "right",
      "group": "head/neck",
-     "tris": 448
+     "tris": 448,
+     "bbox": [
+      -0.0262,
+      1.4539,
+      0.0322,
+      -0.0001,
+      1.4783,
+      0.0687
+     ]
     },
     {
      "id": "FMA46322",
      "name": "left mylohyoid",
      "side": "left",
      "group": "head/neck",
-     "tris": 444
+     "tris": 444,
+     "bbox": [
+      0.0,
+      1.4539,
+      0.0323,
+      0.0262,
+      1.4783,
+      0.0688
+     ]
     },
     {
      "id": "FMA46442",
      "name": "tendinous arch of levator ani",
      "side": "midline",
      "group": "other",
-     "tris": 272
+     "tris": 272,
+     "bbox": [
+      -0.0454,
+      0.8071,
+      -0.044,
+      0.0444,
+      0.841,
+      0.0229
+     ]
     },
     {
      "id": "FMA46782",
      "name": "orbital part of right orbicularis oculi",
      "side": "right",
      "group": "head/neck",
-     "tris": 332
+     "tris": 332,
+     "bbox": [
+      -0.0449,
+      1.5296,
+      0.063,
+      -0.0124,
+      1.5528,
+      0.0799
+     ]
     },
     {
      "id": "FMA46783",
      "name": "orbital part of left orbicularis oculi",
      "side": "left",
      "group": "head/neck",
-     "tris": 330
+     "tris": 330,
+     "bbox": [
+      0.0124,
+      1.5296,
+      0.0631,
+      0.045,
+      1.5528,
+      0.0798
+     ]
     },
     {
      "id": "FMA46785",
      "name": "palpebral part of right orbicularis oculi",
      "side": "right",
      "group": "head/neck",
-     "tris": 956
+     "tris": 956,
+     "bbox": [
+      -0.0516,
+      1.5182,
+      0.0552,
+      -0.0087,
+      1.5663,
+      0.0856
+     ]
     },
     {
      "id": "FMA46786",
      "name": "palpebral part of left orbicularis oculi",
      "side": "left",
      "group": "head/neck",
-     "tris": 920
+     "tris": 920,
+     "bbox": [
+      0.0086,
+      1.5182,
+      0.0551,
+      0.0516,
+      1.5662,
+      0.0856
+     ]
     },
     {
      "id": "FMA46803",
      "name": "right levator labii superioris alaeque nasi",
      "side": "right",
      "group": "other",
-     "tris": 249
+     "tris": 249,
+     "bbox": [
+      -0.0155,
+      1.5086,
+      0.076,
+      -0.0103,
+      1.5369,
+      0.0831
+     ]
     },
     {
      "id": "FMA46804",
      "name": "left levator labii superioris alaeque nasi",
      "side": "left",
      "group": "other",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      0.0103,
+      1.5086,
+      0.076,
+      0.0154,
+      1.5369,
+      0.0831
+     ]
     },
     {
      "id": "FMA46806",
      "name": "right levator labii superioris",
      "side": "right",
      "group": "other",
-     "tris": 250
+     "tris": 250,
+     "bbox": [
+      -0.0376,
+      1.4987,
+      0.0682,
+      -0.0113,
+      1.5266,
+      0.0826
+     ]
     },
     {
      "id": "FMA46807",
      "name": "left levator labii superioris",
      "side": "left",
      "group": "other",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      0.0112,
+      1.4986,
+      0.0683,
+      0.0376,
+      1.5267,
+      0.0825
+     ]
     },
     {
      "id": "FMA46823",
      "name": "right levator anguli oris",
      "side": "right",
      "group": "other",
-     "tris": 249
+     "tris": 249,
+     "bbox": [
+      -0.0281,
+      1.494,
+      0.067,
+      -0.0115,
+      1.514,
+      0.0823
+     ]
     },
     {
      "id": "FMA46824",
      "name": "left levator anguli oris",
      "side": "left",
      "group": "other",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      0.0115,
+      1.4939,
+      0.067,
+      0.028,
+      1.5135,
+      0.0823
+     ]
     },
     {
      "id": "FMA46841",
      "name": "orbicularis oris",
      "side": "midline",
      "group": "head/neck",
-     "tris": 1504
+     "tris": 1504,
+     "bbox": [
+      -0.031,
+      1.4611,
+      0.0668,
+      0.0308,
+      1.5053,
+      0.0935
+     ]
     },
     {
      "id": "FMA49001",
      "name": "superficial part of right masseter",
      "side": "right",
      "group": "head/neck",
-     "tris": 402
+     "tris": 402,
+     "bbox": [
+      -0.0597,
+      1.466,
+      0.0104,
+      -0.0336,
+      1.5293,
+      0.0442
+     ]
     },
     {
      "id": "FMA49002",
      "name": "superficial part of left masseter",
      "side": "left",
      "group": "head/neck",
-     "tris": 400
+     "tris": 400,
+     "bbox": [
+      0.0336,
+      1.4658,
+      0.0104,
+      0.0597,
+      1.5292,
+      0.0442
+     ]
     },
     {
      "id": "FMA49004",
      "name": "deep part of right masseter",
      "side": "right",
      "group": "head/neck",
-     "tris": 566
+     "tris": 566,
+     "bbox": [
+      -0.0604,
+      1.4648,
+      0.018,
+      -0.0351,
+      1.5249,
+      0.0558
+     ]
     },
     {
      "id": "FMA49005",
      "name": "deep part of left masseter",
      "side": "left",
      "group": "head/neck",
-     "tris": 562
+     "tris": 562,
+     "bbox": [
+      0.0349,
+      1.4649,
+      0.0179,
+      0.0605,
+      1.5246,
+      0.0558
+     ]
     },
     {
      "id": "FMA49007",
      "name": "right temporalis",
      "side": "right",
      "group": "head/neck",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      -0.0743,
+      1.4973,
+      -0.0475,
+      -0.0368,
+      1.6096,
+      0.0628
+     ]
     },
     {
      "id": "FMA49008",
      "name": "left temporalis",
      "side": "left",
      "group": "head/neck",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      0.0365,
+      1.4974,
+      -0.0473,
+      0.0744,
+      1.6096,
+      0.0632
+     ]
     },
     {
      "id": "FMA51142",
      "name": "right extensor digitorum brevis",
      "side": "right",
      "group": "forearm",
-     "tris": 1287
+     "tris": 1287,
+     "bbox": [
+      -0.1289,
+      0.0152,
+      -0.0339,
+      -0.0878,
+      0.0719,
+      0.1149
+     ]
     },
     {
      "id": "FMA51143",
      "name": "left extensor digitorum brevis",
      "side": "left",
      "group": "forearm",
-     "tris": 1291
+     "tris": 1291,
+     "bbox": [
+      0.0877,
+      0.0151,
+      -0.0341,
+      0.129,
+      0.0719,
+      0.1149
+     ]
     },
     {
      "id": "FMA51144",
      "name": "right extensor hallucis brevis",
      "side": "right",
-     "group": "lower leg",
-     "tris": 448
+     "group": "foot",
+     "tris": 448,
+     "bbox": [
+      -0.0984,
+      0.0267,
+      -0.0272,
+      -0.0654,
+      0.0731,
+      0.0905
+     ]
     },
     {
      "id": "FMA51145",
      "name": "left extensor hallucis brevis",
      "side": "left",
-     "group": "lower leg",
-     "tris": 430
+     "group": "foot",
+     "tris": 430,
+     "bbox": [
+      0.0655,
+      0.0268,
+      -0.027,
+      0.0982,
+      0.0729,
+      0.0906
+     ]
     },
     {
      "id": "FMA65014",
      "name": "right flexor hallucis longus",
      "side": "right",
-     "group": "lower leg",
-     "tris": 2198
+     "group": "foot",
+     "tris": 2198,
+     "bbox": [
+      -0.1113,
+      0.0084,
+      -0.0639,
+      -0.0564,
+      0.3161,
+      0.1151
+     ]
     },
     {
      "id": "FMA65015",
      "name": "left flexor hallucis longus",
      "side": "left",
-     "group": "lower leg",
-     "tris": 2200
+     "group": "foot",
+     "tris": 2200,
+     "bbox": [
+      0.0564,
+      0.0085,
+      -0.0638,
+      0.1112,
+      0.3158,
+      0.1151
+     ]
     },
     {
      "id": "FMA65016",
      "name": "right flexor digitorum longus",
      "side": "right",
      "group": "forearm",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.1384,
+      0.0079,
+      -0.0611,
+      -0.0472,
+      0.3407,
+      0.1258
+     ]
     },
     {
      "id": "FMA65017",
      "name": "left flexor digitorum longus",
      "side": "left",
      "group": "forearm",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      0.0474,
+      0.0079,
+      -0.061,
+      0.1385,
+      0.3404,
+      0.1256
+     ]
     },
     {
      "id": "FMA65018",
      "name": "right tibialis posterior",
      "side": "right",
      "group": "lower leg",
-     "tris": 2200
+     "tris": 2200,
+     "bbox": [
+      -0.1045,
+      0.038,
+      -0.0548,
+      -0.0474,
+      0.371,
+      0.0238
+     ]
     },
     {
      "id": "FMA65019",
      "name": "left tibialis posterior",
      "side": "left",
      "group": "lower leg",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      0.0473,
+      0.038,
+      -0.0548,
+      0.1044,
+      0.3707,
+      0.0235
+     ]
     },
     {
      "id": "FMA65198",
      "name": "superficial head of right flexor pollicis brevis",
      "side": "right",
      "group": "forearm",
-     "tris": 249
+     "tris": 249,
+     "bbox": [
+      -0.3021,
+      0.7907,
+      0.0364,
+      -0.2598,
+      0.8206,
+      0.0539
+     ]
     },
     {
      "id": "FMA65199",
      "name": "superficial head of left flexor pollicis brevis",
      "side": "left",
      "group": "forearm",
-     "tris": 248
+     "tris": 248,
+     "bbox": [
+      0.2599,
+      0.7908,
+      0.0375,
+      0.3021,
+      0.8206,
+      0.0541
+     ]
     },
     {
      "id": "FMA71444",
      "name": "set of lateral lumbar intertransversarius muscles",
      "side": "midline",
      "group": "spine",
-     "tris": 442
+     "tris": 442,
+     "bbox": [
+      -0.0472,
+      0.9626,
+      -0.0532,
+      0.0457,
+      1.1099,
+      -0.0227
+     ]
     },
     {
      "id": "FMA74075",
      "name": "set of right levatores costarum longi",
      "side": "right",
      "group": "other",
-     "tris": 2198
+     "tris": 2198,
+     "bbox": [
+      -0.0743,
+      1.0898,
+      -0.0935,
+      -0.0285,
+      1.4091,
+      -0.0235
+     ]
     },
     {
      "id": "FMA74076",
      "name": "set of left levatores costarum longi",
      "side": "left",
      "group": "other",
-     "tris": 2199
+     "tris": 2199,
+     "bbox": [
+      0.0285,
+      1.0899,
+      -0.0935,
+      0.0743,
+      1.4094,
+      -0.0218
+     ]
     },
     {
      "id": "FMA74077",
      "name": "set of right levatores costarum breves",
      "side": "right",
      "group": "other",
-     "tris": 1186
+     "tris": 1186,
+     "bbox": [
+      -0.0717,
+      1.0942,
+      -0.0918,
+      -0.023,
+      1.4073,
+      -0.0225
+     ]
     },
     {
      "id": "FMA74078",
      "name": "set of left levatores costarum breves",
      "side": "left",
      "group": "other",
-     "tris": 1188
+     "tris": 1188,
+     "bbox": [
+      0.0233,
+      1.0944,
+      -0.0917,
+      0.0714,
+      1.4077,
+      -0.0221
+     ]
     },
     {
      "id": "FMA74140",
      "name": "set of dorsal interossei of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 687
+     "group": "foot",
+     "tris": 687,
+     "bbox": [
+      -0.1232,
+      0.0171,
+      0.0179,
+      -0.0735,
+      0.0532,
+      0.0876
+     ]
     },
     {
      "id": "FMA74141",
      "name": "set of dorsal interossei of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 647
+     "group": "foot",
+     "tris": 647,
+     "bbox": [
+      0.0735,
+      0.017,
+      0.0179,
+      0.1232,
+      0.053,
+      0.0876
+     ]
     },
     {
      "id": "FMA76775",
      "name": "set of medial lumbar intertransversarius muscles",
      "side": "midline",
      "group": "spine",
-     "tris": 806
+     "tris": 806,
+     "bbox": [
+      -0.0357,
+      0.9599,
+      -0.033,
+      0.0333,
+      1.0768,
+      -0.015
+     ]
     },
     {
      "id": "FMA79979",
      "name": "sternocostal part of right pectoralis major",
      "side": "right",
      "group": "chest",
-     "tris": 1439
+     "tris": 1439,
+     "bbox": [
+      -0.187,
+      1.1746,
+      -0.014,
+      -0.0036,
+      1.351,
+      0.1239
+     ]
     },
     {
      "id": "FMA79980",
      "name": "sternocostal part of left pectoralis major",
      "side": "left",
      "group": "chest",
-     "tris": 1430
+     "tris": 1430,
+     "bbox": [
+      0.0039,
+      1.1747,
+      -0.0139,
+      0.1865,
+      1.351,
+      0.1238
+     ]
     },
     {
      "id": "FMA86034",
      "name": "opponens digiti minimi of right foot",
      "side": "right",
-     "group": "hand",
-     "tris": 249
+     "group": "foot",
+     "tris": 249,
+     "bbox": [
+      -0.1242,
+      0.0155,
+      -0.0029,
+      -0.1023,
+      0.0266,
+      0.0388
+     ]
     },
     {
      "id": "FMA86035",
      "name": "opponens digiti minimi of left foot",
      "side": "left",
-     "group": "hand",
-     "tris": 248
+     "group": "foot",
+     "tris": 248,
+     "bbox": [
+      0.1024,
+      0.0154,
+      -0.0028,
+      0.124,
+      0.0264,
+      0.0385
+     ]
     },
     {
      "id": "FMA9756",
      "name": "external intercostal muscle",
      "side": "midline",
      "group": "chest",
-     "tris": 4079
+     "tris": 4079,
+     "bbox": [
+      -0.1363,
+      1.0376,
+      -0.0926,
+      0.1361,
+      1.3952,
+      0.0942
+     ]
     },
     {
      "id": "FMA9757",
      "name": "internal intercostal muscle",
      "side": "midline",
      "group": "chest",
-     "tris": 3614
+     "tris": 3614,
+     "bbox": [
+      -0.1338,
+      1.0445,
+      -0.0892,
+      0.1337,
+      1.3623,
+      0.11
+     ]
     },
     {
      "id": "FMA9758",
      "name": "innermost intercostal muscle",
      "side": "midline",
      "group": "chest",
-     "tris": 3389
+     "tris": 3389,
+     "bbox": [
+      -0.1305,
+      1.0506,
+      -0.0855,
+      0.1304,
+      1.3633,
+      0.0945
+     ]
     }
    ]
   }
+ },
+ "landmarks": {
+  "height": 1.6553,
+  "halfWidth": 0.3294,
+  "shoulderTop": 1.3788,
+  "axilla": 1.2116,
+  "nippleT4": 1.2659,
+  "costalMargin": 1.2188,
+  "pubis": 0.8237,
+  "iliacCrest": 0.9657,
+  "glutealFold": 0.687,
+  "elbow": 1.0189,
+  "wrist": 0.8438,
+  "kneeLine": 0.4904,
+  "ankle": 0.0413
  }
 }

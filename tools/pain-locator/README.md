@@ -56,11 +56,10 @@ offline and on a machine with no route out.
 - Colours are converted from sRGB to linear on the way into every material — r128 predates
   three.js colour management, and skipping this bleaches the muscle map.
 
-## Real anatomy (work in progress)
+## Real anatomy
 
 `build/make_assets.py` converts the [BodyParts3D](https://lifesciencedb.jp/bp3d/) dataset into
-web-ready glTF for the app. It is **not yet wired into `index.html`** — the app still draws the
-schematic figure described above.
+web-ready glTF, and the app loads it at startup.
 
 Run it against a clone of
 [Kevin-Mattheus-Moerman/BodyParts3D](https://github.com/Kevin-Mattheus-Moerman/BodyParts3D)
@@ -83,6 +82,49 @@ coordinates as the schematic version does.
 the app's metres, Y-up, +Z anterior, feet on `y = 0`. The rotation has determinant +1, so left and
 right are preserved — verified by checking that "acromial part of left deltoid" lands at positive X.
 Getting this backwards would silently put every pain point on the wrong side of the body.
+
+### Asset loading
+
+The app fetches `manifest.json`, `skin.glb` and `muscles.glb` from `assets/` by default. Point it
+elsewhere with `?assets=<base-url>` on the URL, or by setting `window.PAIN_LOCATOR_ASSETS` before the
+page script runs — that is the hook for serving them out of attachment storage.
+
+**If the assets do not load the app still works.** The schematic figure stays on screen, all four
+visualisations keep working, and the rail says so plainly rather than failing.
+
+### What a tap now records
+
+Tapping the body produces three things instead of one:
+
+- **Region** in plain English — "Right lower back, to one side".
+- **Approximate spinal level** — the dermatome, reported with its neighbours (`T10 · approx T9–T11`).
+- **The muscle beneath the point** — a ray is cast inward from the surface and the first muscle it
+  meets is named from the data: "long head of right biceps femoris", "ascending part of right
+  trapezius". Reach is capped at 85 mm so the answer is what lies under the point, not whatever the
+  ray eventually exits through.
+
+### Dermatomes
+
+A fourth visualisation shades the body by spinal nerve level, C2–S5, with the face marked as
+trigeminal rather than spinal. Levels are anchored on the ISNCSCI key sensory points — T4 at the
+nipple line, T10 at the navel, L5 the great toe, S1 the little toe — and the two trunk anchors are
+measured off the meshes, so the bands follow the actual body.
+
+**These boundaries are approximate and the app says so.** Published dermatome charts genuinely
+disagree with one another, and adjacent dermatomes overlap substantially on a real person, so every
+reading is reported as a band rather than an edge. Posterior bands carry a fixed two-segment offset
+to approximate the downward-and-forward obliquity of a real dermatome; that offset is a
+simplification. A clinician should review the mapping before it is relied on.
+
+Colour encoding: four region hues (cervical, thoracic, lumbar, sacral), each stepped light to dark
+across its levels, because the levels are ordered rather than merely categorical. The hues were
+checked for colour-vision separation and contrast against the stage in both themes. Identity is
+never carried by colour alone — the level is named in the read-out, the point list, the detail card
+and the printed table.
+
+Validated against known anatomy (see `build/`): nipple line → T4 over pectoralis major; navel → T10;
+lateral shin → L5 over tibialis anterior; back of calf → S1 over gastrocnemius; back of thigh → S2
+over biceps femoris; thumb side of hand → C6; little finger → C8 over abductor digiti minimi.
 
 ### The nervous system is not solved
 
