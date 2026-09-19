@@ -5055,6 +5055,10 @@ function boot3d() {
 
   function setMode(mode) {
     state.mode = mode;
+    // the read-out describes whatever was last under the pointer; switching
+    // mode or pairing makes that stale, so clear it rather than leave a label
+    // that no longer matches what is on screen
+    const ro = $("readout"); if (ro) ro.hidden = true;
     const real = ANAT.loaded;
     if (mode === "dermatome") paintDermatomes();
     // the schematic figure steps aside entirely once the real meshes are in
