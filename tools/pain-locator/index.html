@@ -4172,6 +4172,10 @@ function boot3d() {
     skin: new THREE.MeshStandardMaterial({ color: col(0xD3A183), roughness: 0.78, metalness: 0.02 }),
     bone: new THREE.MeshStandardMaterial({ color: col(0xE3DAC7), roughness: 0.72, metalness: 0.02 }),
     disc: new THREE.MeshStandardMaterial({ color: col(0xA9BEC4), roughness: 0.55, metalness: 0.02 }),
+    boneGhost: new THREE.MeshStandardMaterial({
+      color: col(0xD8D2C4), roughness: 0.6, metalness: 0.0,
+      transparent: true, opacity: 0.30, depthWrite: false
+    }),
     ghost: new THREE.MeshStandardMaterial({
       color: col(0x8CA3B2), roughness: 0.5, metalness: 0.0,
       transparent: true, opacity: 0.21, depthWrite: false, side: THREE.DoubleSide
@@ -4651,10 +4655,11 @@ function boot3d() {
         sk.scene.traverse((o) => {
           if (!o.isMesh) return;
           o.geometry.computeVertexNormals();
-          o.material = kinds[o.name] === "disc" ? MAT.disc : MAT.bone;
+          o.userData.boneKind = kinds[o.name] || "bone";
         });
         ANAT.skull = sk.scene;
         figure.add(ANAT.skull);
+        setBoneMaterials(false);
       }
     } catch (e) { /* no bone asset: the muscle view simply lacks one */ }
 
@@ -4694,6 +4699,18 @@ function boot3d() {
     "hip/buttock": "gluteal", "thigh": "thigh", "lower leg": "calf", "foot": "calf",
     "other": "abdominal"
   };
+
+  /* The skeleton is solid behind the muscles, and a faint ghost behind the
+     nerves -- the intercostals only read as intercostals against ribs. */
+  function setBoneMaterials(ghost) {
+    if (!ANAT.skull) return;
+    ANAT.skull.traverse((o) => {
+      if (!o.isMesh) return;
+      const k = o.userData.boneKind;
+      o.material = ghost ? MAT.boneGhost
+        : ((k === "disc" || k === "cartilage") ? MAT.disc : MAT.bone);
+    });
+  }
 
   /* ---- dermatome shading on the surface ------------------------------ */
   let dermPainted = "";
@@ -5068,7 +5085,10 @@ function boot3d() {
     nerveGroup.visible = mode === "nerve";
     const showMuscles = mode === "muscle" || mode === "pairs";
     if (ANAT.nerves) ANAT.nerves.visible = mode === "nerve";
-    if (ANAT.skull) ANAT.skull.visible = showMuscles;
+    if (ANAT.skull) {
+      ANAT.skull.visible = showMuscles || mode === "nerve";
+      setBoneMaterials(mode === "nerve");
+    }
     if (real) {
       ANAT.muscles.visible = showMuscles;
       ANAT.skin.visible = !showMuscles;

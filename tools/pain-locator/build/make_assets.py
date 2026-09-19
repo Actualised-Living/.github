@@ -53,18 +53,25 @@ SKULL_STEMS = [
 # of the back pain this tool is for, so they are worth showing.
 SPINE_STEMS = ["vertebra", "sacrum", "coccyx", "intervertebral"]
 
+# The thorax. "rib" is a loose substring, so the muscle-set exclusion in main()
+# is what actually guarantees no muscle slips in here.
+THORAX_STEMS = ["rib", "sternum", "manubrium", "xiphoid", "costal cartilage"]
+
 def is_bone(name):
     """Cranial bones and the vertebral column. Excludes the six hyoid muscles,
     which match "hyoid" but belong to the muscle set."""
     low = name.lower()
-    if not any(st in low for st in SKULL_STEMS + SPINE_STEMS):
+    if not any(st in low for st in SKULL_STEMS + SPINE_STEMS + THORAX_STEMS):
         return False
     if "hyoid" in low and not low.strip().endswith("hyoid bone"):
         return False
     return True
 
 def bone_kind(name):
-    return "disc" if "intervertebral" in name.lower() else "bone"
+    low = name.lower()
+    if "intervertebral" in low: return "disc"
+    if "costal cartilage" in low: return "cartilage"
+    return "bone"
 
 # Coarse group for colour-coding and the legend, tested in order.
 GROUPS = [
@@ -231,12 +238,13 @@ def main():
     # belt and braces: never let a muscle fall into the bone set
     bones = sorted(fid for fid in have
                    if is_bone(names.get(fid, "")) and fid not in set(muscles))
-    print("bones selected: %d (%d discs)"
-          % (len(bones), sum(1 for f in bones if bone_kind(names.get(f, "")) == "disc")))
+    kinds = [bone_kind(names.get(f, "")) for f in bones]
+    print("bones selected: %d (%d bone, %d disc, %d cartilage)"
+          % (len(bones), kinds.count("bone"), kinds.count("disc"), kinds.count("cartilage")))
     sets = {
         "skin":    (["FMA7163"], 0.05, 40000, 70000),
         "muscles": (muscles,     0.04,   250,   2200),
-        "bones":   (bones,       0.05,   300,   3000),
+        "bones":   (bones,       0.04,   250,   2400),
     }
     # Keep sets this script does not build (nerves, from make_nerves.py).
     # Rewriting the manifest wholesale silently drops them.

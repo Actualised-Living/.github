@@ -5128,16 +5128,48 @@
   },
   "bones": {
    "file": "bones.glb",
-   "count": 69,
-   "triangles": 37271,
-   "megabytes": 0.71,
+   "count": 112,
+   "triangles": 67159,
+   "megabytes": 1.27,
    "structures": [
+    {
+     "id": "BP24",
+     "name": "left costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 756,
+     "bbox": [
+      0.0412,
+      1.0283,
+      0.0168,
+      0.1228,
+      1.1485,
+      0.1061
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "BP28",
+     "name": "right costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 766,
+     "bbox": [
+      -0.1235,
+      1.0284,
+      0.0178,
+      -0.0409,
+      1.1486,
+      0.1061
+     ],
+     "kind": "cartilage"
+    },
     {
      "id": "FMA10014",
      "name": "ninth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 562,
+     "tris": 450,
      "bbox": [
       -0.0351,
       1.1622,
@@ -5153,13 +5185,13 @@
      "name": "tenth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 594,
+     "tris": 476,
      "bbox": [
-      -0.0366,
-      1.1313,
+      -0.0363,
+      1.1312,
       -0.088,
       0.0339,
-      1.1889,
+      1.1892,
       -0.0123
      ],
      "kind": "bone"
@@ -5169,14 +5201,14 @@
      "name": "eleventh thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 248,
      "bbox": [
       -0.0279,
-      1.1058,
-      -0.0802,
-      0.0266,
-      1.1591,
-      -0.0037
+      1.1052,
+      -0.0807,
+      0.0267,
+      1.159,
+      -0.0038
      ],
      "kind": "bone"
     },
@@ -5185,11 +5217,11 @@
      "name": "twelfth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.0226,
-      1.0769,
-      -0.0734,
+      1.0764,
+      -0.0733,
       0.0223,
       1.129,
       0.0048
@@ -5201,7 +5233,7 @@
      "name": "intervertebral disk of first thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 250,
      "bbox": [
       -0.0161,
       1.3747,
@@ -5217,11 +5249,11 @@
      "name": "third cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 248,
      "bbox": [
       -0.0274,
-      1.4464,
-      -0.0508,
+      1.4462,
+      -0.0506,
       0.0275,
       1.4722,
       0.0018
@@ -5233,7 +5265,7 @@
      "name": "fourth cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.028,
       1.434,
@@ -5249,12 +5281,12 @@
      "name": "fifth cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 248,
      "bbox": [
       -0.0297,
       1.4226,
       -0.0544,
-      0.0287,
+      0.0285,
       1.4449,
       0.0003
      ],
@@ -5265,14 +5297,14 @@
      "name": "sixth cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 316,
+     "tris": 254,
      "bbox": [
       -0.0295,
       1.4078,
       -0.0633,
-      0.0294,
-      1.4321,
-      -0.0016
+      0.0298,
+      1.4316,
+      -0.0013
      ],
      "kind": "bone"
     },
@@ -5281,14 +5313,14 @@
      "name": "seventh cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.0345,
       1.393,
       -0.0739,
-      0.0319,
-      1.4199,
-      -0.0051
+      0.032,
+      1.4198,
+      -0.005
      ],
      "kind": "bone"
     },
@@ -5297,13 +5329,13 @@
      "name": "first lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 646,
+     "tris": 516,
      "bbox": [
       -0.0362,
       1.0407,
-      -0.0673,
+      -0.0676,
       0.0336,
-      1.098,
+      1.0976,
       0.0132
      ],
      "kind": "bone"
@@ -5313,13 +5345,13 @@
      "name": "second lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 346,
+     "tris": 276,
      "bbox": [
       -0.0408,
       1.0166,
       -0.0624,
       0.0381,
-      1.0654,
+      1.0651,
       0.0183
      ],
      "kind": "bone"
@@ -5329,11 +5361,11 @@
      "name": "third lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 736,
+     "tris": 590,
      "bbox": [
       -0.0404,
       0.9885,
-      -0.0627,
+      -0.0628,
       0.0393,
       1.0343,
       0.0204
@@ -5345,12 +5377,12 @@
      "name": "fourth lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 770,
+     "tris": 616,
      "bbox": [
-      -0.0431,
+      -0.0433,
       0.9626,
       -0.0626,
-      0.0429,
+      0.043,
       1.0057,
       0.0193
      ],
@@ -5361,14 +5393,14 @@
      "name": "fifth lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 864,
+     "tris": 690,
      "bbox": [
       -0.0513,
-      0.9275,
+      0.9276,
       -0.0673,
       0.0497,
-      0.9768,
-      0.0133
+      0.9767,
+      0.0128
      ],
      "kind": "bone"
     },
@@ -5377,7 +5409,7 @@
      "name": "intervertebral disk of second thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 248,
      "bbox": [
       -0.0166,
       1.3539,
@@ -5393,10 +5425,10 @@
      "name": "intervertebral disk of third thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 248,
      "bbox": [
       -0.016,
-      1.3343,
+      1.3344,
       -0.0511,
       0.0135,
       1.3465,
@@ -5409,7 +5441,7 @@
      "name": "intervertebral disk of fourth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 314,
+     "tris": 250,
      "bbox": [
       -0.0155,
       1.3118,
@@ -5425,14 +5457,14 @@
      "name": "intervertebral disk of fifth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 366,
+     "tris": 292,
      "bbox": [
       -0.0155,
-      1.2883,
+      1.2885,
       -0.062,
-      0.0133,
+      0.0132,
       1.2987,
-      -0.0316
+      -0.0317
      ],
      "kind": "disc"
     },
@@ -5441,11 +5473,11 @@
      "name": "intervertebral disk of sixth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 450,
+     "tris": 360,
      "bbox": [
       -0.0164,
       1.2629,
-      -0.065,
+      -0.0649,
       0.0143,
       1.2724,
       -0.0308
@@ -5457,7 +5489,7 @@
      "name": "intervertebral disk of seventh thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 518,
+     "tris": 414,
      "bbox": [
       -0.0173,
       1.2339,
@@ -5473,7 +5505,7 @@
      "name": "intervertebral disk of eighth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 509,
+     "tris": 407,
      "bbox": [
       -0.0185,
       1.2077,
@@ -5489,7 +5521,7 @@
      "name": "intervertebral disk of ninth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 299,
+     "tris": 249,
      "bbox": [
       -0.0179,
       1.1783,
@@ -5505,7 +5537,7 @@
      "name": "intervertebral disk of tenth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 574,
+     "tris": 460,
      "bbox": [
       -0.0197,
       1.1502,
@@ -5521,13 +5553,13 @@
      "name": "intervertebral disk of eleventh thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 714,
+     "tris": 570,
      "bbox": [
       -0.0204,
       1.1197,
-      -0.0392,
-      0.0195,
-      1.1371,
+      -0.0394,
+      0.0194,
+      1.137,
       -0.0
      ],
      "kind": "disc"
@@ -5537,7 +5569,7 @@
      "name": "intervertebral disk of twelfth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 724,
+     "tris": 580,
      "bbox": [
       -0.0216,
       1.0881,
@@ -5553,14 +5585,14 @@
      "name": "intervertebral disk of third cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.0118,
-      1.4514,
+      1.4515,
       -0.0141,
       0.0113,
       1.4598,
-      0.0014
+      0.0013
      ],
      "kind": "disc"
     },
@@ -5569,11 +5601,11 @@
      "name": "intervertebral disk of fourth cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 248,
      "bbox": [
       -0.0132,
       1.4339,
-      -0.0143,
+      -0.0144,
       0.0128,
       1.4451,
       0.0006
@@ -5585,7 +5617,7 @@
      "name": "intervertebral disk of fifth cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 248,
      "bbox": [
       -0.0152,
       1.4184,
@@ -5601,9 +5633,9 @@
      "name": "intervertebral disk of sixth cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 299,
+     "tris": 249,
      "bbox": [
-      -0.0148,
+      -0.0146,
       1.4046,
       -0.0213,
       0.0132,
@@ -5617,7 +5649,7 @@
      "name": "intervertebral disk of seventh cervical vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.0165,
       1.3908,
@@ -5633,7 +5665,7 @@
      "name": "intervertebral disk of first lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 706,
+     "tris": 566,
      "bbox": [
       -0.0209,
       1.0582,
@@ -5649,12 +5681,12 @@
      "name": "intervertebral disk of second lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 678,
+     "tris": 544,
      "bbox": [
       -0.0222,
       1.0279,
       -0.0178,
-      0.0228,
+      0.0229,
       1.038,
       0.0193
      ],
@@ -5665,7 +5697,7 @@
      "name": "intervertebral disk of third lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 712,
+     "tris": 568,
      "bbox": [
       -0.0223,
       0.9915,
@@ -5681,13 +5713,13 @@
      "name": "intervertebral disk of fourth lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 724,
+     "tris": 578,
      "bbox": [
       -0.0245,
       0.9553,
       -0.023,
       0.0256,
-      0.9747,
+      0.9746,
       0.0151
      ],
      "kind": "disc"
@@ -5697,7 +5729,7 @@
      "name": "intervertebral disk of fifth lumbar vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 806,
+     "tris": 646,
      "bbox": [
       -0.0246,
       0.9174,
@@ -5713,11 +5745,11 @@
      "name": "sacrum",
      "side": "midline",
      "group": "other",
-     "tris": 2220,
+     "tris": 1774,
      "bbox": [
-      -0.0596,
+      -0.0597,
       0.8044,
-      -0.0909,
+      -0.0914,
       0.0629,
       0.9495,
       -0.002
@@ -5729,13 +5761,13 @@
      "name": "intervertebral disk of axis",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 248,
      "bbox": [
       -0.0116,
       1.4665,
       -0.0157,
       0.0118,
-      1.4746,
+      1.4747,
       0.0014
      ],
      "kind": "disc"
@@ -5745,11 +5777,11 @@
      "name": "frontal bone",
      "side": "midline",
      "group": "other",
-     "tris": 1652,
+     "tris": 1320,
      "bbox": [
       -0.0592,
-      1.5427,
-      0.0188,
+      1.5423,
+      0.0185,
       0.059,
       1.6457,
       0.0857
@@ -5761,12 +5793,12 @@
      "name": "occipital bone",
      "side": "midline",
      "group": "other",
-     "tris": 1388,
+     "tris": 1110,
      "bbox": [
-      -0.0582,
-      1.5019,
+      -0.058,
+      1.502,
       -0.0993,
-      0.0578,
+      0.0572,
       1.6033,
       0.0139
      ],
@@ -5777,11 +5809,11 @@
      "name": "sphenoid bone",
      "side": "midline",
      "group": "other",
-     "tris": 764,
+     "tris": 610,
      "bbox": [
       -0.0528,
-      1.5036,
-      0.0033,
+      1.5031,
+      0.0034,
       0.0526,
       1.5694,
       0.0557
@@ -5793,13 +5825,13 @@
      "name": "right temporal bone",
      "side": "right",
      "group": "other",
-     "tris": 562,
+     "tris": 450,
      "bbox": [
       -0.07,
       1.5006,
-      -0.0487,
-      -0.0113,
-      1.572,
+      -0.0488,
+      -0.0114,
+      1.5717,
       0.0447
      ],
      "kind": "bone"
@@ -5809,10 +5841,10 @@
      "name": "left temporal bone",
      "side": "left",
      "group": "other",
-     "tris": 558,
+     "tris": 448,
      "bbox": [
-      0.0113,
-      1.5001,
+      0.0114,
+      1.5002,
       -0.0487,
       0.0699,
       1.5721,
@@ -5825,13 +5857,13 @@
      "name": "ethmoid",
      "side": "midline",
      "group": "other",
-     "tris": 388,
+     "tris": 310,
      "bbox": [
       -0.0193,
-      1.52,
+      1.5205,
       0.033,
       0.0165,
-      1.5553,
+      1.5554,
       0.076
      ],
      "kind": "bone"
@@ -5841,12 +5873,12 @@
      "name": "mandible",
      "side": "midline",
      "group": "other",
-     "tris": 1080,
+     "tris": 866,
      "bbox": [
       -0.0501,
-      1.4491,
+      1.449,
       0.003,
-      0.0503,
+      0.0502,
       1.5293,
       0.0824
      ],
@@ -5857,14 +5889,14 @@
      "name": "hyoid bone",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.0211,
-      1.4444,
+      1.4445,
       0.0044,
-      0.021,
+      0.0209,
       1.4635,
-      0.0391
+      0.0393
      ],
      "kind": "bone"
     },
@@ -5873,7 +5905,7 @@
      "name": "right parietal bone",
      "side": "right",
      "group": "other",
-     "tris": 1484,
+     "tris": 1188,
      "bbox": [
       -0.0723,
       1.54,
@@ -5889,7 +5921,7 @@
      "name": "left parietal bone",
      "side": "left",
      "group": "other",
-     "tris": 1512,
+     "tris": 1210,
      "bbox": [
       -0.0068,
       1.5397,
@@ -5905,14 +5937,14 @@
      "name": "right zygomatic bone",
      "side": "right",
      "group": "other",
-     "tris": 298,
+     "tris": 248,
      "bbox": [
       -0.0604,
       1.5045,
       0.0332,
-      -0.0305,
-      1.558,
-      0.0706
+      -0.0304,
+      1.5581,
+      0.0709
      ],
      "kind": "bone"
     },
@@ -5921,14 +5953,14 @@
      "name": "left zygomatic bone",
      "side": "left",
      "group": "other",
-     "tris": 298,
+     "tris": 250,
      "bbox": [
       0.0303,
-      1.5048,
+      1.5046,
       0.033,
       0.0607,
-      1.5578,
-      0.0707
+      1.5579,
+      0.0709
      ],
      "kind": "bone"
     },
@@ -5937,9 +5969,9 @@
      "name": "right lacrimal bone",
      "side": "right",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
-      -0.0166,
+      -0.0167,
       1.5235,
       0.0609,
       -0.0063,
@@ -5953,7 +5985,7 @@
      "name": "left lacrimal bone",
      "side": "left",
      "group": "other",
-     "tris": 300,
+     "tris": 248,
      "bbox": [
       0.0072,
       1.5209,
@@ -5969,10 +6001,10 @@
      "name": "right nasal bone",
      "side": "right",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.0081,
-      1.5242,
+      1.5241,
       0.0782,
       0.0002,
       1.5546,
@@ -5985,9 +6017,9 @@
      "name": "left nasal bone",
      "side": "left",
      "group": "other",
-     "tris": 298,
+     "tris": 250,
      "bbox": [
-      -0.0021,
+      -0.0022,
       1.5248,
       0.0778,
       0.0077,
@@ -6001,12 +6033,12 @@
      "name": "right maxilla",
      "side": "right",
      "group": "other",
-     "tris": 706,
+     "tris": 564,
      "bbox": [
       -0.0444,
-      1.489,
-      0.0401,
-      0.0005,
+      1.4889,
+      0.0405,
+      0.0008,
       1.5546,
       0.0923
      ],
@@ -6017,12 +6049,12 @@
      "name": "left maxilla",
      "side": "left",
      "group": "other",
-     "tris": 724,
+     "tris": 580,
      "bbox": [
       -0.0019,
-      1.4891,
+      1.4889,
       0.0382,
-      0.044,
+      0.0437,
       1.555,
       0.0912
      ],
@@ -6033,14 +6065,14 @@
      "name": "right palatine bone",
      "side": "right",
      "group": "other",
-     "tris": 298,
+     "tris": 248,
      "bbox": [
-      -0.0263,
-      1.4953,
-      0.0253,
+      -0.0262,
+      1.4956,
+      0.0256,
       -0.0007,
-      1.5344,
-      0.0593
+      1.5345,
+      0.0594
      ],
      "kind": "bone"
     },
@@ -6049,7 +6081,7 @@
      "name": "left palatine bone",
      "side": "left",
      "group": "other",
-     "tris": 300,
+     "tris": 248,
      "bbox": [
       -0.0027,
       1.4945,
@@ -6065,12 +6097,12 @@
      "name": "right inferior nasal concha",
      "side": "right",
      "group": "other",
-     "tris": 298,
+     "tris": 250,
      "bbox": [
       -0.0144,
       1.5033,
       0.041,
-      -0.0042,
+      -0.0044,
       1.5251,
       0.0745
      ],
@@ -6081,14 +6113,670 @@
      "name": "left inferior nasal concha",
      "side": "left",
      "group": "other",
-     "tris": 298,
+     "tris": 250,
      "bbox": [
       0.0032,
       1.5065,
-      0.0434,
+      0.0433,
       0.0131,
       1.5217,
       0.0773
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7486",
+     "name": "manubrium",
+     "side": "midline",
+     "group": "other",
+     "tris": 474,
+     "bbox": [
+      -0.0278,
+      1.3074,
+      0.0318,
+      0.0275,
+      1.3598,
+      0.0827
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7487",
+     "name": "body of sternum",
+     "side": "midline",
+     "group": "other",
+     "tris": 796,
+     "bbox": [
+      -0.0236,
+      1.2005,
+      0.0683,
+      0.0234,
+      1.3157,
+      0.1099
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7488",
+     "name": "xiphoid process",
+     "side": "midline",
+     "group": "other",
+     "tris": 248,
+     "bbox": [
+      -0.0106,
+      1.1824,
+      0.0941,
+      0.0105,
+      1.2046,
+      0.1091
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7857",
+     "name": "right first rib",
+     "side": "right",
+     "group": "other",
+     "tris": 566,
+     "bbox": [
+      -0.0689,
+      1.3436,
+      -0.0311,
+      -0.0157,
+      1.4011,
+      0.0374
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7875",
+     "name": "right first costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 249,
+     "bbox": [
+      -0.053,
+      1.3352,
+      0.0279,
+      -0.0226,
+      1.3537,
+      0.0515
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA7882",
+     "name": "right second rib",
+     "side": "right",
+     "group": "other",
+     "tris": 946,
+     "bbox": [
+      -0.0962,
+      1.3028,
+      -0.0425,
+      -0.0167,
+      1.3913,
+      0.0659
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7886",
+     "name": "right second costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 250,
+     "bbox": [
+      -0.0445,
+      1.3008,
+      0.0568,
+      -0.0121,
+      1.3172,
+      0.0805
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA7909",
+     "name": "right third rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1234,
+     "bbox": [
+      -0.1089,
+      1.2696,
+      -0.0595,
+      -0.0165,
+      1.372,
+      0.0753
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7913",
+     "name": "right third costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 248,
+     "bbox": [
+      -0.0511,
+      1.2692,
+      0.0678,
+      -0.0148,
+      1.2881,
+      0.0896
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA7957",
+     "name": "right fourth rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1538,
+     "bbox": [
+      -0.1214,
+      1.2374,
+      -0.0731,
+      -0.0153,
+      1.3508,
+      0.0913
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA7976",
+     "name": "right fourth costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 248,
+     "bbox": [
+      -0.0684,
+      1.2367,
+      0.0832,
+      -0.0158,
+      1.265,
+      0.0957
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA7987",
+     "name": "left first rib",
+     "side": "left",
+     "group": "other",
+     "tris": 616,
+     "bbox": [
+      0.014,
+      1.3439,
+      -0.031,
+      0.0678,
+      1.4011,
+      0.0374
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8005",
+     "name": "left first costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 248,
+     "bbox": [
+      0.0227,
+      1.3352,
+      0.0282,
+      0.0527,
+      1.3543,
+      0.0516
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8012",
+     "name": "left second rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1012,
+     "bbox": [
+      0.0156,
+      1.3028,
+      -0.0428,
+      0.0951,
+      1.3928,
+      0.0659
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8031",
+     "name": "left second costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 250,
+     "bbox": [
+      0.0121,
+      1.3008,
+      0.0566,
+      0.0443,
+      1.3175,
+      0.0806
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8039",
+     "name": "left third rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1248,
+     "bbox": [
+      0.0155,
+      1.2696,
+      -0.0594,
+      0.1079,
+      1.372,
+      0.0754
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8058",
+     "name": "left third costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 250,
+     "bbox": [
+      0.0148,
+      1.2693,
+      0.0679,
+      0.05,
+      1.2881,
+      0.0896
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8066",
+     "name": "right fifth rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1664,
+     "bbox": [
+      -0.1271,
+      1.2024,
+      -0.083,
+      -0.015,
+      1.3244,
+      0.1002
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8070",
+     "name": "right fifth costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 250,
+     "bbox": [
+      -0.0821,
+      1.2016,
+      0.0915,
+      -0.0184,
+      1.2398,
+      0.1076
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8093",
+     "name": "left fifth rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1660,
+     "bbox": [
+      0.0139,
+      1.2024,
+      -0.0831,
+      0.1261,
+      1.3243,
+      0.1002
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8112",
+     "name": "left fifth costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 250,
+     "bbox": [
+      0.0183,
+      1.2016,
+      0.0915,
+      0.082,
+      1.2397,
+      0.1078
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8148",
+     "name": "left fourth rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1516,
+     "bbox": [
+      0.0142,
+      1.237,
+      -0.0732,
+      0.1203,
+      1.3509,
+      0.0912
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8167",
+     "name": "left fourth costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 248,
+     "bbox": [
+      0.0156,
+      1.2368,
+      0.0831,
+      0.0681,
+      1.2651,
+      0.0957
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8175",
+     "name": "right sixth rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1784,
+     "bbox": [
+      -0.1344,
+      1.1679,
+      -0.0929,
+      -0.0152,
+      1.3021,
+      0.0971
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8194",
+     "name": "right sixth costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 248,
+     "bbox": [
+      -0.0931,
+      1.1674,
+      0.0883,
+      -0.0149,
+      1.2212,
+      0.1111
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8202",
+     "name": "left sixth rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1776,
+     "bbox": [
+      0.0142,
+      1.1679,
+      -0.0929,
+      0.1334,
+      1.302,
+      0.0971
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8221",
+     "name": "left sixth costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 250,
+     "bbox": [
+      0.0148,
+      1.1675,
+      0.0884,
+      0.0929,
+      1.2213,
+      0.1112
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8229",
+     "name": "right seventh rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1724,
+     "bbox": [
+      -0.1371,
+      1.1347,
+      -0.092,
+      -0.016,
+      1.2745,
+      0.0838
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8248",
+     "name": "right seventh costal cartilage",
+     "side": "right",
+     "group": "other",
+     "tris": 419,
+     "bbox": [
+      -0.1101,
+      1.1318,
+      0.0741,
+      -0.0061,
+      1.2079,
+      0.1103
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8256",
+     "name": "left seventh rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1762,
+     "bbox": [
+      0.0149,
+      1.1348,
+      -0.0921,
+      0.1361,
+      1.2745,
+      0.0838
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8275",
+     "name": "left seventh costal cartilage",
+     "side": "left",
+     "group": "other",
+     "tris": 396,
+     "bbox": [
+      0.0061,
+      1.1317,
+      0.0742,
+      0.1099,
+      1.2078,
+      0.1103
+     ],
+     "kind": "cartilage"
+    },
+    {
+     "id": "FMA8283",
+     "name": "right eighth rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1464,
+     "bbox": [
+      -0.131,
+      1.0997,
+      -0.092,
+      -0.0168,
+      1.2464,
+      0.0663
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8310",
+     "name": "left eighth rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1484,
+     "bbox": [
+      0.0158,
+      1.0997,
+      -0.092,
+      0.1299,
+      1.2464,
+      0.0663
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8364",
+     "name": "right ninth rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1370,
+     "bbox": [
+      -0.1292,
+      1.0692,
+      -0.089,
+      -0.0176,
+      1.2194,
+      0.0392
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8391",
+     "name": "left ninth rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1438,
+     "bbox": [
+      0.0165,
+      1.0692,
+      -0.089,
+      0.1281,
+      1.2194,
+      0.0392
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8445",
+     "name": "right tenth rib",
+     "side": "right",
+     "group": "other",
+     "tris": 1240,
+     "bbox": [
+      -0.1273,
+      1.0388,
+      -0.0812,
+      -0.0179,
+      1.1907,
+      0.0248
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8472",
+     "name": "left tenth rib",
+     "side": "left",
+     "group": "other",
+     "tris": 1270,
+     "bbox": [
+      0.0168,
+      1.0389,
+      -0.0812,
+      0.1261,
+      1.1907,
+      0.0247
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8531",
+     "name": "right eleventh rib",
+     "side": "right",
+     "group": "other",
+     "tris": 896,
+     "bbox": [
+      -0.1158,
+      1.0258,
+      -0.0745,
+      -0.0193,
+      1.1537,
+      0.0041
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8532",
+     "name": "left eleventh rib",
+     "side": "left",
+     "group": "other",
+     "tris": 912,
+     "bbox": [
+      0.0182,
+      1.0258,
+      -0.0745,
+      0.1148,
+      1.1536,
+      0.0042
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8533",
+     "name": "right twelfth rib",
+     "side": "right",
+     "group": "other",
+     "tris": 528,
+     "bbox": [
+      -0.0828,
+      1.0233,
+      -0.0646,
+      -0.0187,
+      1.1182,
+      -0.0217
+     ],
+     "kind": "bone"
+    },
+    {
+     "id": "FMA8534",
+     "name": "left twelfth rib",
+     "side": "left",
+     "group": "other",
+     "tris": 548,
+     "bbox": [
+      0.0187,
+      1.0233,
+      -0.0646,
+      0.0826,
+      1.1182,
+      -0.0216
      ],
      "kind": "bone"
     },
@@ -6097,7 +6785,7 @@
      "name": "first thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 248,
      "bbox": [
       -0.0377,
       1.3774,
@@ -6113,7 +6801,7 @@
      "name": "second thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 418,
+     "tris": 334,
      "bbox": [
       -0.0366,
       1.3583,
@@ -6129,13 +6817,13 @@
      "name": "third thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 444,
+     "tris": 354,
      "bbox": [
       -0.0335,
       1.3347,
       -0.0959,
       0.0305,
-      1.3748,
+      1.3749,
       -0.0204
      ],
      "kind": "bone"
@@ -6145,14 +6833,14 @@
      "name": "fourth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 446,
+     "tris": 356,
      "bbox": [
       -0.0343,
-      1.3114,
+      1.3112,
       -0.0963,
       0.0342,
       1.3554,
-      -0.0263
+      -0.0262
      ],
      "kind": "bone"
     },
@@ -6161,14 +6849,14 @@
      "name": "vomer",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 250,
      "bbox": [
       -0.0055,
       1.5084,
       0.0216,
       0.0042,
       1.5319,
-      0.0808
+      0.081
      ],
      "kind": "bone"
     },
@@ -6177,7 +6865,7 @@
      "name": "fifth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 490,
+     "tris": 392,
      "bbox": [
       -0.0367,
       1.2788,
@@ -6193,14 +6881,14 @@
      "name": "sixth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 300,
+     "tris": 250,
      "bbox": [
       -0.0371,
       1.2432,
-      -0.0958,
-      0.033,
+      -0.0959,
+      0.0328,
       1.304,
-      -0.031
+      -0.0311
      ],
      "kind": "bone"
     },
@@ -6209,14 +6897,14 @@
      "name": "seventh thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 536,
+     "tris": 428,
      "bbox": [
       -0.0373,
       1.2157,
       -0.0938,
       0.0351,
       1.2761,
-      -0.0292
+      -0.0293
      ],
      "kind": "bone"
     },
@@ -6225,10 +6913,10 @@
      "name": "eighth thoracic vertebra",
      "side": "midline",
      "group": "other",
-     "tris": 298,
+     "tris": 250,
      "bbox": [
-      -0.0342,
-      1.1868,
+      -0.0344,
+      1.1869,
       -0.0961,
       0.0329,
       1.2464,

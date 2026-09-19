@@ -69,7 +69,7 @@ Run it against a clone of
 |---|---|---|---|
 | `muscles.glb` | 339 individually named muscle structures, FMA-indexed | 7.2 MB | 390k |
 | `skin.glb` | body surface, used as the hit target and the outer shell | 1.2 MB | 70k |
-| `bones.glb` | 23 cranial bones, 45 vertebrae, sacrum, 23 intervertebral discs | 0.7 MB | 37k |
+| `bones.glb` | 112 structures: skull, vertebral column, ribcage, discs and costal cartilage | 1.3 MB | 67k |
 | `nerves.glb` | spinal dura and dorsal root ganglia (Z-Anatomy) | 0.4 MB | 24k |
 | `manifest.json` | per-structure name, side, muscle group and triangle count | 52 KB | — |
 
@@ -86,8 +86,13 @@ Two selector traps: `hyoid` matches six muscles (genio-, omo-, sterno-, stylo-, 
 as well as the hyoid bone, and `vertebra` matches the intervertebral discs as well as the vertebrae.
 The first is excluded, the second is kept deliberately — disc pathology drives a large share of the
 back pain this tool records — and discs are tagged `kind: "disc"` in the manifest so the app can
-render them as cartilage rather than bone. Ribs, sternum and costal cartilage are in the dataset and
-would be the same exercise again.
+render them as cartilage rather than bone. The ribcage — 24 ribs, sternum, manubrium, xiphoid and 16 costal cartilages — is included too;
+cartilage is tagged `kind: "cartilage"` and renders like the discs rather than like bone. The
+clavicles and scapulae are in the dataset and remain the obvious next addition, since the shoulder
+pairing's muscles attach to them.
+
+The skeleton is solid behind the muscle views and a faint ghost behind the nerve view: the
+intercostal nerves only read as intercostals when there are ribs for them to run between.
 
 **Coordinate frame.** BodyParts3D is millimetres, Z-up, +X anatomical left. The pipeline rotates to
 the app's metres, Y-up, +Z anterior, feet on `y = 0`. The rotation has determinant +1, so left and
