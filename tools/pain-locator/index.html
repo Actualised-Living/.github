@@ -125,6 +125,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 .legend .ln{width:14px;height:0;border-top:2px solid;flex:0 0 14px}
 .srcnote{font-size:10.5px;color:var(--ink-3);line-height:1.4;margin:7px 2px 0}
 .srcnote b{color:var(--ink-2);font-weight:600}
+.pairlist{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px}
+.pairlist button{background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2);
+  border-radius:99px;padding:3px 9px;font-size:11px;cursor:pointer;line-height:1.35}
+.pairlist button:hover{border-color:var(--accent);color:var(--accent)}
+.pairlist button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);
+  color:var(--accent-ink);font-weight:500}
 .legend.derm{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:3px 6px}
 .legend.derm .row{gap:5px}
 .legend.derm .lv{font-family:var(--mono);font-size:10.5px;font-weight:600}
@@ -277,6 +283,13 @@ textarea{resize:vertical;min-height:58px;line-height:1.45}
               stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
           </svg>
           <span><span class="nm">Nervous system</span><span class="ds">Nerve pathways</span></span>
+        </button>
+        <button type="button" data-mode="pairs" aria-pressed="false">
+          <svg class="gl" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 4.5v15M17 4.5v15M7 9h10M7 15h10M4.2 7.2 7 4.5l2.8 2.7M14.2 16.8 17 19.5l2.8-2.7"
+              stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span><span class="nm">Muscle pairs</span><span class="ds">Agonist and antagonist</span></span>
         </button>
         <button type="button" data-mode="dermatome" aria-pressed="false">
           <svg class="gl" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -4871,6 +4884,155 @@ function boot3d() {
   }
 
   /* ======================================================================
+     2d · Agonist / antagonist pairs
+
+     Muscles work against a partner across a joint. That matters here for two
+     reasons: in spasticity tone rises on one side of a pairing while the
+     other is held long and weak, and the pain someone reports is often in
+     the stretched partner rather than the tight one -- so a record that
+     names the pairing is more use to a clinician than one that names a
+     single muscle.
+
+     One pairing is shown at a time because biarticular muscles belong to
+     two: rectus femoris flexes the hip AND extends the knee, gastrocnemius
+     flexes the knee AND plantarflexes the ankle. Colouring every pairing at
+     once would have to pick one and silently drop the other.
+
+     The pairings below are anatomy. This deliberately makes NO claim about
+     which side of a pairing becomes spastic in any given person -- the usual
+     patterns differ between the upper limb and the lower, and between
+     lesions, and that is a clinical judgement, not something to encode in a
+     colour.
+     ====================================================================== */
+  const MUSCLE_PAIRS = [
+    { id: "shoulder", label: "Shoulder",
+      a: { name: "Adduction / internal rotation",
+           stems: ["pectoralis major", "latissimus", "subscapularis", "teres major", "coracobrachialis"] },
+      b: { name: "Abduction / external rotation",
+           stems: ["deltoid", "supraspinatus", "infraspinatus", "teres minor"] } },
+    { id: "elbow", label: "Elbow",
+      a: { name: "Flexion", stems: ["biceps brachii", "brachialis", "brachioradialis"] },
+      b: { name: "Extension", stems: ["triceps", "anconeus"] } },
+    { id: "forearm", label: "Forearm rotation",
+      a: { name: "Pronation", stems: ["pronator"] },
+      b: { name: "Supination", stems: ["supinator"] } },
+    { id: "wrist", label: "Wrist and fingers",
+      a: { name: "Flexion", stems: ["flexor carpi", "flexor digitorum", "flexor pollicis", "palmaris longus"] },
+      b: { name: "Extension", stems: ["extensor carpi", "extensor digitorum", "extensor pollicis", "extensor indicis"] } },
+    { id: "neck", label: "Neck",
+      a: { name: "Flexion", stems: ["sternocleidomastoid", "longus colli", "longus capitis", "scalenus"] },
+      b: { name: "Extension", stems: ["splenius", "semispinalis capitis", "trapezius", "longissimus capitis", "obliquus capitis"] } },
+    { id: "trunk", label: "Trunk",
+      a: { name: "Flexion", stems: ["abdominis"] },
+      b: { name: "Extension", stems: ["iliocostalis", "longissimus thoracis", "longissimus lumborum",
+                                      "spinalis", "semispinalis thoracis", "multifidus", "quadratus lumborum"] } },
+    { id: "hipfe", label: "Hip flexion / extension",
+      a: { name: "Flexion", stems: ["iliacus", "psoas", "rectus femoris", "sartorius", "tensor fasciae", "pectineus"] },
+      b: { name: "Extension", stems: ["gluteus maximus", "biceps femoris", "semitendinosus", "semimembranosus"] } },
+    { id: "hipaa", label: "Hip adduction / abduction",
+      a: { name: "Adduction", stems: ["adductor", "gracilis", "pectineus"] },
+      b: { name: "Abduction", stems: ["gluteus medius", "gluteus minimus", "tensor fasciae"] } },
+    { id: "knee", label: "Knee",
+      a: { name: "Extension", stems: ["vastus", "rectus femoris"] },
+      b: { name: "Flexion", stems: ["biceps femoris", "semitendinosus", "semimembranosus", "popliteus", "gastrocnemius"] } },
+    { id: "ankle", label: "Ankle",
+      a: { name: "Plantarflexion", stems: ["gastrocnemius", "soleus", "tibialis posterior", "plantaris",
+                                           "flexor hallucis longus", "flexor digitorum longus"] },
+      b: { name: "Dorsiflexion", stems: ["tibialis anterior", "extensor hallucis longus",
+                                         "extensor digitorum longus", "fibularis tertius"] } },
+    { id: "foot", label: "Foot inversion / eversion",
+      a: { name: "Inversion", stems: ["tibialis anterior", "tibialis posterior"] },
+      b: { name: "Eversion", stems: ["fibularis longus", "fibularis brevis"] } }
+  ];
+
+  // A diverging encoding: two poles and a neutral for everything outside the
+  // selected pairing. Both sets validated for colour-vision separation and
+  // contrast against the stage in light and dark.
+  const PAIR_HUES = {
+    light: { a: "#eb6834", b: "#2a78d6", off: "#9a9389" },
+    dark:  { a: "#d95926", b: "#3987e5", off: "#7d776e" }
+  };
+  const pairMats = { a: null, b: null, off: null };
+  function refreshPairMats() {
+    const h = PAIR_HUES[currentlyDark() ? "dark" : "light"];
+    ["a", "b", "off"].forEach((k) => {
+      if (!pairMats[k]) {
+        pairMats[k] = new THREE.MeshStandardMaterial({ roughness: 0.6, metalness: 0.03 });
+      }
+      pairMats[k].color.copy(col(parseInt(h[k].slice(1), 16)));
+      pairMats[k].opacity = k === "off" ? 0.5 : 1;
+      pairMats[k].transparent = k === "off";
+    });
+  }
+
+  function currentPair() {
+    return MUSCLE_PAIRS.find((p) => p.id === state.pair) || MUSCLE_PAIRS[1];
+  }
+  function poleFor(name, pair) {
+    const low = (name || "").toLowerCase();
+    if (pair.a.stems.some((s) => low.indexOf(s) >= 0)) return "a";
+    if (pair.b.stems.some((s) => low.indexOf(s) >= 0)) return "b";
+    return null;
+  }
+  // every pairing a given muscle belongs to, for the read-out and the record
+  function pairsOf(name) {
+    const out = [];
+    MUSCLE_PAIRS.forEach((p) => {
+      const pole = poleFor(name, p);
+      if (pole) out.push({ pair: p, pole: pole,
+                           acts: p[pole].name, against: p[pole === "a" ? "b" : "a"].name });
+    });
+    return out;
+  }
+  function pairSummary(name) {
+    const ps = pairsOf(name);
+    if (!ps.length) return "";
+    return ps.map((q) => q.pair.label.toLowerCase() + ": " + q.acts.toLowerCase()
+      + ", against " + q.against.toLowerCase()).join("; ");
+  }
+
+  function applyPairColours() {
+    if (!ANAT.loaded) return;
+    refreshPairMats();
+    const pair = currentPair();
+    ANAT.muscleMeshes.forEach((o) => {
+      const pole = poleFor(o.userData.anatName, pair);
+      o.material = pole ? pairMats[pole] : pairMats.off;
+    });
+  }
+
+  function pairLegend(box) {
+    const pair = currentPair();
+    const h = PAIR_HUES[currentlyDark() ? "dark" : "light"];
+    [["a", pair.a.name], ["b", pair.b.name]].forEach(([k, label]) => {
+      const row = document.createElement("div");
+      row.className = "row";
+      const sw = document.createElement("span");
+      sw.className = "sw"; sw.style.background = h[k];
+      const t = document.createElement("span"); t.textContent = label;
+      row.append(sw, t); box.appendChild(row);
+    });
+    const list = document.createElement("div");
+    list.className = "pairlist";
+    MUSCLE_PAIRS.forEach((p) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = p.label;
+      b.setAttribute("aria-pressed", String(p.id === pair.id));
+      b.addEventListener("click", () => { state.pair = p.id; setMode("pairs"); });
+      list.appendChild(b);
+    });
+    box.appendChild(list);
+    const note = document.createElement("div");
+    note.className = "row"; note.style.color = "var(--ink-3)";
+    note.style.lineHeight = "1.4"; note.style.marginTop = "8px";
+    note.textContent = "Muscles work against a partner across a joint. Where tone is raised on one "
+      + "side, the other is often held long and weak, and the pain someone reports can sit in the "
+      + "stretched partner rather than the tight one. These pairings are anatomy only — which side "
+      + "is affected, and what to do about it, is a clinical judgement.";
+    box.appendChild(note);
+  }
+
+  /* ======================================================================
      3 · Visualisation modes
      ====================================================================== */
   const LEGENDS = {
@@ -4887,6 +5049,7 @@ function boot3d() {
              ["swatch", hex(MUSCLE.thigh), "Quadriceps / hamstrings"],
              ["swatch", hex(MUSCLE.calf), "Calf / shin"]],
     dermatome: [],
+    pairs: [],
     nerve: []
   };
 
@@ -4899,11 +5062,16 @@ function boot3d() {
     clothesGroup.visible = !real && mode === "clothed";
     muscleGroup.visible = !real && mode === "muscle";
     nerveGroup.visible = mode === "nerve";
+    const showMuscles = mode === "muscle" || mode === "pairs";
     if (ANAT.nerves) ANAT.nerves.visible = mode === "nerve";
-    if (ANAT.skull) ANAT.skull.visible = mode === "muscle";
+    if (ANAT.skull) ANAT.skull.visible = showMuscles;
     if (real) {
-      ANAT.muscles.visible = mode === "muscle";
-      ANAT.skin.visible = mode !== "muscle";
+      ANAT.muscles.visible = showMuscles;
+      ANAT.skin.visible = !showMuscles;
+      if (mode === "pairs") applyPairColours();
+      else if (mode === "muscle") ANAT.muscleMeshes.forEach((o) => {
+        o.material = muscleMats[MUSCLE_GROUP_MAP[o.userData.group] || "abdominal"] || MAT.skin;
+      });
       ANAT.skinMesh.material = mode === "dermatome" ? MAT_DERM
         : mode === "nerve" ? MAT.ghost : MAT.skin;
     } else {
@@ -4921,6 +5089,7 @@ function boot3d() {
     box.className = "legend" + (mode === "dermatome" ? " derm" : "");
     if (mode === "dermatome") { dermatomeLegend(box); return; }
     if (mode === "nerve") { nerveLegend(box); return; }
+    if (mode === "pairs") { pairLegend(box); return; }
     LEGENDS[mode].forEach(([kind, colour, label]) => {
       const row = document.createElement("div"); row.className = "row";
       if (kind === "swatch") {
@@ -5210,7 +5379,7 @@ function boot3d() {
   const ONSETS = ["Started today", "A few days", "1–3 weeks", "1–3 months", "3–12 months", "Over a year", "Not sure"];
   const PATTERNS = ["Constant", "Comes and goes", "Only when I move", "Worse at night"];
 
-  const state = { mode: "clothed", points: [], selected: null, seq: 1, persist: false, example: false };
+  const state = { mode: "clothed", points: [], selected: null, seq: 1, persist: false, example: false, pair: "elbow" };
 
   const markerGeo = new THREE.SphereGeometry(0.019, 18, 14);
   const haloGeo = new THREE.SphereGeometry(1, 18, 14);
@@ -5270,7 +5439,8 @@ function boot3d() {
   }
   function pickTargets() {
     if (!ANAT.loaded) return bodyParts;
-    return state.mode === "muscle" ? ANAT.muscleMeshes : [ANAT.skinMesh];
+    return (state.mode === "muscle" || state.mode === "pairs")
+      ? ANAT.muscleMeshes : [ANAT.skinMesh];
   }
   function surfaceNormal(hit) {
     return hit.face
@@ -5299,6 +5469,7 @@ function boot3d() {
       part: hit.object.userData.part || "", region: d.region, side: d.side, aspect: d.aspect,
       derm: dermatomeAt(p),
       muscle: hit.object.userData.anatName || muscleUnder(p, n),
+      pairing: pairSummary(hit.object.userData.anatName || muscleUnder(p, n)),
       intensity: 5, qualities: [], pattern: "Comes and goes", radiates: "", onset: "A few days", notes: ""
     };
     state.example = false;
@@ -5330,8 +5501,13 @@ function boot3d() {
       ro.hidden = false;
       const lv = dermatomeAt(hit.point);
       const mus = hit.object.userData.anatName;
-      ro.textContent = (d.side === "Midline" ? "" : d.side + " · ") + d.region
+      let line = (d.side === "Midline" ? "" : d.side + " · ") + d.region
         + "  ·  " + lv + (mus ? "  ·  " + mus : "");
+      if (state.mode === "pairs" && mus) {
+        const pr = pairsOf(mus).find((q) => q.pair.id === state.pair) || pairsOf(mus)[0];
+        if (pr) line += "  ·  " + pr.acts.toLowerCase() + ", against " + pr.against.toLowerCase();
+      }
+      ro.textContent = line;
     });
   }
   canvas.addEventListener("pointerleave", () => { $("readout").hidden = true; });
@@ -5439,6 +5615,7 @@ function boot3d() {
       : p.derm ? p.derm + " · approx " + dermatomeRange(p.derm) : "", DERM_TEXT[p.derm] || "");
     addFact("Dermatome", DERM_TEXT[p.derm] || "");
     addFact("Muscle beneath", p.muscle || "");
+    addFact("Works against", p.pairing || "");
     if (facts.children.length) card.appendChild(facts);
 
     // intensity
@@ -5558,6 +5735,7 @@ function boot3d() {
           + ") — " + (DERM_TEXT[p.derm] || ""));
       else if (p.derm === "CNV") lines.push("   Segmental: trigeminal territory, not a spinal level");
       if (p.muscle) lines.push("   Muscle beneath the point: " + p.muscle);
+      if (p.pairing) lines.push("   Acts at — " + p.pairing);
       if (p.qualities.length) lines.push("   Character: " + p.qualities.join(", "));
       lines.push("   Pattern: " + p.pattern + ".  Duration: " + p.onset + ".");
       if (p.radiates.trim()) lines.push("   Radiates: " + p.radiates.trim());
@@ -5693,6 +5871,7 @@ function boot3d() {
     scene.background = gradientBackground();
     for (const k in dermCache) delete dermCache[k];
     if (state.mode === "dermatome") { paintDermatomes(true); setMode("dermatome"); }
+    if (state.mode === "pairs") setMode("pairs");
   }
   themeBtn.addEventListener("click", () => {
     document.documentElement.setAttribute("data-theme", currentlyDark() ? "light" : "dark");

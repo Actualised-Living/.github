@@ -114,6 +114,27 @@ Tapping the body produces three things instead of one:
   trapezius". Reach is capped at 85 mm so the answer is what lies under the point, not whatever the
   ray eventually exits through.
 
+### Muscle pairs
+
+A fifth visualisation shows agonist and antagonist across one joint at a time: eleven pairings from
+shoulder to foot inversion. The selected pairing's two poles take a validated diverging pair, one
+warm and one cool, and every other muscle steps back to a translucent neutral.
+
+**One pairing at a time, because biarticular muscles belong to two.** Rectus femoris flexes the hip
+*and* extends the knee; gastrocnemius flexes the knee *and* plantarflexes the ankle. Colouring all
+eleven at once would have to pick one membership per muscle and silently drop the other.
+
+Hovering names the relationship — "right brachioradialis · flexion, against extension" — and a pain
+point recorded over a mapped muscle carries the pairing into the clinician summary. That is the
+point of the feature: where tone is raised on one side of a joint the other is often held long and
+weak, and the pain someone reports can sit in the stretched partner rather than the tight one, so a
+record naming the pairing is more use than one naming a single muscle.
+
+**The pairings are anatomy and nothing more.** The app makes no claim about which side becomes
+spastic: the usual patterns differ between the upper limb and the lower, and between lesions, and
+that is a clinical judgement rather than something to encode in a colour. The on-screen note says
+so. A clinician should confirm the groupings before they are relied on.
+
 ### Dermatomes
 
 A fourth visualisation shades the body by spinal nerve level, C2–S5, with the face marked as
