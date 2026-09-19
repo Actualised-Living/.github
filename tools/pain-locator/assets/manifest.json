@@ -5125,6 +5125,55 @@
      ]
     }
    ]
+  },
+  "nerves": {
+   "file": "nerves.glb",
+   "count": 3,
+   "triangles": 24248,
+   "megabytes": 0.38,
+   "source": "Z-Anatomy (CC BY-SA 4.0), registered by a uniform scale of 0.9686 fitted on the vertebral column",
+   "coverage": "Central nervous system only: spinal dura and dorsal root ganglia. Z-Anatomy models no peripheral nerves.",
+   "structures": [
+    {
+     "id": "spinal_dura",
+     "name": "Spinal_dura",
+     "tris": 20888,
+     "bbox": [
+      -0.0185,
+      1.0217,
+      -0.1006,
+      0.0196,
+      1.4963,
+      -0.0399
+     ]
+    },
+    {
+     "id": "ganglion_right",
+     "name": "Spinal_ganglion.r",
+     "tris": 1680,
+     "bbox": [
+      -0.019,
+      1.0328,
+      -0.0977,
+      -0.0084,
+      1.4837,
+      -0.0386
+     ]
+    },
+    {
+     "id": "ganglion_left",
+     "name": "Spinal_ganglion.l",
+     "tris": 1680,
+     "bbox": [
+      0.0089,
+      1.0328,
+      -0.0977,
+      0.0195,
+      1.4837,
+      -0.0386
+     ]
+    }
+   ]
   }
  },
  "landmarks": {
@@ -5141,5 +5190,6 @@
   "wrist": 0.8438,
   "kneeLine": 0.4904,
   "ankle": 0.0413
- }
+ },
+ "sourceExtra": "Z-Anatomy by Gauthier Kervyn, CC BY-SA 4.0, https://www.z-anatomy.com/"
 }

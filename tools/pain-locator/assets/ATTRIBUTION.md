@@ -30,3 +30,23 @@ They are derived from real anatomical data, so the shapes and the names are soun
 make the app a clinical instrument. The structures have not been checked, one by one, against an
 anatomical authority by anyone qualified to do so. Before this is relied on in care documentation,
 a clinician should review the naming and the placement.
+
+## Second source: Z-Anatomy
+
+`nerves.glb` derives from **Z-Anatomy** by Gauthier Kervyn, licensed **CC BY-SA 4.0**
+(<https://www.z-anatomy.com/>), which is itself built on BodyParts3D. Required credit:
+
+> Z-Anatomy, Gauthier Kervyn, CC BY-SA 4.0 — derived from BodyParts3D,
+> © The Database Center for Life Science, CC BY-SA 2.1 Japan
+
+**This makes the licensing question sharper, not softer.** Two ShareAlike licences of different
+versions are now in play — CC BY-SA 2.1 Japan and CC BY-SA 4.0. Whether they can be combined, and
+under what licence the combined work must be released, is a question for whoever owns licensing at
+Actualised Living, checked against Creative Commons' own compatibility guidance. Nothing here
+settles it.
+
+**What it contains, and what it does not.** Only the spinal dura and the dorsal root ganglia are
+used, because Z-Anatomy's nervous system is central only: brain, cerebellum, brainstem, ventricles,
+cord, ganglia, eye. It models **no peripheral nerves** — no sciatic, median, ulnar, radial, femoral
+or intercostal nerve geometry exists in it. The app's limb and rib branches remain drawn rather
+than measured, and the legend says so on screen.

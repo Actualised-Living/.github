@@ -4160,6 +4160,9 @@ function boot3d() {
     cord: new THREE.MeshStandardMaterial({
       color: col(0xFFE9A8), emissive: col(0xE0A21C), emissiveIntensity: 1.0, roughness: 0.35
     }),
+    ganglion: new THREE.MeshStandardMaterial({
+      color: col(0xE8B33A), emissive: col(0xA8700C), emissiveIntensity: 0.75, roughness: 0.42
+    }),
     brain: new THREE.MeshStandardMaterial({
       color: col(0xF6DDB0), emissive: col(0xB98A2C), emissiveIntensity: 0.55, roughness: 0.6,
       transparent: true, opacity: 0.9
@@ -4299,20 +4302,25 @@ function boot3d() {
     return new THREE.CatmullRomCurve3(arr.map(([x, y, z]) => V(s * x, y, z)));
   }
   const impulseCurves = [];
+  const schematicCentral = [];   // hidden once the measured cord loads
   for (const name in NERVE_PATHS) {
     const sides = MIRRORED.indexOf(name) >= 0 ? [1, -1] : [1];
     const radius = name === "cord" ? 0.0095 : (name === "armMain" || name === "sciatic" ? 0.0058 : 0.0040);
     const mat = name === "cord" ? MAT.cord : MAT.nerve;
     sides.forEach((s) => {
       const curve = curveFrom(NERVE_PATHS[name], s);
-      nerveGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 72, radius, 7, false), mat));
+      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 72, radius, 7, false), mat);
+      nerveGroup.add(tube);
+      if (name === "cord") schematicCentral.push(tube);
       if (name === "cord" || name === "armMain" || name === "sciatic" || name === "tibial") {
         impulseCurves.push(curve);
       }
     });
   }
   // brain and the nerve roots that branch off the cord between the ribs
-  nerveGroup.add(blob(V(0, 1.632, 0.006), 0.070, 0.062, 0.076, MAT.brain));
+  const schematicBrain = blob(V(0, 1.632, 0.006), 0.070, 0.062, 0.076, MAT.brain);
+  nerveGroup.add(schematicBrain);
+  schematicCentral.push(schematicBrain);
   for (let i = 0; i < 6; i++) {
     const y = 1.320 - i * 0.052;
     [1, -1].forEach((s) => {
@@ -4605,6 +4613,30 @@ function boot3d() {
       ANAT.muscleMeshes.push(o);
     });
     figure.add(ANAT.skin, ANAT.muscles);
+    // The measured cord is optional on top of the measured muscles.
+    try {
+      if (man.sets.nerves) {
+        const ns = await loadGLTF(assetUrl(man.sets.nerves.file || "nerves.glb"));
+        ns.scene.traverse((o) => {
+          if (!o.isMesh) return;
+          o.geometry.computeVertexNormals();
+          o.material = /ganglion/.test(o.name) ? MAT.ganglion : MAT.cord;
+        });
+        ANAT.nerves = ns.scene;
+        figure.add(ANAT.nerves);
+        // The real dura stops at the conus, around L1/L2, because that is where
+        // the cord ends. Below it the cauda equina is drawn, not measured.
+        const bb = new THREE.Box3().setFromObject(ANAT.nerves);
+        const cauda = new THREE.Mesh(new THREE.TubeGeometry(
+          new THREE.CatmullRomCurve3([
+            V(0, bb.min.y + 0.01, -0.062), V(0, bb.min.y - 0.05, -0.05),
+            V(0, bb.min.y - 0.11, -0.03), V(0, bb.min.y - 0.15, -0.02)]),
+          28, 0.007, 6, false), MAT.nerve);
+        nerveGroup.add(cauda);
+        schematicCentral.forEach((m) => { m.visible = false; });
+        ANAT.measuredCord = true;
+      }
+    } catch (e) { /* no nerve asset: the schematic cord stays */ }
     ANAT.loaded = true;
     return man;
   }
@@ -4672,10 +4704,7 @@ function boot3d() {
              ["swatch", hex(MUSCLE.thigh), "Quadriceps / hamstrings"],
              ["swatch", hex(MUSCLE.calf), "Calf / shin"]],
     dermatome: [],
-    nerve: [["line", "#E0A21C", "Spinal cord"],
-            ["line", "#C98B12", "Peripheral nerves"],
-            ["note", "", "Brachial plexus into the arm, sciatic and femoral into the leg, intercostal roots between the ribs."],
-            ["note", "", "Pain that shoots, burns or tingles along one of these lines is often described as nerve pain — worth saying so in the notes."]]
+    nerve: []
   };
 
   function setMode(mode) {
@@ -4687,6 +4716,7 @@ function boot3d() {
     clothesGroup.visible = !real && mode === "clothed";
     muscleGroup.visible = !real && mode === "muscle";
     nerveGroup.visible = mode === "nerve";
+    if (ANAT.nerves) ANAT.nerves.visible = mode === "nerve";
     if (real) {
       ANAT.muscles.visible = mode === "muscle";
       ANAT.skin.visible = mode !== "muscle";
@@ -4706,6 +4736,7 @@ function boot3d() {
     const box = $("legend"); box.innerHTML = "";
     box.className = "legend" + (mode === "dermatome" ? " derm" : "");
     if (mode === "dermatome") { dermatomeLegend(box); return; }
+    if (mode === "nerve") { nerveLegend(box); return; }
     LEGENDS[mode].forEach(([kind, colour, label]) => {
       const row = document.createElement("div"); row.className = "row";
       if (kind === "swatch") {
@@ -4717,6 +4748,34 @@ function boot3d() {
       if (kind === "note") { t.style.color = "var(--ink-3)"; t.style.lineHeight = "1.4"; }
       row.appendChild(t); box.appendChild(row);
     });
+  }
+
+  function nerveLegend(box) {
+    const measured = !!ANAT.measuredCord;
+    const rows = measured
+      ? [["line", "#E0A21C", "Spinal cord and dura — measured"],
+         ["swatch", "#E8B33A", "Dorsal root ganglia — measured, one pair per segment"],
+         ["line", "#C98B12", "Peripheral nerves and cauda equina — drawn, not measured"]]
+      : [["line", "#E0A21C", "Spinal cord — drawn, not measured"],
+         ["line", "#C98B12", "Peripheral nerves — drawn, not measured"]];
+    rows.forEach(([kind, colour, label]) => {
+      const row = document.createElement("div"); row.className = "row";
+      const mark = document.createElement("span");
+      mark.className = kind === "line" ? "ln" : "sw";
+      if (kind === "line") mark.style.borderColor = colour; else mark.style.background = colour;
+      const t = document.createElement("span"); t.textContent = label;
+      row.append(mark, t); box.appendChild(row);
+    });
+    const note = document.createElement("div");
+    note.className = "row"; note.style.color = "var(--ink-3)";
+    note.style.lineHeight = "1.4"; note.style.marginTop = "6px";
+    note.textContent = measured
+      ? "The cord and ganglia come from Z-Anatomy. No open anatomical dataset we could find "
+        + "models the peripheral nerves, so the limb and rib branches are indicative routes only "
+        + "— use them to point at a problem, not to locate a nerve."
+      : "Indicative routes only. Pain that shoots, burns or tingles along one of these is often "
+        + "described as nerve pain, which is worth saying in the notes.";
+    box.appendChild(note);
   }
 
   function dermatomeLegend(box) {
@@ -5564,7 +5623,9 @@ function boot3d() {
       if (b) { b.querySelector(".nm").textContent = "Body surface";
                b.querySelector(".ds").textContent = "Skin"; }
       $("srcNote").innerHTML = "<b>Anatomy: BodyParts3D</b> \u2014 " + man.sets.muscles.count
-        + " named muscle structures. \u00a9 The Database Center for Life Science, CC BY-SA 2.1 Japan.";
+        + " named muscle structures. \u00a9 The Database Center for Life Science, CC BY-SA 2.1 Japan."
+        + (ANAT.measuredCord
+            ? " Spinal cord and ganglia from <b>Z-Anatomy</b>, CC BY-SA 4.0." : "");
       if (state.example) { state.points = seedExamples(); state.seq = state.points.length + 1; }
       dermPainted = "";
       rebuildMarkers();

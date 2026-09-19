@@ -126,18 +126,23 @@ Validated against known anatomy (see `build/`): nipple line → T4 over pectoral
 lateral shin → L5 over tibialis anterior; back of calf → S1 over gastrocnemius; back of thigh → S2
 over biceps femoris; thumb side of hand → C6; little finger → C8 over abductor digiti minimi.
 
-### The nervous system is not solved
+### The nervous system: partly solved, and the limits matter
 
-BodyParts3D contains no peripheral nervous system. There is no sciatic, median, ulnar, radial or
-femoral nerve in the dataset — only the spinal cord, the optic nerves and the choroid plexus. The
-nerve view in the app therefore remains **schematic and should be labelled as such**. Options:
+`nerves.glb` (0.38 MB) carries the **spinal dura and the dorsal root ganglia**, exported from
+[Z-Anatomy](https://www.z-anatomy.com/) (CC BY-SA 4.0) and registered onto this frame. The cord
+follows the vertebral canal with the right curvature and ends near the conus at L1/L2, as it should.
 
-- Export the peripheral nerves from [Z-Anatomy](https://www.z-anatomy.com/) (CC BY-SA 4.0), which
-  models them. It ships as a Blender file, so it needs a Blender export step this pipeline does not
-  do; the resulting `.glb` would drop into `assets/` alongside the others.
-- Replace the nerve view with a **dermatome map**, which is arguably more useful for a pain locator
-  since it maps a site to a spinal level. Note that published dermatome charts genuinely disagree
-  with one another, so a source has to be chosen and cited on the page.
+**Neither open dataset models the peripheral nervous system.** BodyParts3D has no peripheral nerves
+at all. Z-Anatomy's nervous system collection is central only — brain, cerebellum, brainstem,
+ventricles, cord, ganglia, eye; its apparent "sciatic" and "ulnar" entries are the *greater sciatic
+foramen* and *extensor carpi ulnaris*, a bone feature and a muscle. So the limb and rib branches in
+the nerve view are still **drawn, not measured**, and the on-screen legend says exactly that.
+
+If a genuinely accurate peripheral nerve map is needed, it has to come from a licensed commercial
+dataset — the free ones do not have one.
+
+Rebuild it with `build/extract_nerves.blender.py` (needs Blender) followed by `build/make_nerves.py`;
+both are documented in their own docstrings.
 
 ### Embedding the assets instead of serving them
 

@@ -14,7 +14,8 @@ APP = os.path.join(HERE, "..", "index.html")
 ASSETS = os.path.join(HERE, "..", "assets")
 MIME = {"manifest.json": "application/json",
         "skin.glb": "model/gltf-binary",
-        "muscles.glb": "model/gltf-binary"}
+        "muscles.glb": "model/gltf-binary",
+        "nerves.glb": "model/gltf-binary"}
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "standalone.html")
