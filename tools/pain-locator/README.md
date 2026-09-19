@@ -3,8 +3,9 @@
 A single-page web app that lets a person mark where they hurt on a rotatable 3D figure, describe
 each site, and hand the result to a clinician.
 
-`index.html` is the whole app — open it in a browser, or serve the folder. No build step and no
-dependencies to install; three.js is pulled from a CDN at runtime.
+`index.html` is the whole app — open it in a browser by double-clicking it, or serve the folder.
+No build step, nothing to install, and no network: three.js is inlined into the file, so it works
+offline and on a machine with no route out.
 
 ## What it does
 
@@ -24,7 +25,9 @@ dependencies to install; three.js is pulled from a CDN at runtime.
 
 - **Not a diagnostic tool.** It records what a person reports. It does not assess, triage, score
   risk, or suggest a cause, and the disclaimer in the header says so.
-- **No data leaves the browser.** There is no network call after the page loads. Points are held in
+- **No data leaves the browser.** The page makes no network calls at all — not on load, not after.
+  The only external reference left is the Google Fonts stylesheet, which is optional: block it and
+  the page falls back to system fonts and is otherwise unchanged. Points are held in
   memory only unless the person ticks "keep these points on this device", which writes to
   `localStorage` on that browser and nothing else. Every storage access is wrapped in `try`/`catch`
   so a private window or blocked storage degrades quietly.
@@ -42,10 +45,12 @@ dependencies to install; three.js is pulled from a CDN at runtime.
 
 ## Implementation
 
-- three.js r128 (UMD from cdnjs, with a jsdelivr fallback). No model files — the CSP on some hosts
-  blocks non-script assets, so the figure, the muscle overlays and the nerve tubes are all
-  generated at runtime from `LatheGeometry` profiles, ellipsoids and `TubeGeometry` along
-  Catmull-Rom curves.
+- three.js r128 (the UMD build from npm `three@0.128.0`, MIT, sha256
+  `9274bbcec8d96168626c732b5d31c775aa8cfb7eaa0599bec0c175908a2c1ce2`) is inlined verbatim with its
+  licence banner. It is the only third-party code in the file and accounts for most of its size;
+  the app itself is about 70 KB. No model files either — the figure, the muscle overlays and the
+  nerve tubes are all generated at runtime from `LatheGeometry` profiles, ellipsoids and
+  `TubeGeometry` along Catmull-Rom curves.
 - Orbit, pinch-zoom and pan are hand-rolled; r128's example controls are not published as a UMD
   global.
 - Colours are converted from sRGB to linear on the way into every material — r128 predates
