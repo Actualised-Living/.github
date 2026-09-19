@@ -4351,6 +4351,14 @@ function boot3d() {
     return (window.PAIN_LOCATOR_ASSETS || "assets/").replace(/\/?$/, "/");
   })();
 
+  /* An embedder can hand the three assets over directly -- as data: URIs for a
+     self-contained file, or as signed URLs from attachment storage -- instead
+     of exposing a folder for the page to fetch from. */
+  function assetUrl(name) {
+    const map = window.PAIN_LOCATOR_ASSET_MAP;
+    return (map && map[name]) ? map[name] : ASSET_BASE + name;
+  }
+
   const ANAT = {
     loaded: false, manifest: null, meta: {}, landmarks: null,
     skin: null, muscles: null, muscleMeshes: [],
@@ -4532,9 +4540,9 @@ function boot3d() {
     return new Promise((res, rej) => new THREE.GLTFLoader().load(url, res, undefined, rej));
   }
   async function loadAnatomy() {
-    const man = await (await fetch(ASSET_BASE + "manifest.json")).json();
+    const man = await (await fetch(assetUrl("manifest.json"))).json();
     const [skin, muscles] = await Promise.all([
-      loadGLTF(ASSET_BASE + "skin.glb"), loadGLTF(ASSET_BASE + "muscles.glb")]);
+      loadGLTF(assetUrl("skin.glb")), loadGLTF(assetUrl("muscles.glb"))]);
     ANAT.manifest = man;
     ANAT.landmarks = man.landmarks || null;
     (man.sets.muscles.structures || []).forEach(r => { ANAT.meta[r.id] = r; });

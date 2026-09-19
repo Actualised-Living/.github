@@ -138,3 +138,19 @@ nerve view in the app therefore remains **schematic and should be labelled as su
 - Replace the nerve view with a **dermatome map**, which is arguably more useful for a pain locator
   since it maps a site to a spinal level. Note that published dermatome charts genuinely disagree
   with one another, so a source has to be chosen and cited on the page.
+
+### Embedding the assets instead of serving them
+
+`window.PAIN_LOCATOR_ASSET_MAP` overrides the fetch location per file, so an embedder can hand the
+three assets over directly rather than exposing a folder:
+
+```html
+<script>window.PAIN_LOCATOR_ASSET_MAP = {
+  "manifest.json": "https://…/manifest.json",   // or a signed attachment-storage URL
+  "skin.glb":      "data:model/gltf-binary;base64,…",
+  "muscles.glb":   "https://…/muscles.glb"
+};</script>
+```
+
+`build/make_standalone.py` uses this to bake everything into one ~12 MB file that runs with no
+network and nothing beside it — handy for sending to a reviewer.
