@@ -1,0 +1,1422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Body Pain Locator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+:root{
+  --paper:#F6F3EF; --surface:#FFFFFF; --surface-2:#FBF9F6; --sunk:#EDE8E1;
+  --ink:#171E22; --ink-2:#4B575D; --ink-3:#77848A;
+  --line:#E1DAD1; --line-2:#CFC6BA;
+  --accent:#0E6B63; --accent-ink:#FFFFFF; --accent-soft:#DCEEEB;
+  --stage-top:#E9E4DC; --stage-bot:#CFC8BE;
+  --sev-0:#6E7A80; --sev-1:#3F9E5C; --sev-2:#8FA43A; --sev-3:#D98A0B; --sev-4:#C63A33; --sev-5:#7C1A33;
+  --warn-bg:#FBF0DC; --warn-line:#E3C382; --warn-ink:#6B4A0C;
+  --shadow:0 1px 2px rgba(23,30,34,.06), 0 8px 24px -12px rgba(23,30,34,.22);
+  --r-sm:5px; --r-md:9px; --r-lg:14px;
+  --sans:"IBM Plex Sans",ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1417; --surface:#161E22; --surface-2:#1B2429; --sunk:#111A1E;
+    --ink:#E6ECEE; --ink-2:#A3B1B7; --ink-3:#7A888E;
+    --line:#26333A; --line-2:#35454D;
+    --accent:#41C9B8; --accent-ink:#06211F; --accent-soft:#12312F;
+    --stage-top:#141D22; --stage-bot:#0A1013;
+    --sev-0:#8A979D; --sev-1:#4FB870; --sev-2:#A7BE4A; --sev-3:#EFA327; --sev-4:#E35A50; --sev-5:#C4415F;
+    --warn-bg:#2A2214; --warn-line:#5C4818; --warn-ink:#E8C98A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1417; --surface:#161E22; --surface-2:#1B2429; --sunk:#111A1E;
+  --ink:#E6ECEE; --ink-2:#A3B1B7; --ink-3:#7A888E;
+  --line:#26333A; --line-2:#35454D;
+  --accent:#41C9B8; --accent-ink:#06211F; --accent-soft:#12312F;
+  --stage-top:#141D22; --stage-bot:#0A1013;
+  --sev-0:#8A979D; --sev-1:#4FB870; --sev-2:#A7BE4A; --sev-3:#EFA327; --sev-4:#E35A50; --sev-5:#C4415F;
+  --warn-bg:#2A2214; --warn-line:#5C4818; --warn-ink:#E8C98A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+/* ---------- shell ---------- */
+.app{
+  display:grid;height:100%;
+  grid-template-columns:246px minmax(0,1fr) 356px;
+  grid-template-rows:auto minmax(0,1fr);
+  grid-template-areas:"hd hd hd" "rail stage panel";
+}
+.masthead{grid-area:hd;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:10px 18px;padding-top:calc(10px + env(safe-area-inset-top,0px));
+  background:var(--surface);border-bottom:1px solid var(--line)}
+.rail{grid-area:rail;overflow-y:auto;border-right:1px solid var(--line);background:var(--surface-2);padding:16px 14px 28px}
+.stage{grid-area:stage;position:relative;min-height:0;background:linear-gradient(180deg,var(--stage-top),var(--stage-bot))}
+.panel{grid-area:panel;overflow-y:auto;border-left:1px solid var(--line);background:var(--surface);padding:16px 16px 32px}
+@media (max-width:1080px){
+  .app{grid-template-columns:minmax(0,1fr) 336px;grid-template-rows:auto auto minmax(0,1fr);
+    grid-template-areas:"hd hd" "rail rail" "stage panel"}
+  .rail{border-right:0;border-bottom:1px solid var(--line);display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;padding:12px 16px}
+  .rail > *{flex:1 1 210px;min-width:0}
+}
+@media (max-width:800px){
+  html,body{height:auto}
+  .app{height:auto;grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto auto 62vh auto;grid-template-areas:"hd" "rail" "stage" "panel"}
+  .panel{border-left:0;border-top:1px solid var(--line)}
+  .stage{min-height:360px}
+}
+
+/* ---------- masthead ---------- */
+.wordmark{display:flex;align-items:baseline;gap:10px;margin-right:auto}
+.wordmark h1{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.01em;margin:0}
+.wordmark .sub{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.notice{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.35;
+  background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);
+  padding:6px 11px;border-radius:var(--r-md);max-width:60ch}
+.notice b{font-weight:600}
+.theme-btn{background:transparent;border:1px solid var(--line-2);color:var(--ink-2);
+  border-radius:var(--r-md);padding:6px 11px;font-size:12px;font-weight:500;cursor:pointer}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- rail ---------- */
+.group + .group{margin-top:22px}
+.group > h2{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;margin:0 0 9px}
+.switch{display:flex;flex-direction:column;gap:5px;background:var(--sunk);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:4px}
+.switch button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;cursor:pointer;
+  background:transparent;border:0;border-radius:var(--r-sm);padding:8px 9px;color:var(--ink-2);font-size:13px}
+.switch button .gl{width:22px;height:22px;flex:0 0 22px}
+.switch button .nm{font-weight:500;color:var(--ink)}
+.switch button .ds{display:block;font-size:11px;color:var(--ink-3);line-height:1.3}
+.switch button:hover{background:var(--surface)}
+.switch button[aria-pressed="true"]{background:var(--surface);box-shadow:var(--shadow);outline:1px solid var(--accent)}
+.switch button[aria-pressed="true"] .nm{color:var(--accent)}
+.views{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.views button, .mini{background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2);
+  border-radius:var(--r-sm);padding:7px 4px;font-size:11.5px;font-weight:500;cursor:pointer;letter-spacing:.01em}
+.views button:hover,.mini:hover{border-color:var(--accent);color:var(--accent)}
+.legend{display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--ink-2)}
+.legend .row{display:flex;align-items:center;gap:8px}
+.legend .sw{width:11px;height:11px;border-radius:3px;flex:0 0 11px;border:1px solid rgba(0,0,0,.12)}
+.legend .ln{width:14px;height:0;border-top:2px solid;flex:0 0 14px}
+.tip{font-size:11.5px;color:var(--ink-3);line-height:1.45}
+.tip kbd{font-family:var(--mono);font-size:10.5px;background:var(--sunk);border:1px solid var(--line);
+  border-radius:3px;padding:1px 4px}
+
+/* ---------- stage ---------- */
+#gl{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
+.stage-hint{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink-2);border-radius:99px;
+  padding:6px 14px;font-size:11.5px;box-shadow:var(--shadow);pointer-events:none;
+  transition:opacity .4s ease;max-width:calc(100% - 24px);text-align:center}
+.stage-tools{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:6px}
+.stage-tools .mini{min-width:86px;text-align:center;box-shadow:var(--shadow)}
+.readout{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:11px;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:4px 8px;
+  box-shadow:var(--shadow);pointer-events:none;max-width:52%}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;color:var(--ink-2);
+  background:linear-gradient(180deg,var(--stage-top),var(--stage-bot))}
+
+/* ---------- panel ---------- */
+.panel h2.ttl{font-family:var(--serif);font-size:17px;font-weight:500;margin:0 0 2px}
+.panel .lede{font-size:12px;color:var(--ink-3);margin:0 0 14px}
+.tally{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.tally div{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 10px}
+.tally .k{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.tally .v{font-family:var(--mono);font-size:19px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.25}
+
+.detail{border:1px solid var(--accent);border-radius:var(--r-lg);background:var(--surface-2);
+  padding:13px;margin-bottom:16px;box-shadow:var(--shadow)}
+.detail .dh{display:flex;align-items:flex-start;gap:8px;margin-bottom:11px}
+.detail .dh .pin{font-family:var(--mono);font-size:11px;font-weight:600;color:#fff;background:var(--sev-3);
+  border-radius:99px;padding:2px 8px;flex:0 0 auto;margin-top:1px}
+.detail .dh .rg{font-weight:600;font-size:14px;line-height:1.3}
+.detail .dh .cd{font-size:11px;color:var(--ink-3);font-family:var(--mono)}
+.detail .dh button{margin-left:auto;background:transparent;border:1px solid var(--line-2);color:var(--ink-3);
+  border-radius:var(--r-sm);padding:3px 8px;font-size:11px;cursor:pointer}
+.detail .dh button:hover{border-color:var(--sev-4);color:var(--sev-4)}
+.fld{margin-bottom:12px}
+.fld > label,.fld > .lb{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin-bottom:5px}
+.scale{display:flex;align-items:center;gap:10px}
+.scale input[type=range]{flex:1;min-width:0;accent-color:var(--sev-3);height:22px}
+.scale .num{font-family:var(--mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;
+  min-width:2.1em;text-align:right}
+.scale-word{font-size:11.5px;color:var(--ink-2);margin-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chips button{background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2);
+  border-radius:99px;padding:4px 10px;font-size:11.5px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+select,input[type=text],textarea{width:100%;background:var(--surface);border:1px solid var(--line-2);
+  border-radius:var(--r-sm);padding:7px 9px;font-size:13px}
+textarea{resize:vertical;min-height:58px;line-height:1.45}
+.hint{font-size:11px;color:var(--ink-3);margin-top:4px}
+
+.plist{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:6px}
+.plist li button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;cursor:pointer;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 10px}
+.plist li button:hover{border-color:var(--line-2)}
+.plist li button[aria-current="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.plist .dot{width:22px;height:22px;border-radius:50%;flex:0 0 22px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:10.5px;font-weight:600;color:#fff}
+.plist .pr{min-width:0;flex:1}
+.plist .pr .r{font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plist .pr .m{font-size:11px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plist .sc{font-family:var(--mono);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.empty{border:1px dashed var(--line-2);border-radius:var(--r-md);padding:16px;text-align:center;
+  color:var(--ink-3);font-size:12.5px;margin-bottom:16px;line-height:1.5}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.acts button{border-radius:var(--r-sm);padding:9px 8px;font-size:12.5px;font-weight:500;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.acts button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);grid-column:1/-1}
+.acts button:hover{border-color:var(--accent);color:var(--accent)}
+.acts button.primary:hover{color:var(--accent-ink);filter:brightness(1.08)}
+.acts button.danger:hover{border-color:var(--sev-4);color:var(--sev-4)}
+.keepline{display:flex;gap:9px;align-items:flex-start;font-size:11.5px;color:var(--ink-2);
+  border-top:1px solid var(--line);padding-top:12px;line-height:1.45}
+.keepline input{margin-top:2px;accent-color:var(--accent)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,14px);opacity:0;pointer-events:none;
+  background:var(--ink);color:var(--paper);border-radius:99px;padding:9px 18px;font-size:12.5px;
+  box-shadow:var(--shadow);transition:opacity .22s ease,transform .22s ease;z-index:50}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ---------- print ---------- */
+#report{display:none}
+@media print{
+  .app{display:block;height:auto}
+  .rail,.panel,.masthead,.stage,.toast{display:none!important}
+  #report{display:block;padding:0 4mm;color:#000;background:#fff}
+  #report h1{font-family:var(--serif);font-size:19pt;margin:0 0 2mm;font-weight:500}
+  #report .meta{font-size:9pt;color:#444;margin-bottom:5mm;border-bottom:1pt solid #999;padding-bottom:3mm}
+  #report .shot{max-width:78mm;border:1pt solid #bbb;margin-bottom:5mm}
+  #report table{width:100%;border-collapse:collapse;font-size:9.5pt}
+  #report th{text-align:left;border-bottom:1pt solid #333;padding:2mm 2mm 1.4mm;font-size:8pt;
+    letter-spacing:.06em;text-transform:uppercase}
+  #report td{border-bottom:.5pt solid #ccc;padding:2mm;vertical-align:top}
+  #report td.n{font-family:var(--mono);font-weight:600;white-space:nowrap}
+  #report .foot{margin-top:6mm;font-size:8.5pt;color:#444;border-top:1pt solid #999;padding-top:3mm}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="masthead">
+    <div class="wordmark">
+      <h1>Body Pain Locator</h1>
+      <span class="sub">Pain map for clinical review</span>
+    </div>
+    <p class="notice">
+      <b>Not a diagnostic tool.</b> A record of where it hurts, to be read alongside an assessment by a
+      clinician. Please don't type names, dates of birth or other identifying details into the notes.
+    </p>
+    <button class="theme-btn" id="themeBtn" type="button">Dark</button>
+  </header>
+
+  <aside class="rail">
+    <section class="group">
+      <h2>Visualisation</h2>
+      <div class="switch" role="group" aria-label="Body visualisation">
+        <button type="button" data-mode="clothed" aria-pressed="true">
+          <svg class="gl" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3.6a2.1 2.1 0 1 0 0 .01M8.4 8.2 12 7l3.6 1.2 2 1.6-1.3 2-1.3-.8V21H7v-11l-1.3.8-1.3-2z"
+              stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          </svg>
+          <span><span class="nm">Clothed</span><span class="ds">Everyday view</span></span>
+        </button>
+        <button type="button" data-mode="muscle" aria-pressed="false">
+          <svg class="gl" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3.6a2.1 2.1 0 1 0 0 .01M9 7.6 12 21l3-13.4M7.2 9.4c1.1 2.2 1.4 4.6.9 7M16.8 9.4c-1.1 2.2-1.4 4.6-.9 7"
+              stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <span><span class="nm">Muscle map</span><span class="ds">Major muscle groups</span></span>
+        </button>
+        <button type="button" data-mode="nerve" aria-pressed="false">
+          <svg class="gl" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3.2v17.4M12 7.4 8.6 10M12 7.4l3.4 2.6M12 12.4 8.2 15.4M12 12.4l3.8 3M12 4.6 9.8 6.4M12 4.6l2.2 1.8"
+              stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <span><span class="nm">Nervous system</span><span class="ds">Nerve pathways</span></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Viewpoint</h2>
+      <div class="views">
+        <button type="button" data-view="front">Front</button>
+        <button type="button" data-view="back">Back</button>
+        <button type="button" data-view="left">Left</button>
+        <button type="button" data-view="right">Right</button>
+      </div>
+      <div class="views" style="margin-top:5px;grid-template-columns:1fr 1fr">
+        <button type="button" data-view="upper">Head &amp; neck</button>
+        <button type="button" data-view="reset">Reset view</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 id="legendTitle">Legend</h2>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <section class="group">
+      <h2>How to use it</h2>
+      <p class="tip">
+        Drag to turn the figure, scroll or pinch to zoom, <kbd>Shift</kbd>-drag to slide it.
+        Tap anywhere on the body to drop a pain point, then set how strong it is and what it feels like.
+        Tap a point again to edit it. Arrow keys turn the figure, <kbd>+</kbd> and <kbd>&minus;</kbd> zoom.
+      </p>
+    </section>
+  </aside>
+
+  <main class="stage" id="stage">
+    <canvas id="gl" aria-label="Rotatable 3D figure. Use the pain point list for a text equivalent."
+      role="img" tabindex="0"></canvas>
+    <div class="readout" id="readout" hidden></div>
+    <div class="stage-tools">
+      <button class="mini" type="button" id="undoBtn">Undo point</button>
+      <button class="mini" type="button" id="spinBtn" aria-pressed="false">Turn slowly</button>
+    </div>
+    <div class="stage-hint" id="hint">Tap the body where it hurts</div>
+    <div class="loading" id="loading">Building the figure&hellip;</div>
+  </main>
+
+  <section class="panel" aria-label="Pain points">
+    <h2 class="ttl">Pain points</h2>
+    <p class="lede">Each point records a site, an intensity on the 0&ndash;10 scale, and how the pain behaves.</p>
+
+    <div class="tally">
+      <div><div class="k">Points</div><div class="v" id="tCount">0</div></div>
+      <div><div class="k">Worst</div><div class="v" id="tWorst">&mdash;</div></div>
+      <div><div class="k">Average</div><div class="v" id="tAvg">&mdash;</div></div>
+    </div>
+
+    <div id="detail"></div>
+    <ul class="plist" id="plist"></ul>
+    <div class="empty" id="empty">No points yet.<br>Turn the figure and tap wherever you feel pain.</div>
+
+    <div class="acts">
+      <button type="button" class="primary" id="copySummary">Copy summary for clinician</button>
+      <button type="button" id="printBtn">Print / save PDF</button>
+      <button type="button" id="copyJson">Copy as data</button>
+      <button type="button" class="danger" id="clearBtn">Clear all points</button>
+    </div>
+
+    <label class="keepline">
+      <input type="checkbox" id="keepLocal">
+      <span>Keep these points on this device so they're here next time. They stay in this browser
+        only &mdash; nothing is sent anywhere. Leave it off on a shared or clinic computer.</span>
+    </label>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<section id="report" aria-hidden="true">
+  <h1>Pain map summary</h1>
+  <div class="meta" id="rMeta"></div>
+  <img class="shot" id="rShot" alt="">
+  <table id="rTable"></table>
+  <div class="foot">
+    Self-reported by the person using the Body Pain Locator. Intensities use the numeric rating scale
+    (0 = no pain, 10 = worst pain imaginable). This is a record of reported symptoms, not a clinical
+    assessment or diagnosis.
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+  onerror="var f=document.createElement('script');f.src='https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js';f.onload=function(){if(window.__boot3d)window.__boot3d()};document.head.appendChild(f)"></script>
+<script>
+function boot3d() {
+  "use strict";
+
+  /* ======================================================================
+     0 · Small helpers
+     ====================================================================== */
+  const $ = (id) => document.getElementById(id);
+  const V = (x, y, z) => new THREE.Vector3(x, y, z);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  // three r128 predates colour management: an sRGB hex handed straight to a
+  // material is treated as linear and comes back bleached once the renderer
+  // encodes to sRGB. Convert on the way in.
+  const col = (h) => new THREE.Color(h).convertSRGBToLinear();
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Numeric rating scale -> colour ramp (clinical convention: green through to deep red)
+  const SEV_STOPS = [[0, 0x4E9E6A], [3, 0x8FA43A], [5, 0xD98A0B], [7, 0xC63A33], [10, 0x7C1A33]];
+  function sevColor(n) {
+    n = clamp(n, 0, 10);
+    for (let i = 0; i < SEV_STOPS.length - 1; i++) {
+      const [a, ca] = SEV_STOPS[i], [b, cb] = SEV_STOPS[i + 1];
+      if (n <= b) {
+        const t = b === a ? 0 : (n - a) / (b - a);
+        const r = Math.round(((ca >> 16) & 255) + (((cb >> 16) & 255) - ((ca >> 16) & 255)) * t);
+        const g = Math.round(((ca >> 8) & 255) + (((cb >> 8) & 255) - ((ca >> 8) & 255)) * t);
+        const bl = Math.round((ca & 255) + ((cb & 255) - (ca & 255)) * t);
+        return (r << 16) | (g << 8) | bl;
+      }
+    }
+    return 0x7C1A33;
+  }
+  const hex = (n) => "#" + n.toString(16).padStart(6, "0");
+  const SEV_WORDS = ["No pain", "Barely there", "Mild", "Mild", "Noticeable", "Moderate",
+    "Moderate", "Severe", "Severe", "Very severe", "Worst imaginable"];
+
+  /* ======================================================================
+     1 · Scene, camera, lights
+     ====================================================================== */
+  const stage = $("stage"), canvas = $("gl");
+  const renderer = new THREE.WebGLRenderer({
+    canvas, antialias: true, alpha: false, preserveDrawingBuffer: true
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.00;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(34, 1, 0.05, 60);
+
+  function gradientBackground() {
+    const cv = document.createElement("canvas");
+    cv.width = 4; cv.height = 256;
+    const cx = cv.getContext("2d");
+    const cs = getComputedStyle(document.documentElement);
+    const g = cx.createLinearGradient(0, 0, 0, 256);
+    g.addColorStop(0, (cs.getPropertyValue("--stage-top") || "#E9E4DC").trim());
+    g.addColorStop(1, (cs.getPropertyValue("--stage-bot") || "#CFC8BE").trim());
+    cx.fillStyle = g; cx.fillRect(0, 0, 4, 256);
+    const t = new THREE.CanvasTexture(cv);
+    t.encoding = THREE.sRGBEncoding;
+    return t;
+  }
+  scene.background = gradientBackground();
+
+  scene.add(new THREE.HemisphereLight(col(0xffffff), col(0x4a4038), 0.38));
+  const key = new THREE.DirectionalLight(col(0xfff4e6), 0.80); key.position.set(2.4, 3.4, 3.0); scene.add(key);
+  const fill = new THREE.DirectionalLight(col(0xd6e6ff), 0.26); fill.position.set(-3.0, 1.4, 1.6); scene.add(fill);
+  const rim = new THREE.DirectionalLight(col(0xffffff), 0.34); rim.position.set(-1.2, 2.2, -3.2); scene.add(rim);
+
+  // Soft contact shadow, cheaper and calmer than a shadow map for a single figure
+  (function groundShade() {
+    const cv = document.createElement("canvas"); cv.width = cv.height = 256;
+    const cx = cv.getContext("2d");
+    const g = cx.createRadialGradient(128, 128, 4, 128, 128, 126);
+    g.addColorStop(0, "rgba(0,0,0,.34)"); g.addColorStop(0.55, "rgba(0,0,0,.12)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    cx.fillStyle = g; cx.fillRect(0, 0, 256, 256);
+    const disc = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.5, 1.5),
+      new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(cv), transparent: true, depthWrite: false })
+    );
+    disc.rotation.x = -Math.PI / 2; disc.position.y = 0.002;
+    scene.add(disc);
+  })();
+
+  /* ======================================================================
+     2 · Procedural anatomy
+     A tapered-capsule profile revolved with LatheGeometry gives organic
+     limbs; the torso is one profile flattened front-to-back.
+     ====================================================================== */
+  function taperProfile(rA, rB, L, bulge) {
+    const pts = [], CAP = 7;
+    for (let i = CAP; i >= 0; i--) { const f = (i / CAP) * Math.PI / 2; pts.push(new THREE.Vector2(Math.cos(f) * rA, -Math.sin(f) * rA)); }
+    for (let i = 1; i < 6; i++) {
+      const t = i / 6, r = (rA + (rB - rA) * t) * (1 + (bulge || 0) * Math.sin(t * Math.PI));
+      pts.push(new THREE.Vector2(r, L * t));
+    }
+    for (let i = 0; i <= CAP; i++) { const f = (i / CAP) * Math.PI / 2; pts.push(new THREE.Vector2(Math.cos(f) * rB, L + Math.sin(f) * rB)); }
+    return new THREE.LatheGeometry(pts, 26);
+  }
+  function orient(mesh, a, b) {
+    mesh.position.copy(a);
+    mesh.quaternion.setFromUnitVectors(V(0, 1, 0), new THREE.Vector3().subVectors(b, a).normalize());
+  }
+  function capsuleMesh(a, b, rA, rB, bulge, material) {
+    const m = new THREE.Mesh(taperProfile(rA, rB, a.distanceTo(b), bulge), material);
+    orient(m, a, b);
+    return m;
+  }
+  function blob(pos, sx, sy, sz, material) {
+    const m = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 18), material);
+    m.position.copy(pos); m.scale.set(sx, sy, sz);
+    return m;
+  }
+
+  const TORSO_PROFILE = [
+    [0.815, 0.000], [0.820, 0.066], [0.833, 0.108], [0.853, 0.134], [0.884, 0.146],
+    [0.920, 0.144], [0.960, 0.136], [1.000, 0.128], [1.040, 0.124], [1.080, 0.128],
+    [1.130, 0.137], [1.180, 0.149], [1.240, 0.159], [1.300, 0.165], [1.350, 0.166],
+    [1.395, 0.158], [1.430, 0.140], [1.460, 0.104], [1.487, 0.066], [1.502, 0.042]
+  ];
+  const TORSO_BASE = TORSO_PROFILE[0][0], TORSO_FLAT = 0.62;
+
+  function torsoGeometry(scaleR, from, to) {
+    const pts = [];
+    for (const [y, r] of TORSO_PROFILE) {
+      if (y < from - 1e-6 || y > to + 1e-6) continue;
+      pts.push(new THREE.Vector2(Math.max(r * (scaleR || 1), 0.0005), y - TORSO_BASE));
+    }
+    if (pts.length && pts[0].x > 0.01) pts.unshift(new THREE.Vector2(0.0005, pts[0].y - 0.006));
+    if (pts.length && pts[pts.length - 1].x > 0.01) pts.push(new THREE.Vector2(0.0005, pts[pts.length - 1].y + 0.006));
+    return new THREE.LatheGeometry(pts, 30);
+  }
+
+  /* Materials -------------------------------------------------------- */
+  const MAT = {
+    skin: new THREE.MeshStandardMaterial({ color: col(0xD3A183), roughness: 0.78, metalness: 0.02 }),
+    bone: new THREE.MeshStandardMaterial({ color: col(0xE3DAC7), roughness: 0.72, metalness: 0.02 }),
+    ghost: new THREE.MeshStandardMaterial({
+      color: col(0x8CA3B2), roughness: 0.5, metalness: 0.0,
+      transparent: true, opacity: 0.21, depthWrite: false, side: THREE.DoubleSide
+    }),
+    shirt: new THREE.MeshStandardMaterial({ color: col(0x3E6E7A), roughness: 0.92 }),
+    shorts: new THREE.MeshStandardMaterial({ color: col(0x33414C), roughness: 0.94 }),
+    nerve: new THREE.MeshStandardMaterial({
+      color: col(0xF2D16B), emissive: col(0xC98B12), emissiveIntensity: 0.85, roughness: 0.4
+    }),
+    cord: new THREE.MeshStandardMaterial({
+      color: col(0xFFE9A8), emissive: col(0xE0A21C), emissiveIntensity: 1.0, roughness: 0.35
+    }),
+    brain: new THREE.MeshStandardMaterial({
+      color: col(0xF6DDB0), emissive: col(0xB98A2C), emissiveIntensity: 0.55, roughness: 0.6,
+      transparent: true, opacity: 0.9
+    })
+  };
+
+  // Muscle-group palette: anatomical reds and ochres, separated by lightness
+  const MUSCLE = {
+    trapezius: 0x8E4436, deltoid: 0xE08A3E, pectoral: 0xC4504F, arm: 0xA8433F,
+    forearm: 0x9C5B3A, abdominal: 0xD2705A, latissimus: 0x7E4A52, gluteal: 0xB55A6B,
+    thigh: 0xC05A48, calf: 0xA24A45, neck: 0xBD6A4A, hand: 0xC9A88E, head: 0xE3DAC7
+  };
+  const muscleMats = {};
+  for (const k in MUSCLE) {
+    muscleMats[k] = new THREE.MeshStandardMaterial({ color: col(MUSCLE[k]), roughness: 0.58, metalness: 0.03 });
+  }
+
+  /* Build the figure -------------------------------------------------- */
+  const figure = new THREE.Group();
+  scene.add(figure);
+  const bodyGroup = new THREE.Group();      // raycast targets
+  const clothesGroup = new THREE.Group();   // clothed-mode overlay
+  const muscleGroup = new THREE.Group();    // muscle-map overlay
+  const nerveGroup = new THREE.Group();     // nervous-system overlay
+  const markerGroup = new THREE.Group();
+  figure.add(bodyGroup, clothesGroup, muscleGroup, nerveGroup, markerGroup);
+
+  const bodyParts = [];
+  function addPart(mesh, part, muscleKey) {
+    mesh.userData.part = part;
+    mesh.userData.muscle = muscleKey || "thigh";
+    bodyGroup.add(mesh);
+    bodyParts.push(mesh);
+    return mesh;
+  }
+  const mirror = (fn) => { fn(1, "L"); fn(-1, "R"); };
+
+  // torso + head + neck
+  const torso = new THREE.Mesh(torsoGeometry(1, 0, 9), MAT.skin);
+  torso.position.y = TORSO_BASE; torso.scale.z = TORSO_FLAT;
+  addPart(torso, "torso", "abdominal");
+
+  addPart(blob(V(0, 1.618, 0.004), 0.093, 0.113, 0.103, MAT.skin), "head", "head");
+  addPart(capsuleMesh(V(0, 1.446, -0.006), V(0, 1.546, 0.002), 0.050, 0.046, 0.02, MAT.skin), "neck", "neck");
+
+  mirror((s, side) => {
+    addPart(blob(V(s * 0.066, 0.872, -0.050), 0.072, 0.066, 0.052, MAT.skin), "torso", "gluteal");
+    addPart(blob(V(s * 0.155, 1.382, 0.000), 0.068, 0.066, 0.066, MAT.skin), "shoulder." + side, "deltoid");
+    addPart(capsuleMesh(V(s * 0.162, 1.382, 0.000), V(s * 0.205, 1.128, -0.008), 0.052, 0.041, 0.09, MAT.skin), "upperarm." + side, "arm");
+    addPart(blob(V(s * 0.206, 1.120, -0.008), 0.044, 0.047, 0.044, MAT.skin), "elbow." + side, "arm");
+    addPart(capsuleMesh(V(s * 0.206, 1.116, -0.008), V(s * 0.232, 0.876, 0.004), 0.043, 0.029, 0.10, MAT.skin), "forearm." + side, "forearm");
+    const hand = capsuleMesh(V(s * 0.233, 0.870, 0.004), V(s * 0.239, 0.710, 0.012), 0.030, 0.025, 0.06, MAT.skin);
+    hand.scale.z = 0.60; addPart(hand, "hand." + side, "hand");
+    addPart(capsuleMesh(V(s * 0.082, 0.905, 0.000), V(s * 0.094, 0.508, 0.004), 0.088, 0.058, 0.05, MAT.skin), "thigh." + side, "thigh");
+    addPart(blob(V(s * 0.095, 0.496, 0.006), 0.059, 0.056, 0.058, MAT.skin), "knee." + side, "thigh");
+    addPart(capsuleMesh(V(s * 0.095, 0.492, 0.004), V(s * 0.100, 0.108, -0.014), 0.060, 0.033, 0.14, MAT.skin), "lowerleg." + side, "calf");
+    addPart(blob(V(s * 0.101, 0.050, 0.036), 0.048, 0.043, 0.118, MAT.skin), "foot." + side, "calf");
+  });
+
+  /* ---- Overlay A · clothing (open-ended shells over the torso) -------- */
+  function torsoShell(scaleR, from, to) {
+    const pts = [];
+    for (const [y, r] of TORSO_PROFILE) {
+      if (y < from - 1e-6 || y > to + 1e-6) continue;
+      pts.push(new THREE.Vector2(r * scaleR + 0.004, y - TORSO_BASE));
+    }
+    return new THREE.LatheGeometry(pts, 30);
+  }
+  function shell(geo, mat) {
+    const m = new THREE.Mesh(geo, mat.clone());
+    m.material.side = THREE.DoubleSide;
+    m.position.y = TORSO_BASE; m.scale.z = TORSO_FLAT * 1.035;
+    return m;
+  }
+  clothesGroup.add(shell(torsoShell(1.048, 0.942, 1.487), MAT.shirt));
+  clothesGroup.add(shell(torsoShell(1.060, 0.812, 0.986), MAT.shorts));
+  mirror((s) => {
+    const sleeve = capsuleMesh(V(s * 0.148, 1.398, 0.000), V(s * 0.192, 1.240, -0.005), 0.074, 0.056, 0.0, MAT.shirt);
+    sleeve.material = MAT.shirt; clothesGroup.add(sleeve);
+    const leg = capsuleMesh(V(s * 0.080, 0.926, 0.000), V(s * 0.090, 0.670, 0.002), 0.099, 0.081, 0.0, MAT.shorts);
+    leg.material = MAT.shorts; clothesGroup.add(leg);
+  });
+
+  /* ---- Overlay B · muscle map (definition on top of grouped colour) --- */
+  const MUSCLE_PATCHES = [
+    // [x, y, z, sx, sy, sz, group, mirrored]
+    [0.000, 1.416, -0.048, 0.138, 0.060, 0.042, "trapezius", false],
+    [0.064, 1.266, 0.080, 0.064, 0.052, 0.030, "pectoral", true],
+    [0.092, 1.238, -0.062, 0.054, 0.084, 0.030, "latissimus", true],
+    [0.032, 1.168, 0.078, 0.028, 0.026, 0.020, "abdominal", true],
+    [0.032, 1.106, 0.071, 0.028, 0.026, 0.020, "abdominal", true],
+    [0.032, 1.046, 0.066, 0.028, 0.026, 0.020, "abdominal", true],
+    [0.098, 1.086, 0.045, 0.032, 0.060, 0.028, "abdominal", true],
+    [0.162, 1.382, 0.008, 0.069, 0.070, 0.068, "deltoid", true],
+    [0.181, 1.272, 0.030, 0.036, 0.066, 0.030, "arm", true],
+    [0.185, 1.266, -0.036, 0.034, 0.068, 0.028, "arm", true],
+    [0.215, 1.036, 0.026, 0.032, 0.068, 0.026, "forearm", true],
+    [0.066, 0.870, -0.056, 0.072, 0.066, 0.050, "gluteal", true],
+    [0.087, 0.740, 0.050, 0.052, 0.128, 0.030, "thigh", true],
+    [0.087, 0.720, -0.050, 0.050, 0.128, 0.030, "thigh", true],
+    [0.100, 0.352, -0.046, 0.044, 0.090, 0.030, "calf", true],
+    [0.098, 0.320, 0.034, 0.028, 0.098, 0.024, "calf", true]
+  ];
+  MUSCLE_PATCHES.forEach(([x, y, z, sx, sy, sz, key, mir]) => {
+    const add = (s) => muscleGroup.add(blob(V(s * x, y, z), sx, sy, sz, muscleMats[key]));
+    add(1); if (mir) add(-1);
+  });
+
+  /* ---- Overlay C · nervous system ------------------------------------ */
+  const NERVE_PATHS = {
+    // central
+    cord: [[0, 1.545, 0.010], [0, 1.478, 0.014], [0, 1.400, -0.012], [0, 1.300, -0.030],
+           [0, 1.180, -0.034], [0, 1.060, -0.016], [0, 0.960, 0.002], [0, 0.888, -0.014]],
+    // upper limb: brachial plexus into median / ulnar / radial territory
+    armMain: [[0.018, 1.424, -0.010], [0.108, 1.394, -0.012], [0.160, 1.366, -0.006],
+              [0.188, 1.256, -0.012], [0.204, 1.132, -0.014]],
+    armMedian: [[0.204, 1.132, -0.014], [0.214, 1.038, 0.002], [0.224, 0.930, 0.010],
+                [0.230, 0.852, 0.012], [0.232, 0.772, 0.016]],
+    armUlnar: [[0.204, 1.132, -0.014], [0.218, 1.028, -0.020], [0.228, 0.928, -0.012],
+               [0.234, 0.860, -0.006], [0.236, 0.796, 0.000]],
+    // lower limb: sciatic dividing into tibial / common peroneal at the knee
+    sciatic: [[0.022, 0.952, -0.020], [0.062, 0.898, -0.046], [0.086, 0.812, -0.052],
+              [0.094, 0.680, -0.046], [0.098, 0.560, -0.040], [0.100, 0.498, -0.032]],
+    tibial: [[0.100, 0.498, -0.032], [0.104, 0.400, -0.040], [0.106, 0.280, -0.032],
+             [0.108, 0.160, -0.018], [0.108, 0.086, 0.004], [0.106, 0.052, 0.058]],
+    peroneal: [[0.100, 0.498, -0.032], [0.116, 0.452, -0.006], [0.116, 0.350, 0.024],
+               [0.112, 0.230, 0.030], [0.110, 0.130, 0.026]],
+    femoral: [[0.030, 0.968, 0.012], [0.062, 0.900, 0.044], [0.082, 0.790, 0.058],
+              [0.090, 0.660, 0.054], [0.094, 0.548, 0.046]],
+    // facial / cervical
+    facial: [[0.012, 1.560, 0.020], [0.048, 1.590, 0.058], [0.062, 1.612, 0.082]],
+    cervical: [[0.008, 1.470, -0.004], [0.046, 1.492, -0.028], [0.070, 1.510, -0.040]]
+  };
+  const MIRRORED = ["armMain", "armMedian", "armUlnar", "sciatic", "tibial", "peroneal", "femoral", "facial", "cervical"];
+
+  function curveFrom(arr, s) {
+    return new THREE.CatmullRomCurve3(arr.map(([x, y, z]) => V(s * x, y, z)));
+  }
+  const impulseCurves = [];
+  for (const name in NERVE_PATHS) {
+    const sides = MIRRORED.indexOf(name) >= 0 ? [1, -1] : [1];
+    const radius = name === "cord" ? 0.0095 : (name === "armMain" || name === "sciatic" ? 0.0058 : 0.0040);
+    const mat = name === "cord" ? MAT.cord : MAT.nerve;
+    sides.forEach((s) => {
+      const curve = curveFrom(NERVE_PATHS[name], s);
+      nerveGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 72, radius, 7, false), mat));
+      if (name === "cord" || name === "armMain" || name === "sciatic" || name === "tibial") {
+        impulseCurves.push(curve);
+      }
+    });
+  }
+  // brain and the nerve roots that branch off the cord between the ribs
+  nerveGroup.add(blob(V(0, 1.632, 0.006), 0.070, 0.062, 0.076, MAT.brain));
+  for (let i = 0; i < 6; i++) {
+    const y = 1.320 - i * 0.052;
+    [1, -1].forEach((s) => {
+      const c = new THREE.CatmullRomCurve3([
+        V(0, y, -0.030), V(s * 0.052, y - 0.006, -0.028), V(s * 0.090, y - 0.014, 0.010), V(s * 0.082, y - 0.020, 0.062)
+      ]);
+      nerveGroup.add(new THREE.Mesh(new THREE.TubeGeometry(c, 30, 0.0028, 5, false), MAT.nerve));
+    });
+  }
+  // travelling impulses
+  const impulses = [];
+  if (!reduceMotion) {
+    const impMat = new THREE.MeshBasicMaterial({ color: col(0xFFF3C4) });
+    impulseCurves.forEach((c, i) => {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(0.011, 10, 8), impMat);
+      m.userData = { curve: c, t: (i * 0.17) % 1, speed: 0.17 + (i % 3) * 0.045 };
+      impulses.push(m); nerveGroup.add(m);
+    });
+  }
+
+  /* ======================================================================
+     3 · Visualisation modes
+     ====================================================================== */
+  const LEGENDS = {
+    clothed: [["swatch", "#D3A183", "Skin"], ["swatch", "#3E6E7A", "Top"], ["swatch", "#33414C", "Shorts"],
+              ["note", "", "Everyday view — easiest for pointing at a spot."]],
+    muscle: [["swatch", hex(MUSCLE.trapezius), "Trapezius / upper back"],
+             ["swatch", hex(MUSCLE.deltoid), "Deltoid (shoulder)"],
+             ["swatch", hex(MUSCLE.pectoral), "Pectoral (chest)"],
+             ["swatch", hex(MUSCLE.arm), "Biceps / triceps"],
+             ["swatch", hex(MUSCLE.forearm), "Forearm"],
+             ["swatch", hex(MUSCLE.abdominal), "Abdominals / obliques"],
+             ["swatch", hex(MUSCLE.latissimus), "Latissimus dorsi"],
+             ["swatch", hex(MUSCLE.gluteal), "Gluteals"],
+             ["swatch", hex(MUSCLE.thigh), "Quadriceps / hamstrings"],
+             ["swatch", hex(MUSCLE.calf), "Calf / shin"]],
+    nerve: [["line", "#E0A21C", "Spinal cord"],
+            ["line", "#C98B12", "Peripheral nerves"],
+            ["note", "", "Brachial plexus into the arm, sciatic and femoral into the leg, intercostal roots between the ribs."],
+            ["note", "", "Pain that shoots, burns or tingles along one of these lines is often described as nerve pain — worth saying so in the notes."]]
+  };
+
+  function setMode(mode) {
+    state.mode = mode;
+    clothesGroup.visible = mode === "clothed";
+    muscleGroup.visible = mode === "muscle";
+    nerveGroup.visible = mode === "nerve";
+    bodyParts.forEach((m) => {
+      if (mode === "clothed") m.material = MAT.skin;
+      else if (mode === "muscle") m.material = muscleMats[m.userData.muscle] || MAT.skin;
+      else m.material = MAT.ghost;
+    });
+    document.querySelectorAll(".switch button").forEach((b) => {
+      b.setAttribute("aria-pressed", String(b.dataset.mode === mode));
+    });
+    const box = $("legend"); box.innerHTML = "";
+    LEGENDS[mode].forEach(([kind, colour, label]) => {
+      const row = document.createElement("div"); row.className = "row";
+      if (kind === "swatch") {
+        const sw = document.createElement("span"); sw.className = "sw"; sw.style.background = colour; row.appendChild(sw);
+      } else if (kind === "line") {
+        const ln = document.createElement("span"); ln.className = "ln"; ln.style.borderColor = colour; row.appendChild(ln);
+      }
+      const t = document.createElement("span"); t.textContent = label;
+      if (kind === "note") { t.style.color = "var(--ink-3)"; t.style.lineHeight = "1.4"; }
+      row.appendChild(t); box.appendChild(row);
+    });
+  }
+
+  /* ======================================================================
+     4 · Camera — hand-rolled orbit (the r128 example controls aren't
+         available as a UMD global)
+     ====================================================================== */
+  const cam = { theta: 0, phi: Math.PI / 2 - 0.05, radius: 3.25, target: V(0, 0.88, 0) };
+  const goal = { theta: cam.theta, phi: cam.phi, radius: cam.radius, target: cam.target.clone(), active: false };
+
+  function applyCamera() {
+    const s = Math.sin(cam.phi), c = Math.cos(cam.phi);
+    camera.position.set(
+      cam.target.x + cam.radius * s * Math.sin(cam.theta),
+      cam.target.y + cam.radius * c,
+      cam.target.z + cam.radius * s * Math.cos(cam.theta)
+    );
+    camera.lookAt(cam.target);
+  }
+  function flyTo(theta, phi, radius, ty) {
+    goal.theta = theta; goal.phi = phi; goal.radius = radius;
+    goal.target.set(0, ty === undefined ? 0.88 : ty, 0);
+    // take the short way round
+    while (goal.theta - cam.theta > Math.PI) goal.theta -= Math.PI * 2;
+    while (cam.theta - goal.theta > Math.PI) goal.theta += Math.PI * 2;
+    goal.active = true;
+  }
+  const VIEWS = {
+    front: [0, Math.PI / 2 - 0.05, 3.25, 0.88],
+    back: [Math.PI, Math.PI / 2 - 0.05, 3.25, 0.88],
+    left: [Math.PI / 2, Math.PI / 2 - 0.05, 3.25, 0.88],
+    right: [-Math.PI / 2, Math.PI / 2 - 0.05, 3.25, 0.88],
+    upper: [0, Math.PI / 2 - 0.12, 1.18, 1.46],
+    reset: [0, Math.PI / 2 - 0.05, 3.25, 0.88]
+  };
+
+  const pointers = new Map();
+  let dragging = false, moved = 0, pinchStart = 0, radiusStart = 0, lastX = 0, lastY = 0;
+
+  canvas.addEventListener("pointerdown", (e) => {
+    canvas.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 1) { dragging = true; moved = 0; lastX = e.clientX; lastY = e.clientY; }
+    if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      pinchStart = Math.hypot(a.x - b.x, a.y - b.y); radiusStart = cam.radius;
+    }
+    goal.active = false;
+  });
+
+  canvas.addEventListener("pointermove", (e) => {
+    if (!pointers.has(e.pointerId)) { hover(e); return; }
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (pinchStart > 0) cam.radius = clamp(radiusStart * (pinchStart / d), 0.55, 6.5);
+      moved = 99; applyCamera(); return;
+    }
+    if (!dragging) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    moved += Math.abs(dx) + Math.abs(dy);
+    if (e.shiftKey) {
+      cam.target.y = clamp(cam.target.y + dy * cam.radius * 0.0012, 0.05, 1.75);
+      cam.target.x = clamp(cam.target.x - dx * cam.radius * 0.0012, -0.8, 0.8);
+    } else {
+      cam.theta -= dx * 0.0075;
+      cam.phi = clamp(cam.phi - dy * 0.0075, 0.22, Math.PI - 0.16);
+    }
+    applyCamera();
+  });
+
+  function endPointer(e) {
+    const had = pointers.has(e.pointerId);
+    pointers.delete(e.pointerId);
+    if (pointers.size < 2) pinchStart = 0;
+    if (!had) return;
+    if (dragging && pointers.size === 0) {
+      dragging = false;
+      if (moved < 7) pick(e);
+    }
+  }
+  canvas.addEventListener("pointerup", endPointer);
+  canvas.addEventListener("pointercancel", endPointer);
+  canvas.addEventListener("lostpointercapture", (e) => { pointers.delete(e.pointerId); });
+
+  canvas.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    goal.active = false;
+    cam.radius = clamp(cam.radius * (1 + Math.sign(e.deltaY) * 0.09), 0.55, 6.5);
+    applyCamera();
+  }, { passive: false });
+
+  canvas.addEventListener("keydown", (e) => {
+    const step = 0.13;
+    const map = {
+      ArrowLeft: () => cam.theta += step, ArrowRight: () => cam.theta -= step,
+      ArrowUp: () => cam.phi = clamp(cam.phi - step, 0.22, Math.PI - 0.16),
+      ArrowDown: () => cam.phi = clamp(cam.phi + step, 0.22, Math.PI - 0.16),
+      "+": () => cam.radius = clamp(cam.radius * 0.9, 0.55, 6.5),
+      "=": () => cam.radius = clamp(cam.radius * 0.9, 0.55, 6.5),
+      "-": () => cam.radius = clamp(cam.radius * 1.1, 0.55, 6.5)
+    };
+    if (map[e.key]) { e.preventDefault(); goal.active = false; map[e.key](); applyCamera(); }
+  });
+
+  /* ======================================================================
+     5 · Naming the site of the pain
+     The mesh gives a coarse part; position refines it to the kind of
+     region a clinician would expect to read.
+     ====================================================================== */
+  function describe(part, p) {
+    const base = part.split(".")[0];
+    const sideTag = part.split(".")[1];
+    const aspect = p.z >= 0 ? "Front" : "Back";
+    let side = sideTag === "L" ? "Left" : sideTag === "R" ? "Right" : null;
+    if (!side) side = p.x > 0.045 ? "Left" : p.x < -0.045 ? "Right" : "Midline";
+    let region;
+
+    switch (base) {
+      case "head":
+        if (p.z > 0.02) region = p.y > 1.665 ? "Forehead" : (Math.abs(p.x) > 0.062 ? "Temple" : "Face");
+        else region = p.y > 1.665 ? "Top of head (crown)" : "Back of head (occiput)";
+        break;
+      case "neck":
+        region = p.z >= 0 ? "Front of neck / throat"
+          : (side === "Midline" ? "Back of neck (cervical spine)" : "Side of neck");
+        break;
+      case "torso":
+        if (p.y > 1.400) region = "Top of shoulder (trapezius)";
+        else if (p.z >= 0) {
+          if (Math.abs(p.x) > 0.105) region = "Side of ribs (flank)";
+          else if (p.y > 1.190) region = "Chest";
+          else if (p.y > 1.075) region = "Upper abdomen (below the ribs)";
+          else if (p.y > 0.955) region = "Lower abdomen";
+          else region = "Groin / front of hip";
+        } else {
+          if (p.y > 1.230) region = "Upper back (thoracic)";
+          else if (p.y > 1.060) region = "Mid back";
+          else if (p.y > 0.925) region = side === "Midline" ? "Lower back (lumbar)" : "Lower back, to one side";
+          else if (p.y > 0.845) region = side === "Midline" ? "Base of spine (sacrum)" : "Buttock";
+          else region = "Buttock";
+        }
+        break;
+      case "shoulder": region = aspect === "Front" ? "Front of shoulder" : "Back of shoulder"; break;
+      case "upperarm": region = aspect === "Front" ? "Upper arm (biceps)" : "Upper arm (triceps)"; break;
+      case "elbow": region = aspect === "Front" ? "Inside of elbow" : "Point of elbow"; break;
+      case "forearm": region = p.y < 0.930 ? "Wrist" : "Forearm"; break;
+      case "hand": region = aspect === "Front" ? "Palm of hand" : "Back of hand"; break;
+      case "thigh":
+        region = p.y > 0.860 && aspect === "Back" ? "Buttock / top of thigh"
+          : aspect === "Front" ? "Front of thigh" : "Back of thigh (hamstring)";
+        break;
+      case "knee": region = aspect === "Front" ? "Knee (kneecap)" : "Back of knee"; break;
+      case "lowerleg":
+        region = p.y < 0.150 ? "Ankle" : (aspect === "Front" ? "Shin" : "Calf");
+        break;
+      case "foot": region = p.z > 0.075 ? "Toes" : (p.y < 0.035 ? "Sole of foot" : "Top of foot"); break;
+      default: region = "Body";
+    }
+    return { region, side, aspect };
+  }
+  const fullLabel = (pt) => (pt.side === "Midline" ? "" : pt.side + " ") + pt.region.charAt(0).toLowerCase() + pt.region.slice(1);
+
+  /* ======================================================================
+     6 · Pain points
+     ====================================================================== */
+  const QUALITIES = ["Sharp", "Dull ache", "Burning", "Shooting", "Throbbing", "Stabbing",
+    "Cramping", "Pins and needles", "Numbness", "Tightness", "Stiffness"];
+  const ONSETS = ["Started today", "A few days", "1–3 weeks", "1–3 months", "3–12 months", "Over a year", "Not sure"];
+  const PATTERNS = ["Constant", "Comes and goes", "Only when I move", "Worse at night"];
+
+  const state = { mode: "clothed", points: [], selected: null, seq: 1, persist: false, example: false };
+
+  const markerGeo = new THREE.SphereGeometry(0.019, 18, 14);
+  const haloGeo = new THREE.SphereGeometry(1, 18, 14);
+  const ringGeo = new THREE.TorusGeometry(0.036, 0.0035, 8, 36);
+
+  function buildMarker(pt) {
+    const g = new THREE.Group();
+    const colour = sevColor(pt.intensity);
+    const core = new THREE.Mesh(markerGeo, new THREE.MeshStandardMaterial({
+      color: col(colour), emissive: col(colour), emissiveIntensity: 0.45, roughness: 0.35
+    }));
+    const halo = new THREE.Mesh(haloGeo, new THREE.MeshBasicMaterial({
+      color: col(colour), transparent: true, opacity: 0.22, depthWrite: false
+    }));
+    const r = 0.030 + pt.intensity * 0.0052;
+    halo.scale.set(r, r, r);
+    const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({
+      color: col(0xffffff), transparent: true, opacity: 0.95, depthTest: false
+    }));
+    ring.visible = false; ring.renderOrder = 4;
+    const n = V(pt.nx, pt.ny, pt.nz);
+    ring.quaternion.setFromUnitVectors(V(0, 0, 1), n.clone().normalize());
+    g.add(halo, core, ring);
+    g.position.set(pt.x, pt.y, pt.z).add(n.clone().multiplyScalar(0.013));
+    g.userData = { id: pt.id, core, halo, ring };
+    markerGroup.add(g);
+    return g;
+  }
+  function rebuildMarkers() {
+    while (markerGroup.children.length) {
+      const c = markerGroup.children.pop();
+      c.children.forEach((m) => m.material && m.material.dispose());
+    }
+    state.points.forEach(buildMarker);
+    highlightMarker();
+  }
+  function updateMarker(pt) {
+    const g = markerGroup.children.find((m) => m.userData.id === pt.id);
+    if (!g) return;
+    const colour = sevColor(pt.intensity);
+    g.userData.core.material.color.copy(col(colour));
+    g.userData.core.material.emissive.copy(col(colour));
+    g.userData.halo.material.color.copy(col(colour));
+    const r = 0.030 + pt.intensity * 0.0052;
+    g.userData.halo.scale.set(r, r, r);
+  }
+  function highlightMarker() {
+    markerGroup.children.forEach((g) => { g.userData.ring.visible = g.userData.id === state.selected; });
+  }
+
+  const raycaster = new THREE.Raycaster();
+  const ndc = new THREE.Vector2();
+  function toNDC(e) {
+    const r = canvas.getBoundingClientRect();
+    ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    return ndc;
+  }
+  function pick(e) {
+    raycaster.setFromCamera(toNDC(e), camera);
+    const onMarker = raycaster.intersectObjects(markerGroup.children, true)[0];
+    if (onMarker) {
+      let node = onMarker.object;
+      while (node && node.userData.id === undefined) node = node.parent;
+      if (node) { select(node.userData.id); return; }
+    }
+    const hit = raycaster.intersectObjects(bodyParts, false)[0];
+    if (!hit) return;
+    addPoint(hit);
+  }
+  function addPoint(hit) {
+    const p = hit.point;
+    const n = hit.face
+      ? hit.face.normal.clone().applyNormalMatrix(new THREE.Matrix3().getNormalMatrix(hit.object.matrixWorld)).normalize()
+      : p.clone().normalize();
+    const d = describe(hit.object.userData.part, p);
+    const pt = {
+      id: state.seq++, x: p.x, y: p.y, z: p.z, nx: n.x, ny: n.y, nz: n.z,
+      part: hit.object.userData.part, region: d.region, side: d.side, aspect: d.aspect,
+      intensity: 5, qualities: [], pattern: "Comes and goes", radiates: "", onset: "A few days", notes: ""
+    };
+    state.example = false;
+    state.points.push(pt);
+    buildMarker(pt);
+    select(pt.id);
+    save();
+    $("hint").style.opacity = "0";
+  }
+  function select(id) {
+    state.selected = id;
+    highlightMarker();
+    render();
+    const el = document.querySelector('.plist button[data-id="' + id + '"]');
+    if (el) el.scrollIntoView({ block: "nearest" });
+  }
+
+  /* hover read-out on pointer devices */
+  let hoverRaf = 0;
+  function hover(e) {
+    if (e.pointerType === "touch" || hoverRaf) return;
+    hoverRaf = requestAnimationFrame(() => {
+      hoverRaf = 0;
+      raycaster.setFromCamera(toNDC(e), camera);
+      const hit = raycaster.intersectObjects(bodyParts, false)[0];
+      const ro = $("readout");
+      if (!hit) { ro.hidden = true; return; }
+      const d = describe(hit.object.userData.part, hit.point);
+      ro.hidden = false;
+      ro.textContent = (d.side === "Midline" ? "" : d.side + " · ") + d.region;
+    });
+  }
+  canvas.addEventListener("pointerleave", () => { $("readout").hidden = true; });
+
+  /* ======================================================================
+     7 · Panel
+     ====================================================================== */
+  function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function field(label) {
+    const f = el("div", "fld");
+    f.appendChild(el("div", "lb", label));
+    return f;
+  }
+
+  function render() {
+    const pts = state.points;
+    $("tCount").textContent = pts.length;
+    $("tWorst").textContent = pts.length ? Math.max(...pts.map((p) => p.intensity)) + "/10" : "—";
+    $("tAvg").textContent = pts.length
+      ? (pts.reduce((s, p) => s + p.intensity, 0) / pts.length).toFixed(1) : "—";
+    $("empty").hidden = pts.length > 0;
+
+    const list = $("plist");
+    list.innerHTML = "";
+    pts.forEach((p, i) => {
+      const li = el("li");
+      const b = el("button");
+      b.type = "button";
+      b.dataset.id = p.id;
+      b.setAttribute("aria-current", String(p.id === state.selected));
+      const dot = el("div", "dot", String(i + 1));
+      dot.style.background = hex(sevColor(p.intensity));
+      const mid = el("div", "pr");
+      mid.appendChild(el("div", "r", fullLabel(p).replace(/^./, (c) => c.toUpperCase())));
+      mid.appendChild(el("div", "m", (p.qualities.length ? p.qualities.join(", ") : "No description yet") + " · " + p.pattern));
+      const sc = el("div", "sc", p.intensity + "/10");
+      sc.style.color = hex(sevColor(p.intensity));
+      b.append(dot, mid, sc);
+      b.addEventListener("click", () => select(p.id));
+      li.appendChild(b);
+      list.appendChild(li);
+    });
+
+    let note = $("exNote");
+    if (state.example && pts.length) {
+      if (!note) {
+        note = el("div", "empty");
+        note.id = "exNote";
+        note.style.borderStyle = "solid";
+        note.style.borderColor = "var(--warn-line)";
+        note.style.background = "var(--warn-bg)";
+        note.style.color = "var(--warn-ink)";
+        note.style.textAlign = "left";
+        note.innerHTML = "<b>Two example points are shown</b> so you can see how a finished record " +
+          "reads. Clear all points below, then mark your own.";
+        list.parentNode.insertBefore(note, list);
+      }
+    } else if (note) note.remove();
+
+    renderDetail();
+  }
+
+  function renderDetail() {
+    const box = $("detail");
+    box.innerHTML = "";
+    const p = state.points.find((q) => q.id === state.selected);
+    if (!p) return;
+    const idx = state.points.indexOf(p) + 1;
+    const card = el("div", "detail");
+
+    const head = el("div", "dh");
+    const pin = el("span", "pin", String(idx));
+    pin.style.background = hex(sevColor(p.intensity));
+    const tt = el("div");
+    tt.appendChild(el("div", "rg", fullLabel(p).replace(/^./, (c) => c.toUpperCase())));
+    tt.appendChild(el("div", "cd", p.aspect.toLowerCase() + " · " + p.part.split(".")[0]));
+    const del = el("button", null, "Remove");
+    del.type = "button";
+    del.addEventListener("click", () => {
+      state.points = state.points.filter((q) => q.id !== p.id);
+      state.selected = null;
+      rebuildMarkers(); render(); save();
+      toast("Point removed");
+    });
+    head.append(pin, tt, del);
+    card.appendChild(head);
+
+    // intensity
+    const fInt = field("How strong is it? (0–10)");
+    const scale = el("div", "scale");
+    const range = document.createElement("input");
+    range.type = "range"; range.min = "0"; range.max = "10"; range.step = "1";
+    range.value = String(p.intensity); range.id = "f-intensity";
+    const num = el("div", "num", String(p.intensity));
+    num.style.color = hex(sevColor(p.intensity));
+    const word = el("div", "scale-word", SEV_WORDS[p.intensity]);
+    range.addEventListener("input", () => {
+      p.intensity = +range.value;
+      num.textContent = range.value;
+      num.style.color = hex(sevColor(p.intensity));
+      word.textContent = SEV_WORDS[p.intensity];
+      range.style.accentColor = hex(sevColor(p.intensity));
+      pin.style.background = hex(sevColor(p.intensity));
+      updateMarker(p);
+      $("tWorst").textContent = Math.max(...state.points.map((q) => q.intensity)) + "/10";
+      $("tAvg").textContent = (state.points.reduce((s, q) => s + q.intensity, 0) / state.points.length).toFixed(1);
+      const row = document.querySelector('.plist button[data-id="' + p.id + '"]');
+      if (row) {
+        row.querySelector(".dot").style.background = hex(sevColor(p.intensity));
+        const s = row.querySelector(".sc");
+        s.textContent = p.intensity + "/10"; s.style.color = hex(sevColor(p.intensity));
+      }
+      save();
+    });
+    range.style.accentColor = hex(sevColor(p.intensity));
+    scale.append(range, num);
+    fInt.append(scale, word);
+    card.appendChild(fInt);
+
+    // qualities
+    const fQ = field("What does it feel like?");
+    const chips = el("div", "chips");
+    QUALITIES.forEach((q) => {
+      const b = el("button", null, q);
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(p.qualities.indexOf(q) >= 0));
+      b.addEventListener("click", () => {
+        const at = p.qualities.indexOf(q);
+        if (at >= 0) p.qualities.splice(at, 1); else p.qualities.push(q);
+        b.setAttribute("aria-pressed", String(at < 0));
+        const row = document.querySelector('.plist button[data-id="' + p.id + '"] .m');
+        if (row) row.textContent = (p.qualities.length ? p.qualities.join(", ") : "No description yet") + " · " + p.pattern;
+        save();
+      });
+      chips.appendChild(b);
+    });
+    fQ.appendChild(chips);
+    card.appendChild(fQ);
+
+    // pattern + onset
+    const two = el("div", "two");
+    [["When is it there?", "pattern", PATTERNS], ["How long for?", "onset", ONSETS]].forEach(([label, key, opts]) => {
+      const f = field(label);
+      const sel = document.createElement("select");
+      sel.id = "f-" + key;
+      opts.forEach((o) => {
+        const op = document.createElement("option");
+        op.value = o; op.textContent = o; if (p[key] === o) op.selected = true;
+        sel.appendChild(op);
+      });
+      sel.addEventListener("change", () => { p[key] = sel.value; render(); save(); });
+      f.appendChild(sel);
+      two.appendChild(f);
+    });
+    card.appendChild(two);
+
+    // radiation
+    const fR = field("Does it spread anywhere?");
+    const inp = document.createElement("input");
+    inp.type = "text"; inp.id = "f-radiates"; inp.value = p.radiates;
+    inp.placeholder = "e.g. down the back of the left leg to the foot";
+    inp.addEventListener("input", () => { p.radiates = inp.value; save(); });
+    fR.appendChild(inp);
+    card.appendChild(fR);
+
+    // notes
+    const fN = field("Anything else about this spot?");
+    const ta = document.createElement("textarea");
+    ta.id = "f-notes"; ta.value = p.notes;
+    ta.placeholder = "What makes it better or worse, what you were doing when it started…";
+    ta.addEventListener("input", () => { p.notes = ta.value; save(); });
+    fN.appendChild(ta);
+    fN.appendChild(el("div", "hint", "Describe the pain, not yourself — no names or dates of birth."));
+    card.appendChild(fN);
+
+    box.appendChild(card);
+  }
+
+  /* ======================================================================
+     8 · Summary, print, storage
+     ====================================================================== */
+  function summaryText() {
+    const pts = state.points;
+    const lines = [];
+    lines.push("PAIN MAP SUMMARY — self-reported");
+    lines.push("Recorded: " + new Date().toLocaleString());
+    lines.push("Intensity on the numeric rating scale (0 = no pain, 10 = worst imaginable).");
+    lines.push("");
+    if (!pts.length) { lines.push("No pain points recorded."); return lines.join("\n"); }
+    lines.push(pts.length + " site" + (pts.length === 1 ? "" : "s") + " marked. Worst reported: " +
+      Math.max(...pts.map((p) => p.intensity)) + "/10.");
+    lines.push("");
+    pts.forEach((p, i) => {
+      lines.push((i + 1) + ". " + fullLabel(p).replace(/^./, (c) => c.toUpperCase()) +
+        " (" + p.aspect.toLowerCase() + ")  —  " + p.intensity + "/10, " + SEV_WORDS[p.intensity].toLowerCase());
+      if (p.qualities.length) lines.push("   Character: " + p.qualities.join(", "));
+      lines.push("   Pattern: " + p.pattern + ".  Duration: " + p.onset + ".");
+      if (p.radiates.trim()) lines.push("   Radiates: " + p.radiates.trim());
+      if (p.notes.trim()) lines.push("   Notes: " + p.notes.trim());
+      lines.push("");
+    });
+    lines.push("Produced with the Body Pain Locator. A record of reported symptoms — not a clinical");
+    lines.push("assessment or diagnosis.");
+    return lines.join("\n");
+  }
+
+  function copyText(txt, msg) {
+    const done = () => toast(msg);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done, () => fallback());
+    } else fallback();
+    function fallback() {
+      const ta = document.createElement("textarea");
+      ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); }
+      catch (err) { toast("Couldn't copy — select the text and copy manually"); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  let toastTimer = 0;
+  function toast(msg) {
+    const t = $("toast");
+    t.textContent = msg; t.classList.add("on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("on"), 2400);
+  }
+
+  function buildReport() {
+    $("rMeta").textContent = "Recorded " + new Date().toLocaleString() +
+      " · " + state.points.length + " site" + (state.points.length === 1 ? "" : "s") +
+      " · intensity on the numeric rating scale (0–10)";
+    try { $("rShot").src = renderer.domElement.toDataURL("image/png"); } catch (e) { $("rShot").remove(); }
+    const rows = ["<tr><th>#</th><th>Site</th><th>NRS</th><th>Character</th><th>Pattern</th><th>Duration</th><th>Radiation &amp; notes</th></tr>"];
+    const esc = (s) => String(s).replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]));
+    state.points.forEach((p, i) => {
+      const extra = [p.radiates.trim() && "Radiates: " + p.radiates.trim(), p.notes.trim()].filter(Boolean).join(" — ");
+      rows.push("<tr><td class='n'>" + (i + 1) + "</td><td>" + esc(fullLabel(p)) + " (" + p.aspect.toLowerCase() +
+        ")</td><td class='n'>" + p.intensity + "/10</td><td>" + esc(p.qualities.join(", ") || "—") +
+        "</td><td>" + esc(p.pattern) + "</td><td>" + esc(p.onset) + "</td><td>" + esc(extra || "—") + "</td></tr>");
+    });
+    $("rTable").innerHTML = rows.join("");
+  }
+  window.addEventListener("beforeprint", buildReport);
+
+  const KEY = "bodyPainLocator.v1";
+  function save() {
+    if (!state.persist) return;
+    try { localStorage.setItem(KEY, JSON.stringify({ points: state.points, seq: state.seq })); }
+    catch (e) { /* private window, blocked storage — the app still works */ }
+  }
+  function loadSaved() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return false;
+      const data = JSON.parse(raw);
+      if (!data || !Array.isArray(data.points)) return false;
+      state.points = data.points;
+      state.seq = data.seq || (state.points.length + 1);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* ======================================================================
+     9 · Wiring
+     ====================================================================== */
+  document.querySelectorAll(".switch button").forEach((b) => {
+    b.addEventListener("click", () => setMode(b.dataset.mode));
+  });
+  document.querySelectorAll(".views button").forEach((b) => {
+    b.addEventListener("click", () => {
+      const v = VIEWS[b.dataset.view];
+      if (v) flyTo(v[0], v[1], v[2], v[3]);
+    });
+  });
+
+  let spinning = false;
+  $("spinBtn").addEventListener("click", () => {
+    spinning = !spinning;
+    $("spinBtn").setAttribute("aria-pressed", String(spinning));
+    $("spinBtn").textContent = spinning ? "Stop turning" : "Turn slowly";
+  });
+
+  $("undoBtn").addEventListener("click", () => {
+    if (!state.points.length) { toast("Nothing to undo"); return; }
+    const gone = state.points.pop();
+    if (state.selected === gone.id) state.selected = null;
+    rebuildMarkers(); render(); save();
+    toast("Last point removed");
+  });
+
+  $("copySummary").addEventListener("click", () => copyText(summaryText(), "Summary copied — paste it into an email or record"));
+  $("copyJson").addEventListener("click", () => copyText(JSON.stringify({
+    scale: "Numeric rating scale 0–10", recorded: new Date().toISOString(), points: state.points
+  }, null, 2), "Data copied to the clipboard"));
+  $("printBtn").addEventListener("click", () => { buildReport(); window.print(); });
+  $("clearBtn").addEventListener("click", () => {
+    if (!state.points.length) { toast("Nothing to clear"); return; }
+    if (!window.confirm("Remove all " + state.points.length + " pain points? This can't be undone.")) return;
+    state.points = []; state.selected = null; state.example = false; state.seq = 1;
+    rebuildMarkers(); render(); save();
+    $("hint").style.opacity = "1";
+    toast("All points cleared");
+  });
+
+  const keep = $("keepLocal");
+  keep.addEventListener("change", () => {
+    state.persist = keep.checked;
+    try {
+      if (state.persist) { localStorage.setItem(KEY + ".opt", "1"); save(); toast("Points will stay on this device"); }
+      else { localStorage.removeItem(KEY); localStorage.removeItem(KEY + ".opt"); toast("Saved points removed from this device"); }
+    } catch (e) { toast("This browser is blocking local storage"); }
+  });
+
+  /* theme ------------------------------------------------------------- */
+  const themeBtn = $("themeBtn");
+  function currentlyDark() {
+    const set = document.documentElement.getAttribute("data-theme");
+    if (set) return set === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function syncTheme() {
+    themeBtn.textContent = currentlyDark() ? "Light" : "Dark";
+    if (scene.background && scene.background.dispose) scene.background.dispose();
+    scene.background = gradientBackground();
+  }
+  themeBtn.addEventListener("click", () => {
+    document.documentElement.setAttribute("data-theme", currentlyDark() ? "light" : "dark");
+    syncTheme();
+  });
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncTheme);
+
+  /* sizing ------------------------------------------------------------ */
+  function resize() {
+    const w = stage.clientWidth || 1, h = stage.clientHeight || 1;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage);
+  window.addEventListener("resize", resize);
+
+  /* loop -------------------------------------------------------------- */
+  const clock = new THREE.Clock();
+  function tick() {
+    requestAnimationFrame(tick);
+    const dt = Math.min(clock.getDelta(), 0.05);
+    const t = clock.elapsedTime;
+
+    if (goal.active) {
+      const k = 1 - Math.pow(0.001, dt);
+      cam.theta += (goal.theta - cam.theta) * k;
+      cam.phi += (goal.phi - cam.phi) * k;
+      cam.radius += (goal.radius - cam.radius) * k;
+      cam.target.lerp(goal.target, k);
+      if (Math.abs(goal.theta - cam.theta) < 0.002 && Math.abs(goal.radius - cam.radius) < 0.004) goal.active = false;
+      applyCamera();
+    }
+    if (spinning) { cam.theta -= dt * 0.32; applyCamera(); }
+
+    if (state.mode === "nerve" && !reduceMotion) {
+      const pulse = 0.72 + Math.sin(t * 2.1) * 0.28;
+      MAT.nerve.emissiveIntensity = pulse;
+      MAT.cord.emissiveIntensity = 0.75 + Math.sin(t * 2.1 + 0.6) * 0.35;
+      impulses.forEach((m) => {
+        m.userData.t = (m.userData.t + dt * m.userData.speed) % 1;
+        m.userData.curve.getPointAt(m.userData.t, m.position);
+      });
+    }
+    renderer.render(scene, camera);
+  }
+
+  /* ======================================================================
+     10 · Start
+     ====================================================================== */
+  const EXAMPLES = [
+    {
+      x: -0.030, y: 1.000, z: -0.077, nx: -0.16, ny: 0.05, nz: -0.99, part: "torso",
+      region: "Lower back, to one side", side: "Right", aspect: "Back", intensity: 7,
+      qualities: ["Dull ache", "Stiffness"], pattern: "Worse at night", onset: "1–3 months",
+      radiates: "into the right buttock and down to the knee", notes: "Worst first thing in the morning; easier after walking about."
+    },
+    {
+      x: -0.097, y: 0.330, z: -0.058, nx: -0.04, ny: -0.10, nz: -0.99, part: "lowerleg.R",
+      region: "Calf", side: "Right", aspect: "Back", intensity: 4,
+      qualities: ["Cramping"], pattern: "Only when I move", onset: "A few days",
+      radiates: "", notes: "Comes on after about ten minutes on my feet."
+    }
+  ];
+
+  function start() {
+    let restored = false;
+    try { restored = localStorage.getItem(KEY + ".opt") === "1" && loadSaved(); } catch (e) { restored = false; }
+    if (restored) { keep.checked = true; state.persist = true; }
+    else {
+      state.points = EXAMPLES.map((e, i) => Object.assign({ id: i + 1 }, e));
+      state.seq = state.points.length + 1;
+      state.example = true;
+    }
+    rebuildMarkers();
+    setMode("clothed");
+    resize();
+    applyCamera();
+    render();
+    syncTheme();
+    $("loading").remove();
+    tick();
+    if (state.example) setTimeout(() => { $("hint").style.opacity = "0"; }, 6000);
+  }
+
+
+  start();
+}
+if (window.THREE) boot3d();
+else window.__boot3d = boot3d;
+</script>
+</body>
+</html>
