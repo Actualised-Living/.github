@@ -4839,7 +4839,11 @@ function boot3d() {
   // where the pairing is not a front/back one -- the shoulder mixes pectoralis
   // (front) with latissimus (back), and adduction/abduction is medial/lateral.
   const MUSCLE_PAIRS = [
-    { id: "shoulder", label: "Shoulder", groups: ["shoulder", "chest", "upper back", "upper arm"],
+    // Pectoralis major and latissimus dorsi both adduct and internally rotate,
+    // yet sit on opposite sides of the body, so the pole cannot carry the
+    // compartment. These muscles take it from their own measured depth.
+    { id: "shoulder", label: "Shoulder", compByPosition: true,
+      groups: ["shoulder", "chest", "upper back", "upper arm"],
       a: { name: "Adduction / internal rotation", comp: null,
            stems: ["pectoralis major", "latissimus", "subscapularis", "teres major", "coracobrachialis"] },
       b: { name: "Abduction / external rotation", comp: null,
@@ -4943,12 +4947,37 @@ function boot3d() {
     });
     return out;
   }
-  // front-of-body or back-of-body, for the whole-body view
+  // Front-of-body or back-of-body, measured rather than asserted: the centre of
+  // the muscle's own bounding box against a reference plane. The plane is the
+  // mean depth of the muscles this pairing itself matches, not the trunk's, for
+  // the reason that the shoulder as a whole sits behind the chest's midline --
+  // measured against the trunk the anterior deltoid reads as a back muscle.
+  function pairCentreZ(pair) {
+    if (pair._centreZ !== undefined) return pair._centreZ;
+    let sum = 0, n = 0;
+    ANAT.muscleMeshes.forEach((o) => {
+      const rec = ANAT.byName ? ANAT.byName[o.userData.anatName] : null;
+      if (!rec || !rec.bbox || !poleFor(o.userData.anatName, pair)) return;
+      sum += (rec.bbox[2] + rec.bbox[5]) / 2; n++;
+    });
+    // Too few to average is no measurement at all, so fall back to the trunk.
+    pair._centreZ = n >= 4 ? sum / n : ANAT.trunkCentreZ;
+    return pair._centreZ;
+  }
+  function positionComp(name, pair) {
+    const rec = ANAT.byName ? ANAT.byName[name] : null;
+    if (!rec || !rec.bbox) return null;
+    return ((rec.bbox[2] + rec.bbox[5]) / 2) >= pairCentreZ(pair) ? "ant" : "post";
+  }
   function compartmentOf(name) {
     const ps = pairsOf(name);
     for (let i = 0; i < ps.length; i++) {
       const c = ps[i].pair[ps[i].pole].comp;
       if (c) return c;
+      if (ps[i].pair.compByPosition) {
+        const byPos = positionComp(name, ps[i].pair);
+        if (byPos) return byPos;
+      }
     }
     return null;
   }
@@ -4998,9 +5027,12 @@ function boot3d() {
     note.style.lineHeight = "1.4"; note.style.marginTop = "8px";
     note.textContent = pair
       ? "Tap a muscle to jump to a joint it works at. Muscles outside this joint are dimmed."
-      : "Every muscle that belongs to a front/back pairing, coloured by which side it sits on. "
-        + "Adduction, abduction and rotation are not front/back, so those muscles stay neutral — "
-        + "pick a joint below to see them.";
+      : "Every muscle in a front/back pairing, coloured by which side it sits on. Shoulder "
+        + "muscles take their side from measured depth against the shoulder's own mid-plane, "
+        + "since pectoralis and latissimus both adduct yet sit on opposite sides; the lateral "
+        + "deltoid sits on neither and is shown at the back. Hip adduction/abduction and foot "
+        + "inversion/eversion are medial/lateral rather than front/back, so those stay neutral "
+        + "— pick the joint to see them.";
     box.appendChild(note);
     const caveat = document.createElement("div");
     caveat.className = "row"; caveat.style.color = "var(--ink-3)";
