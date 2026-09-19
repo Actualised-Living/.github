@@ -181,5 +181,26 @@ three assets over directly rather than exposing a folder:
 };</script>
 ```
 
-`build/make_standalone.py` uses this to bake everything into one ~12 MB file that runs with no
-network and nothing beside it — handy for sending to a reviewer.
+`build/make_standalone.py` uses this to bake everything into one self-contained file that runs with
+no network and nothing beside it — handy for sending to a reviewer.
+
+### Two builds: desktop and phone
+
+The full asset set is ~9 MB of glTF and bakes into a **13 MB** single file. That is fine on a
+desktop and too heavy for a phone: it exceeds what chat clients will preview inline, and 390k
+triangles is a lot for a mobile GPU.
+
+`build/make_lite.py` re-decimates the built assets into `assets/lite/` — 2.3 MB of glTF, a **4 MB**
+single file that loads in under three seconds at phone size. It re-decimates the *built* assets
+rather than re-running the STL pipeline, so registration, naming, bounding boxes and landmarks are
+identical between the two builds. That matters: the app reads per-structure bounding boxes from the
+manifest to anchor the nerve routes and the dermatome bands, so the two builds must agree.
+
+```sh
+python3 build/make_standalone.py out.html              # full detail, ~13 MB
+python3 build/make_lite.py
+python3 build/make_standalone.py out.html assets/lite  # reduced, ~4 MB
+```
+
+On phones the layout puts the figure directly under the header, with the controls below it —
+otherwise you scroll past three sections of rail before the body appears.

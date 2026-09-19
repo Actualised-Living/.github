@@ -73,10 +73,20 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 @media (max-width:800px){
   html,body{height:auto}
+  /* On a phone the figure comes first: burying it under the whole control rail
+     means scrolling past three sections before you can see the body. */
   .app{height:auto;grid-template-columns:minmax(0,1fr);
-    grid-template-rows:auto auto 62vh auto;grid-template-areas:"hd" "rail" "stage" "panel"}
+    grid-template-rows:auto 58vh auto auto;grid-template-areas:"hd" "stage" "rail" "panel"}
+  .rail{border-bottom:0;border-top:1px solid var(--line)}
   .panel{border-left:0;border-top:1px solid var(--line)}
-  .stage{min-height:360px}
+  .stage{min-height:340px}
+  /* a compact masthead, so the header costs one line rather than a screenful */
+  .masthead{gap:8px;padding:8px 16px;padding-top:calc(8px + env(safe-area-inset-top,0px))}
+  .wordmark{flex-direction:column;gap:0;margin-right:0}
+  .wordmark h1{font-size:18px}
+  .wordmark .sub{font-size:9.5px;letter-spacing:.07em}
+  .notice{order:3;flex:1 1 100%;font-size:11px;padding:5px 9px;gap:5px}
+  .theme-btn{margin-left:auto;padding:4px 9px;font-size:11px}
 }
 
 /* ---------- masthead ---------- */

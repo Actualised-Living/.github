@@ -5,7 +5,10 @@ The result needs no network and no folder beside it: three.js and GLTFLoader
 are already inlined in index.html, and this embeds the meshes as data URIs
 through the PAIN_LOCATOR_ASSET_MAP hook. About 12 MB.
 
-    python3 build/make_standalone.py [output.html]
+    python3 build/make_standalone.py [output.html] [assets-dir]
+
+Pass assets/lite as the second argument for the reduced-detail build, which is
+about 4 MB instead of 13 and will load on a phone.
 """
 import base64, json, os, sys
 
@@ -19,7 +22,10 @@ MIME = {"manifest.json": "application/json",
         "skull.glb": "model/gltf-binary"}
 
 def main():
+    global ASSETS
     out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "standalone.html")
+    if len(sys.argv) > 2:
+        ASSETS = sys.argv[2]
     s = open(APP, encoding="utf-8").read()
     embedded = {}
     for name, mime in MIME.items():
