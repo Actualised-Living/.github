@@ -388,7 +388,7 @@
      "id": "FMA13403",
      "name": "right serratus posterior superior",
      "side": "right",
-     "group": "shoulder",
+     "group": "chest",
      "tris": 2198,
      "bbox": [
       -0.1009,
@@ -403,7 +403,7 @@
      "id": "FMA13404",
      "name": "left serratus posterior superior",
      "side": "left",
-     "group": "shoulder",
+     "group": "chest",
      "tris": 2198,
      "bbox": [
       0.0002,
@@ -418,7 +418,7 @@
      "id": "FMA13405",
      "name": "right serratus posterior inferior",
      "side": "right",
-     "group": "shoulder",
+     "group": "chest",
      "tris": 2199,
      "bbox": [
       -0.1074,
@@ -433,7 +433,7 @@
      "id": "FMA13406",
      "name": "left serratus posterior inferior",
      "side": "left",
-     "group": "shoulder",
+     "group": "chest",
      "tris": 2200,
      "bbox": [
       -0.0003,
@@ -1183,7 +1183,7 @@
      "id": "FMA22546",
      "name": "right extensor hallucis longus",
      "side": "right",
-     "group": "foot",
+     "group": "lower leg",
      "tris": 952,
      "bbox": [
       -0.108,
@@ -1198,7 +1198,7 @@
      "id": "FMA22547",
      "name": "left extensor hallucis longus",
      "side": "left",
-     "group": "foot",
+     "group": "lower leg",
      "tris": 924,
      "bbox": [
       0.0666,
@@ -1213,7 +1213,7 @@
      "id": "FMA22548",
      "name": "right extensor digitorum longus",
      "side": "right",
-     "group": "forearm",
+     "group": "lower leg",
      "tris": 2198,
      "bbox": [
       -0.1393,
@@ -1228,7 +1228,7 @@
      "id": "FMA22549",
      "name": "left extensor digitorum longus",
      "side": "left",
-     "group": "forearm",
+     "group": "lower leg",
      "tris": 2198,
      "bbox": [
       0.0845,
@@ -1363,7 +1363,7 @@
      "id": "FMA22560",
      "name": "right plantaris",
      "side": "right",
-     "group": "foot",
+     "group": "lower leg",
      "tris": 1879,
      "bbox": [
       -0.1014,
@@ -1378,7 +1378,7 @@
      "id": "FMA22561",
      "name": "left plantaris",
      "side": "left",
-     "group": "foot",
+     "group": "lower leg",
      "tris": 1868,
      "bbox": [
       0.0481,
@@ -1843,7 +1843,7 @@
      "id": "FMA32534",
      "name": "right obliquus capitis superior",
      "side": "right",
-     "group": "abdomen",
+     "group": "head/neck",
      "tris": 286,
      "bbox": [
       -0.0413,
@@ -1858,7 +1858,7 @@
      "id": "FMA32535",
      "name": "left obliquus capitis superior",
      "side": "left",
-     "group": "abdomen",
+     "group": "head/neck",
      "tris": 284,
      "bbox": [
       0.0276,
@@ -1873,7 +1873,7 @@
      "id": "FMA32536",
      "name": "right obliquus capitis inferior",
      "side": "right",
-     "group": "abdomen",
+     "group": "head/neck",
      "tris": 248,
      "bbox": [
       -0.0402,
@@ -1888,7 +1888,7 @@
      "id": "FMA32537",
      "name": "left obliquus capitis inferior",
      "side": "left",
-     "group": "abdomen",
+     "group": "head/neck",
      "tris": 248,
      "bbox": [
       0.0029,
@@ -2263,7 +2263,7 @@
      "id": "FMA37386",
      "name": "right abductor pollicis brevis",
      "side": "right",
-     "group": "forearm",
+     "group": "hand",
      "tris": 254,
      "bbox": [
       -0.3025,
@@ -2278,7 +2278,7 @@
      "id": "FMA37387",
      "name": "left abductor pollicis brevis",
      "side": "left",
-     "group": "forearm",
+     "group": "hand",
      "tris": 250,
      "bbox": [
       0.2632,
@@ -2443,7 +2443,7 @@
      "id": "FMA37461",
      "name": "right flexor digitorum brevis",
      "side": "right",
-     "group": "forearm",
+     "group": "foot",
      "tris": 1300,
      "bbox": [
       -0.1385,
@@ -2458,7 +2458,7 @@
      "id": "FMA37462",
      "name": "left flexor digitorum brevis",
      "side": "left",
-     "group": "forearm",
+     "group": "foot",
      "tris": 1365,
      "bbox": [
       0.063,
@@ -3373,7 +3373,7 @@
      "id": "FMA38560",
      "name": "humeral head of right pronator teres",
      "side": "right",
-     "group": "shoulder",
+     "group": "forearm",
      "tris": 1038,
      "bbox": [
       -0.2576,
@@ -3388,7 +3388,7 @@
      "id": "FMA38561",
      "name": "humeral head of left pronator teres",
      "side": "left",
-     "group": "shoulder",
+     "group": "forearm",
      "tris": 1014,
      "bbox": [
       0.1874,
@@ -3403,7 +3403,7 @@
      "id": "FMA38562",
      "name": "ulnar head of right pronator teres",
      "side": "right",
-     "group": "shoulder",
+     "group": "forearm",
      "tris": 454,
      "bbox": [
       -0.2563,
@@ -3418,7 +3418,7 @@
      "id": "FMA38563",
      "name": "ulnar head of left pronator teres",
      "side": "left",
-     "group": "shoulder",
+     "group": "forearm",
      "tris": 454,
      "bbox": [
       0.2041,
@@ -3913,7 +3913,7 @@
      "id": "FMA45888",
      "name": "long head of right biceps femoris",
      "side": "right",
-     "group": "upper arm",
+     "group": "thigh",
      "tris": 2200,
      "bbox": [
       -0.1242,
@@ -3928,7 +3928,7 @@
      "id": "FMA45889",
      "name": "long head of left biceps femoris",
      "side": "left",
-     "group": "upper arm",
+     "group": "thigh",
      "tris": 2200,
      "bbox": [
       0.0483,
@@ -3943,7 +3943,7 @@
      "id": "FMA45891",
      "name": "short head of right biceps femoris",
      "side": "right",
-     "group": "upper arm",
+     "group": "thigh",
      "tris": 1018,
      "bbox": [
       -0.1195,
@@ -3958,7 +3958,7 @@
      "id": "FMA45892",
      "name": "short head of left biceps femoris",
      "side": "left",
-     "group": "upper arm",
+     "group": "thigh",
      "tris": 985,
      "bbox": [
       0.0838,
@@ -4153,7 +4153,7 @@
      "id": "FMA46110",
      "name": "deep head of right flexor pollicis brevis",
      "side": "right",
-     "group": "forearm",
+     "group": "hand",
      "tris": 250,
      "bbox": [
       -0.3013,
@@ -4168,7 +4168,7 @@
      "id": "FMA46111",
      "name": "deep head of left flexor pollicis brevis",
      "side": "left",
-     "group": "forearm",
+     "group": "hand",
      "tris": 250,
      "bbox": [
       0.2565,
@@ -4528,7 +4528,7 @@
      "id": "FMA46803",
      "name": "right levator labii superioris alaeque nasi",
      "side": "right",
-     "group": "other",
+     "group": "head/neck",
      "tris": 249,
      "bbox": [
       -0.0155,
@@ -4543,7 +4543,7 @@
      "id": "FMA46804",
      "name": "left levator labii superioris alaeque nasi",
      "side": "left",
-     "group": "other",
+     "group": "head/neck",
      "tris": 250,
      "bbox": [
       0.0103,
@@ -4558,7 +4558,7 @@
      "id": "FMA46806",
      "name": "right levator labii superioris",
      "side": "right",
-     "group": "other",
+     "group": "head/neck",
      "tris": 250,
      "bbox": [
       -0.0376,
@@ -4573,7 +4573,7 @@
      "id": "FMA46807",
      "name": "left levator labii superioris",
      "side": "left",
-     "group": "other",
+     "group": "head/neck",
      "tris": 248,
      "bbox": [
       0.0112,
@@ -4588,7 +4588,7 @@
      "id": "FMA46823",
      "name": "right levator anguli oris",
      "side": "right",
-     "group": "other",
+     "group": "head/neck",
      "tris": 249,
      "bbox": [
       -0.0281,
@@ -4603,7 +4603,7 @@
      "id": "FMA46824",
      "name": "left levator anguli oris",
      "side": "left",
-     "group": "other",
+     "group": "head/neck",
      "tris": 248,
      "bbox": [
       0.0115,
@@ -4723,7 +4723,7 @@
      "id": "FMA51142",
      "name": "right extensor digitorum brevis",
      "side": "right",
-     "group": "forearm",
+     "group": "foot",
      "tris": 1287,
      "bbox": [
       -0.1289,
@@ -4738,7 +4738,7 @@
      "id": "FMA51143",
      "name": "left extensor digitorum brevis",
      "side": "left",
-     "group": "forearm",
+     "group": "foot",
      "tris": 1291,
      "bbox": [
       0.0877,
@@ -4783,7 +4783,7 @@
      "id": "FMA65014",
      "name": "right flexor hallucis longus",
      "side": "right",
-     "group": "foot",
+     "group": "lower leg",
      "tris": 2198,
      "bbox": [
       -0.1113,
@@ -4798,7 +4798,7 @@
      "id": "FMA65015",
      "name": "left flexor hallucis longus",
      "side": "left",
-     "group": "foot",
+     "group": "lower leg",
      "tris": 2200,
      "bbox": [
       0.0564,
@@ -4813,7 +4813,7 @@
      "id": "FMA65016",
      "name": "right flexor digitorum longus",
      "side": "right",
-     "group": "forearm",
+     "group": "lower leg",
      "tris": 2198,
      "bbox": [
       -0.1384,
@@ -4828,7 +4828,7 @@
      "id": "FMA65017",
      "name": "left flexor digitorum longus",
      "side": "left",
-     "group": "forearm",
+     "group": "lower leg",
      "tris": 2198,
      "bbox": [
       0.0474,
@@ -4873,7 +4873,7 @@
      "id": "FMA65198",
      "name": "superficial head of right flexor pollicis brevis",
      "side": "right",
-     "group": "forearm",
+     "group": "hand",
      "tris": 249,
      "bbox": [
       -0.3021,
@@ -4888,7 +4888,7 @@
      "id": "FMA65199",
      "name": "superficial head of left flexor pollicis brevis",
      "side": "left",
-     "group": "forearm",
+     "group": "hand",
      "tris": 248,
      "bbox": [
       0.2599,
@@ -6064,7 +6064,7 @@
      "id": "FMA53655",
      "name": "right palatine bone",
      "side": "right",
-     "group": "other",
+     "group": "head/neck",
      "tris": 248,
      "bbox": [
       -0.0262,
@@ -6080,7 +6080,7 @@
      "id": "FMA53656",
      "name": "left palatine bone",
      "side": "left",
-     "group": "other",
+     "group": "head/neck",
      "tris": 248,
      "bbox": [
       -0.0027,

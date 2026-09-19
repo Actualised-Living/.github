@@ -4295,8 +4295,8 @@ function boot3d() {
   const ANAT = {
     loaded: false, manifest: null, meta: {}, landmarks: null,
     skin: null, muscles: null, muscleMeshes: [],
-    armCentreX: 0.17, foreCentreX: 0.23, legCentreX: 0.10, handCentreX: 0.26,
-    skull: null, nerves: null,
+    armCentreX: 0.19, foreCentreX: 0.24, legCentreX: 0.09, shinCentreX: 0.10, handCentreX: 0.26,
+    skull: null, nerves: null, byName: null,
     armCentreZ: 0, thighCentreZ: 0, shinCentreZ: 0, trunkCentreZ: 0,
     armGapHigh: 0.165, armGapLow: 0.135, edges: null
   };
@@ -4314,6 +4314,13 @@ function boot3d() {
   function legCentreZAt(y) {
     if (!ANAT.loaded) return 0;
     return y < LM().kneeLine ? ANAT.shinCentreZ : ANAT.thighCentreZ;
+  }
+  // The thigh's mean lies well medial of the shin's, because the adductors sit
+  // on the inside of it. Using one figure for the whole leg pushes the
+  // medial/lateral split of the calf far too far in.
+  function legCentreXAt(y) {
+    if (!ANAT.loaded) return 0.10;
+    return y < LM().kneeLine ? ANAT.shinCentreX : ANAT.legCentreX;
   }
 
   /* ---- dermatome reference ------------------------------------------
@@ -4430,7 +4437,7 @@ function boot3d() {
       return d > 0.018 ? "C6" : d < -0.018 ? "C8" : "C7";
     }
     if (zone === "leg") {
-      const lant = p.z >= legCentreZAt(p.y), lateral = ax > ANAT.legCentreX;
+      const lant = p.z >= legCentreZAt(p.y), lateral = ax > legCentreXAt(p.y);
       if (p.y > m.glutealFold) {
         if (lant) return p.y > m.pubis - 0.055 ? "L1" : "L2";
         return lateral ? "L2" : "S3";
@@ -4479,7 +4486,10 @@ function boot3d() {
       loadGLTF(assetUrl("skin.glb")), loadGLTF(assetUrl("muscles.glb"))]);
     ANAT.manifest = man;
     ANAT.landmarks = man.landmarks || null;
-    (man.sets.muscles.structures || []).forEach(r => { ANAT.meta[r.id] = r; });
+    ANAT.byName = {};
+    (man.sets.muscles.structures || []).forEach(r => {
+      ANAT.meta[r.id] = r; ANAT.byName[r.name] = r;
+    });
 
     const avgAbsX = (grp) => {
       const rs = (man.sets.muscles.structures || []).filter(r => r.group === grp && r.bbox);
@@ -4496,6 +4506,7 @@ function boot3d() {
     ANAT.foreCentreX = avgAbsX("forearm") || ANAT.foreCentreX;
     ANAT.handCentreX = avgAbsX("hand") || ANAT.handCentreX;
     ANAT.legCentreX = avgAbsX("thigh") || ANAT.legCentreX;
+    ANAT.shinCentreX = avgAbsX("lower leg") || ANAT.shinCentreX;
     const az = avgZ(["upper arm", "forearm"]); if (az !== null) ANAT.armCentreZ = az;
     const gz = avgZ(["thigh"]);                if (gz !== null) ANAT.thighCentreZ = gz;
     const sz = avgZ(["lower leg"]);            if (sz !== null) ANAT.shinCentreZ = sz;
@@ -4799,68 +4810,99 @@ function boot3d() {
   /* ======================================================================
      2d · Agonist / antagonist pairs
 
-     Muscles work against a partner across a joint. That matters here for two
-     reasons: in spasticity tone rises on one side of a pairing while the
-     other is held long and weak, and the pain someone reports is often in
-     the stretched partner rather than the tight one -- so a record that
-     names the pairing is more use to a clinician than one that names a
-     single muscle.
+     Muscles work against a partner across a joint. That matters in spasticity:
+     tone rises on one side of a pairing while the other is held long and weak,
+     and the pain someone reports is often in the stretched partner rather than
+     the tight one.
 
-     One pairing is shown at a time because biarticular muscles belong to
-     two: rectus femoris flexes the hip AND extends the knee, gastrocnemius
-     flexes the knee AND plantarflexes the ankle. Colouring every pairing at
-     once would have to pick one and silently drop the other.
+     "All joints" colours the whole body by compartment. The per-joint views
+     show one pairing at a time, because biarticular muscles belong to two --
+     rectus femoris flexes the hip AND extends the knee, gastrocnemius flexes
+     the knee AND plantarflexes the ankle.
 
-     The pairings below are anatomy. This deliberately makes NO claim about
-     which side of a pairing becomes spastic in any given person -- the usual
-     patterns differ between the upper limb and the lower, and between
-     lesions, and that is a clinical judgement, not something to encode in a
-     colour.
+     These pairings are anatomy. The app makes NO claim about which side
+     becomes spastic: patterns differ between the upper limb and the lower and
+     between lesions, and that is a clinical judgement.
      ====================================================================== */
+
+  // A stem must match a whole word. "brachialis" sits inside
+  // "coracobrachialis" and "adductor" inside "adductor hallucis", so plain
+  // substring matching files muscles under the wrong joint.
+  const _stemRx = {};
+  function hasStem(low, stem) {
+    let rx = _stemRx[stem];
+    if (!rx) rx = _stemRx[stem] = new RegExp("(?:^|[^a-z])" + stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    return rx.test(low);
+  }
+
+  // comp: which compartment the pole sits in, for the whole-body view. Null
+  // where the pairing is not a front/back one -- the shoulder mixes pectoralis
+  // (front) with latissimus (back), and adduction/abduction is medial/lateral.
   const MUSCLE_PAIRS = [
-    { id: "shoulder", label: "Shoulder",
-      a: { name: "Adduction / internal rotation",
+    { id: "shoulder", label: "Shoulder", groups: ["shoulder", "chest", "upper back", "upper arm"],
+      a: { name: "Adduction / internal rotation", comp: null,
            stems: ["pectoralis major", "latissimus", "subscapularis", "teres major", "coracobrachialis"] },
-      b: { name: "Abduction / external rotation",
+      b: { name: "Abduction / external rotation", comp: null,
            stems: ["deltoid", "supraspinatus", "infraspinatus", "teres minor"] } },
-    { id: "elbow", label: "Elbow",
-      a: { name: "Flexion", stems: ["biceps brachii", "brachialis", "brachioradialis"] },
-      b: { name: "Extension", stems: ["triceps", "anconeus"] } },
-    { id: "forearm", label: "Forearm rotation",
-      a: { name: "Pronation", stems: ["pronator"] },
-      b: { name: "Supination", stems: ["supinator"] } },
-    { id: "wrist", label: "Wrist and fingers",
-      a: { name: "Flexion", stems: ["flexor carpi", "flexor digitorum", "flexor pollicis", "palmaris longus"] },
-      b: { name: "Extension", stems: ["extensor carpi", "extensor digitorum", "extensor pollicis", "extensor indicis"] } },
-    { id: "neck", label: "Neck",
-      a: { name: "Flexion", stems: ["sternocleidomastoid", "longus colli", "longus capitis", "scalenus"] },
-      b: { name: "Extension", stems: ["splenius", "semispinalis capitis", "trapezius", "longissimus capitis", "obliquus capitis"] } },
-    { id: "trunk", label: "Trunk",
-      a: { name: "Flexion", stems: ["abdominis"] },
-      b: { name: "Extension", stems: ["iliocostalis", "longissimus thoracis", "longissimus lumborum",
-                                      "spinalis", "semispinalis thoracis", "multifidus", "quadratus lumborum"] } },
-    { id: "hipfe", label: "Hip flexion / extension",
-      a: { name: "Flexion", stems: ["iliacus", "psoas", "rectus femoris", "sartorius", "tensor fasciae", "pectineus"] },
-      b: { name: "Extension", stems: ["gluteus maximus", "biceps femoris", "semitendinosus", "semimembranosus"] } },
-    { id: "hipaa", label: "Hip adduction / abduction",
-      a: { name: "Adduction", stems: ["adductor", "gracilis", "pectineus"] },
-      b: { name: "Abduction", stems: ["gluteus medius", "gluteus minimus", "tensor fasciae"] } },
-    { id: "knee", label: "Knee",
-      a: { name: "Extension", stems: ["vastus", "rectus femoris"] },
-      b: { name: "Flexion", stems: ["biceps femoris", "semitendinosus", "semimembranosus", "popliteus", "gastrocnemius"] } },
-    { id: "ankle", label: "Ankle",
-      a: { name: "Plantarflexion", stems: ["gastrocnemius", "soleus", "tibialis posterior", "plantaris",
-                                           "flexor hallucis longus", "flexor digitorum longus"] },
-      b: { name: "Dorsiflexion", stems: ["tibialis anterior", "extensor hallucis longus",
-                                         "extensor digitorum longus", "fibularis tertius"] } },
-    { id: "foot", label: "Foot inversion / eversion",
-      a: { name: "Inversion", stems: ["tibialis anterior", "tibialis posterior"] },
-      b: { name: "Eversion", stems: ["fibularis longus", "fibularis brevis"] } }
+    { id: "elbow", label: "Elbow", groups: ["upper arm", "forearm"],
+      a: { name: "Flexion", comp: "ant", stems: ["biceps brachii", "brachialis", "brachioradialis"] },
+      b: { name: "Extension", comp: "post", stems: ["triceps brachii", "anconeus"] } },
+    { id: "forearm", label: "Forearm rotation", groups: ["forearm"],
+      a: { name: "Pronation", comp: "ant", stems: ["pronator teres", "pronator quadratus"] },
+      b: { name: "Supination", comp: "post", stems: ["supinator"] } },
+    { id: "wrist", label: "Wrist and fingers", groups: ["forearm", "hand"],
+      a: { name: "Flexion", comp: "ant",
+           stems: ["flexor carpi", "flexor digitorum superficialis", "flexor digitorum profundus",
+                   "flexor pollicis", "palmaris longus", "flexor digiti minimi brevis of left hand",
+                   "flexor digiti minimi brevis of right hand"] },
+      b: { name: "Extension", comp: "post",
+           stems: ["extensor carpi", "extensor digitorum", "extensor pollicis", "extensor indicis",
+                   "extensor digiti minimi", "abductor pollicis longus"] } },
+    { id: "neck", label: "Neck", groups: ["head/neck", "upper back", "spine"],
+      a: { name: "Flexion", comp: "ant",
+           stems: ["sternocleidomastoid", "longus colli", "longus capitis", "scalenus"] },
+      b: { name: "Extension", comp: "post",
+           stems: ["splenius", "semispinalis capitis", "semispinalis cervicis", "trapezius",
+                   "longissimus capitis", "longissimus cervicis", "obliquus capitis",
+                   "rectus capitis", "spinalis cervicis", "iliocostalis cervicis"] } },
+    { id: "trunk", label: "Trunk", groups: ["abdomen", "spine", "chest"],
+      a: { name: "Flexion", comp: "ant",
+           stems: ["rectus abdominis", "obliquus externus", "obliquus internus",
+                   "transversus abdominis", "psoas"] },
+      b: { name: "Extension", comp: "post",
+           stems: ["iliocostalis lumborum", "iliocostalis thoracis", "longissimus thoracis",
+                   "spinalis thoracis", "semispinalis thoracis", "multifidus",
+                   "quadratus lumborum", "intertransversarius", "levatores costarum"] } },
+    { id: "hipfe", label: "Hip flexion / extension", groups: ["hip/buttock", "thigh", "abdomen"],
+      a: { name: "Flexion", comp: "ant",
+           stems: ["iliacus", "psoas", "rectus femoris", "sartorius", "tensor fasciae", "pectineus"] },
+      b: { name: "Extension", comp: "post",
+           stems: ["gluteus maximus", "biceps femoris", "semitendinosus", "semimembranosus"] } },
+    { id: "hipaa", label: "Hip adduction / abduction", groups: ["hip/buttock", "thigh"],
+      a: { name: "Adduction", comp: null,
+           stems: ["adductor magnus", "adductor longus", "adductor brevis", "adductor minimus",
+                   "gracilis", "pectineus"] },
+      b: { name: "Abduction", comp: null,
+           stems: ["gluteus medius", "gluteus minimus", "tensor fasciae"] } },
+    { id: "knee", label: "Knee", groups: ["thigh", "lower leg"],
+      a: { name: "Extension", comp: "ant", stems: ["vastus", "rectus femoris"] },
+      b: { name: "Flexion", comp: "post",
+           stems: ["biceps femoris", "semitendinosus", "semimembranosus", "popliteus",
+                   "gastrocnemius", "gracilis", "sartorius"] } },
+    { id: "ankle", label: "Ankle", groups: ["lower leg", "foot"],
+      a: { name: "Plantarflexion", comp: "post",
+           stems: ["gastrocnemius", "soleus", "tibialis posterior", "plantaris",
+                   "flexor hallucis longus", "flexor digitorum longus", "fibularis longus",
+                   "fibularis brevis"] },
+      b: { name: "Dorsiflexion", comp: "ant",
+           stems: ["tibialis anterior", "extensor hallucis longus", "extensor digitorum longus",
+                   "fibularis tertius"] } },
+    { id: "foot", label: "Foot inversion / eversion", groups: ["lower leg", "foot"],
+      a: { name: "Inversion", comp: null, stems: ["tibialis anterior", "tibialis posterior"] },
+      b: { name: "Eversion", comp: null,
+           stems: ["fibularis longus", "fibularis brevis", "fibularis tertius"] } }
   ];
 
-  // A diverging encoding: two poles and a neutral for everything outside the
-  // selected pairing. Both sets validated for colour-vision separation and
-  // contrast against the stage in light and dark.
   const PAIR_HUES = {
     light: { a: "#eb6834", b: "#2a78d6", off: "#9a9389" },
     dark:  { a: "#d95926", b: "#3987e5", off: "#7d776e" }
@@ -4869,25 +4911,29 @@ function boot3d() {
   function refreshPairMats() {
     const h = PAIR_HUES[currentlyDark() ? "dark" : "light"];
     ["a", "b", "off"].forEach((k) => {
-      if (!pairMats[k]) {
-        pairMats[k] = new THREE.MeshStandardMaterial({ roughness: 0.6, metalness: 0.03 });
-      }
+      if (!pairMats[k]) pairMats[k] = new THREE.MeshStandardMaterial({ roughness: 0.6, metalness: 0.03 });
       pairMats[k].color.copy(col(parseInt(h[k].slice(1), 16)));
-      pairMats[k].opacity = k === "off" ? 0.5 : 1;
+      pairMats[k].opacity = k === "off" ? 0.45 : 1;
       pairMats[k].transparent = k === "off";
     });
   }
 
   function currentPair() {
+    if (state.pair === "all") return null;
     return MUSCLE_PAIRS.find((p) => p.id === state.pair) || MUSCLE_PAIRS[1];
+  }
+  function inPairScope(name, pair) {
+    if (!pair.groups) return true;
+    const rec = ANAT.byName ? ANAT.byName[name] : null;
+    return !rec || pair.groups.indexOf(rec.group) >= 0;
   }
   function poleFor(name, pair) {
     const low = (name || "").toLowerCase();
-    if (pair.a.stems.some((s) => low.indexOf(s) >= 0)) return "a";
-    if (pair.b.stems.some((s) => low.indexOf(s) >= 0)) return "b";
+    if (!inPairScope(name, pair)) return null;
+    if (pair.a.stems.some((s) => hasStem(low, s))) return "a";
+    if (pair.b.stems.some((s) => hasStem(low, s))) return "b";
     return null;
   }
-  // every pairing a given muscle belongs to, for the read-out and the record
   function pairsOf(name) {
     const out = [];
     MUSCLE_PAIRS.forEach((p) => {
@@ -4897,11 +4943,14 @@ function boot3d() {
     });
     return out;
   }
-  function pairSummary(name) {
+  // front-of-body or back-of-body, for the whole-body view
+  function compartmentOf(name) {
     const ps = pairsOf(name);
-    if (!ps.length) return "";
-    return ps.map((q) => q.pair.label.toLowerCase() + ": " + q.acts.toLowerCase()
-      + ", against " + q.against.toLowerCase()).join("; ");
+    for (let i = 0; i < ps.length; i++) {
+      const c = ps[i].pair[ps[i].pole].comp;
+      if (c) return c;
+    }
+    return null;
   }
 
   function applyPairColours() {
@@ -4909,28 +4958,37 @@ function boot3d() {
     refreshPairMats();
     const pair = currentPair();
     ANAT.muscleMeshes.forEach((o) => {
-      const pole = poleFor(o.userData.anatName, pair);
-      o.material = pole ? pairMats[pole] : pairMats.off;
+      const n = o.userData.anatName;
+      if (pair) {
+        const pole = poleFor(n, pair);
+        o.material = pole ? pairMats[pole] : pairMats.off;
+      } else {
+        const c = compartmentOf(n);
+        o.material = c === "ant" ? pairMats.a : c === "post" ? pairMats.b : pairMats.off;
+      }
     });
   }
 
   function pairLegend(box) {
     const pair = currentPair();
     const h = PAIR_HUES[currentlyDark() ? "dark" : "light"];
-    [["a", pair.a.name], ["b", pair.b.name]].forEach(([k, label]) => {
+    const rows = pair
+      ? [["a", pair.a.name], ["b", pair.b.name]]
+      : [["a", "Front of the body — flexor side"], ["b", "Back of the body — extensor side"]];
+    rows.forEach(([k, label]) => {
       const row = document.createElement("div");
       row.className = "row";
       const sw = document.createElement("span");
       sw.className = "sw"; sw.style.background = h[k];
-      const t = document.createElement("span"); t.textContent = label;
-      row.append(sw, t); box.appendChild(row);
+      row.append(sw, el("span", null, label));
+      box.appendChild(row);
     });
     const list = document.createElement("div");
     list.className = "pairlist";
-    MUSCLE_PAIRS.forEach((p) => {
+    [{ id: "all", label: "All joints" }].concat(MUSCLE_PAIRS).forEach((p) => {
       const b = document.createElement("button");
       b.type = "button"; b.textContent = p.label;
-      b.setAttribute("aria-pressed", String(p.id === pair.id));
+      b.setAttribute("aria-pressed", String(p.id === state.pair));
       b.addEventListener("click", () => { state.pair = p.id; setMode("pairs"); });
       list.appendChild(b);
     });
@@ -4938,11 +4996,18 @@ function boot3d() {
     const note = document.createElement("div");
     note.className = "row"; note.style.color = "var(--ink-3)";
     note.style.lineHeight = "1.4"; note.style.marginTop = "8px";
-    note.textContent = "Muscles work against a partner across a joint. Where tone is raised on one "
-      + "side, the other is often held long and weak, and the pain someone reports can sit in the "
-      + "stretched partner rather than the tight one. These pairings are anatomy only — which side "
-      + "is affected, and what to do about it, is a clinical judgement.";
+    note.textContent = pair
+      ? "Tap a muscle to jump to a joint it works at. Muscles outside this joint are dimmed."
+      : "Every muscle that belongs to a front/back pairing, coloured by which side it sits on. "
+        + "Adduction, abduction and rotation are not front/back, so those muscles stay neutral — "
+        + "pick a joint below to see them.";
     box.appendChild(note);
+    const caveat = document.createElement("div");
+    caveat.className = "row"; caveat.style.color = "var(--ink-3)";
+    caveat.style.lineHeight = "1.4"; caveat.style.marginTop = "6px";
+    caveat.textContent = "Pairings are anatomy only. Which side is affected, and what to do about "
+      + "it, is a clinical judgement.";
+    box.appendChild(caveat);
   }
 
   /* ======================================================================
@@ -5007,6 +5072,11 @@ function boot3d() {
     document.querySelectorAll(".switch button").forEach((b) => {
       b.setAttribute("aria-pressed", String(b.dataset.mode === mode));
     });
+    renderLegend();
+  }
+
+  function renderLegend() {
+    const mode = state.mode;
     const box = $("legend"); box.innerHTML = "";
     box.className = "legend" + (mode === "dermatome" ? " derm" : "");
     if (mode === "dermatome") { dermatomeLegend(box); return; }
@@ -5297,7 +5367,7 @@ function boot3d() {
   /* ======================================================================
      6 · Picking, and the panel that says what is under the cursor
      ====================================================================== */
-  const state = { mode: "clothed", pair: "elbow" };
+  const state = { mode: "clothed", pair: "all" };
 
   const raycaster = new THREE.Raycaster();
   const ndc = new THREE.Vector2();
@@ -5359,6 +5429,14 @@ function boot3d() {
 
   function showInfo(hit, clientX, clientY) {
     const info = describeHit(hit);
+    if (state.mode === "pairs" && info.pairs.length) {
+      const cur = currentPair();
+      if (!cur || !info.pairs.some((q) => q.pair.id === cur.id)) {
+        state.pair = info.pairs[0].pair.id;
+        applyPairColours();
+        renderLegend();
+      }
+    }
     placeCursor(info.point, info.normal);
     const card = $("infoCard");
     card.innerHTML = "";

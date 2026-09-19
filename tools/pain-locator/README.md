@@ -67,6 +67,13 @@ pairing's muscles attach to them.
 The skeleton is solid behind the muscle views and a faint ghost behind the nerve view: the
 intercostal nerves only read as intercostals when there are ribs for them to run between.
 
+**Stem matching must respect word boundaries.** `brachialis` is a substring of
+`coracobrachialis`, `adductor` of `adductor hallucis`, `biceps` of `biceps femoris`. Plain
+`indexOf` filed a shoulder muscle among the elbow flexors, a foot muscle among the hip adductors,
+and a hamstring under *upper arm*. Both the pipeline's group classifier and the app's pairing
+matcher now require a stem to start a word, and the pairings are additionally scoped to the muscle
+groups the joint can involve.
+
 **Coordinate frame.** BodyParts3D is millimetres, Z-up, +X anatomical left. The pipeline rotates to
 the app's metres, Y-up, +Z anterior, feet on `y = 0`. The rotation has determinant +1, so left and
 right are preserved — verified by checking that "acromial part of left deltoid" lands at positive X.
@@ -98,7 +105,13 @@ A fifth visualisation shows agonist and antagonist across one joint at a time: e
 shoulder to foot inversion. The selected pairing's two poles take a validated diverging pair, one
 warm and one cool, and every other muscle steps back to a translucent neutral.
 
-**One pairing at a time, because biarticular muscles belong to two.** Rectus femoris flexes the hip
+**"All joints"** is the default: every muscle belonging to a front/back pairing, coloured by which
+side of the body it sits on — 184 of 339 structures. Adduction, abduction and rotation are not
+front/back relationships, so those muscles stay neutral there and need their joint picking.
+Clicking a muscle jumps to a joint it works at, which is how you find the pairings without hunting
+through the chips.
+
+**Then one pairing at a time, because biarticular muscles belong to two.** Rectus femoris flexes the hip
 *and* extends the knee; gastrocnemius flexes the knee *and* plantarflexes the ankle. Colouring all
 eleven at once would have to pick one membership per muscle and silently drop the other.
 

@@ -73,44 +73,72 @@ def bone_kind(name):
     if "costal cartilage" in low: return "cartilage"
     return "bone"
 
-# Coarse group for colour-coding and the legend, tested in order.
+# Coarse group for colour-coding, the legend and the geometric anchors the
+# nerve routes are built from. Order matters and stems must disambiguate:
+# "biceps" alone files biceps femoris (a hamstring) under upper arm, and
+# "flexor digitorum" alone files the foot's long flexor under forearm. Distal
+# and leg groups are therefore tested before the arm ones, and the stems name
+# the muscle rather than a fragment of it.
 GROUPS = [
-    ("head/neck",  ["masseter", "temporalis", "sternocleidomastoid", "digastric",
-                    "mylohyoid", "platysma", "orbicularis", "scalenus", "splenius",
-                    "longus capitis", "longus colli"]),
-    ("shoulder",   ["deltoid", "supraspinatus", "infraspinatus", "subscapularis",
-                    "teres", "rhomboid", "levator scapulae", "serratus"]),
-    ("upper back", ["trapezius", "latissimus"]),
-    ("chest",      ["pectoralis", "intercostal", "diaphragm"]),
-    ("abdomen",    ["rectus abdominis", "obliquus", "transversus abdominis",
-                    "quadratus lumborum", "psoas", "iliacus"]),
-    ("spine",      ["erector", "multifidus", "longissimus", "iliocostalis",
-                    "spinalis", "semispinalis", "rotatores", "intertransversarius"]),
-    ("upper arm",  ["biceps", "triceps", "brachialis", "coracobrachialis", "anconeus"]),
-    ("forearm",    ["brachioradialis", "pronator", "supinator", "flexor carpi",
-                    "extensor carpi", "flexor digitorum", "extensor digitorum",
-                    "flexor pollicis", "extensor pollicis", "palmaris",
-                    "extensor indicis", "abductor pollicis"]),
-
-    ("foot",       ["hallucis", "plantae", "plantar", "of left foot", "of right foot",
-                    "digitorum brevis", "digiti minimi brevis of left foot",
-                    "digiti minimi brevis of right foot"]),
-    ("hand",       ["lumbrical", "interosseus", "interossei", "opponens", "pollicis",
-                    "abductor digiti minimi of", "flexor digiti minimi", "of left hand",
-                    "of right hand", "palmaris brevis"]),
+    ("foot",       ["hallucis brevis", "abductor hallucis", "adductor hallucis",
+                    "quadratus plantae", "plantae", "of left foot", "of right foot",
+                    "digitorum brevis", "extensor digitorum brevis", "flexor digitorum brevis",
+                    "digiti minimi brevis of left foot", "digiti minimi brevis of right foot"]),
+    ("lower leg",  ["gastrocnemius", "soleus", "tibialis anterior", "tibialis posterior",
+                    "fibularis", "peroneus", "plantaris", "popliteus",
+                    "flexor digitorum longus", "extensor digitorum longus",
+                    "flexor hallucis longus", "extensor hallucis longus"]),
+    ("thigh",      ["vastus", "rectus femoris", "sartorius", "gracilis", "biceps femoris",
+                    "semitendinosus", "semimembranosus", "adductor magnus", "adductor longus",
+                    "adductor brevis", "adductor minimus"]),
     ("hip/buttock",["gluteus", "piriformis", "gemellus", "obturator", "tensor fasciae",
                     "pectineus", "quadratus femoris"]),
-    ("thigh",      ["vastus", "rectus femoris", "sartorius", "gracilis", "adductor",
-                    "semitendinosus", "semimembranosus", "biceps femoris"]),
-    ("lower leg",  ["gastrocnemius", "soleus", "tibialis", "peroneus", "fibularis",
-                    "plantaris", "popliteus", "flexor hallucis", "extensor hallucis"]),
-
+    ("hand",       ["lumbricals of left hand", "lumbricals of right hand",
+                    "interossei of left hand", "interossei of right hand", "opponens",
+                    "of left hand", "of right hand", "palmaris brevis",
+                    "adductor pollicis", "flexor pollicis brevis", "abductor pollicis brevis"]),
+    ("forearm",    ["brachioradialis", "pronator", "supinator", "flexor carpi", "extensor carpi",
+                    "flexor digitorum superficialis", "flexor digitorum profundus",
+                    "extensor digitorum", "extensor indicis", "palmaris longus",
+                    "flexor pollicis longus", "abductor pollicis longus", "extensor pollicis"]),
+    ("upper arm",  ["biceps brachii", "triceps brachii", "brachialis", "coracobrachialis",
+                    "anconeus"]),
+    ("shoulder",   ["deltoid", "supraspinatus", "infraspinatus", "subscapularis", "teres major",
+                    "teres minor", "rhomboid", "levator scapulae", "serratus anterior"]),
+    ("upper back", ["trapezius", "latissimus"]),
+    ("chest",      ["pectoralis", "intercostal", "diaphragm", "serratus posterior",
+                    "subclavius", "transversus thoracis"]),
+    ("abdomen",    ["rectus abdominis", "obliquus externus", "obliquus internus",
+                    "transversus abdominis", "quadratus lumborum", "psoas", "iliacus"]),
+    ("spine",      ["erector", "multifidus", "longissimus", "iliocostalis", "spinalis",
+                    "semispinalis", "rotatores", "intertransversarius", "interspinalis"]),
+    ("head/neck",  ["masseter", "temporalis", "sternocleidomastoid", "digastric", "mylohyoid",
+                    "geniohyoid", "stylohyoid", "thyrohyoid", "omohyoid", "sternohyoid",
+                    "platysma", "orbicularis", "scalenus", "splenius", "longus capitis",
+                    "longus colli", "obliquus capitis", "rectus capitis", "levator labii",
+                    "levator anguli", "zygomaticus", "buccinator", "risorius", "mentalis",
+                    "depressor", "procerus", "nasalis", "occipitofrontalis", "auricular",
+                    "pterygoid", "constrictor", "palat", "genioglossus", "styloglossus",
+                    "hyoglossus", "cricothyroid", "arytenoid", "vocalis", "stapedius",
+                    "tensor tympani", "rectus superior", "rectus inferior", "rectus medialis",
+                    "rectus lateralis", "oblique of", "levator palpebrae"]),
 ]
+
+# A stem must match a whole word, not sit inside a longer one: "brachialis"
+# is a substring of "coracobrachialis", "adductor" of "adductor hallucis".
+import re as _re
+_STEM_CACHE = {}
+def _has_stem(low, stem):
+    rx = _STEM_CACHE.get(stem)
+    if rx is None:
+        rx = _STEM_CACHE[stem] = _re.compile(r"(?:^|[^a-z])" + _re.escape(stem))
+    return bool(rx.search(low))
+
 
 def group_of(name):
     low = name.lower()
     for g, stems in GROUPS:
-        if any(s in low for s in stems):
+        if any(_has_stem(low, st) for st in stems):
             return g
     return "other"
 
