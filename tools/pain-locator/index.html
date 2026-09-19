@@ -4312,6 +4312,7 @@ function boot3d() {
       const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 72, radius, 7, false), mat);
       nerveGroup.add(tube);
       if (name === "cord") schematicCentral.push(tube);
+      else tube.userData.peripheral = true;   // replaced by the routed version
       if (name === "cord" || name === "armMain" || name === "sciatic" || name === "tibial") {
         impulseCurves.push(curve);
       }
@@ -4613,6 +4614,7 @@ function boot3d() {
       ANAT.muscleMeshes.push(o);
     });
     figure.add(ANAT.skin, ANAT.muscles);
+    ANAT.routedNerves = reroutePeripheral();
     // The measured cord is optional on top of the measured muscles.
     try {
       if (man.sets.nerves) {
@@ -4688,6 +4690,157 @@ function boot3d() {
   }
 
   /* ======================================================================
+     2c · Routing the peripheral nerves through the muscles
+
+     The schematic paths above are coordinates typed by hand. Once the real
+     muscles are loaded we can do better: a peripheral nerve is defined
+     clinically by the muscles it runs between, so each waypoint below names
+     a muscle and a face of it, and the actual position comes from that
+     muscle's measured bounding box.
+
+     This makes the routes follow the body rather than a guess -- the ulnar
+     nerve is placed behind the medial epicondyle because that is where the
+     flexor carpi ulnaris starts, not because 0.219 looked about right. They
+     are still drawn rather than measured, and still labelled that way: a
+     bounding box is a coarse stand-in for a muscle's real shape.
+     ====================================================================== */
+  function anchorBox(match, side, group) {
+    let b = null;
+    for (const id in ANAT.meta) {
+      const r = ANAT.meta[id];
+      if (!r.bbox) continue;
+      // lumbricals and interossei exist in both the hand and the foot, so some
+      // anchors have to say which they mean.
+      if (group && r.group !== group) continue;
+      if (r.name.toLowerCase().indexOf(match) < 0) continue;
+      if (side > 0 && r.side === "right") continue;
+      if (side < 0 && r.side === "left") continue;
+      b = b ? [Math.min(b[0], r.bbox[0]), Math.min(b[1], r.bbox[1]), Math.min(b[2], r.bbox[2]),
+               Math.max(b[3], r.bbox[3]), Math.max(b[4], r.bbox[4]), Math.max(b[5], r.bbox[5])]
+            : r.bbox.slice();
+    }
+    return b;
+  }
+  // med = nearer the midline, lat = further from it, ant/post = front/back.
+  function resolveAnchor(match, pick, offset, side, group) {
+    const b = anchorBox(match, side, group);
+    if (!b) return null;
+    const lo = Math.min(Math.abs(b[0]), Math.abs(b[3])), hi = Math.max(Math.abs(b[0]), Math.abs(b[3]));
+    const fx = pick.x === "med" ? 0 : pick.x === "lat" ? 1 : pick.x === "mid" ? 0.5 : pick.x;
+    const fy = pick.y === "bot" ? 0 : pick.y === "top" ? 1 : pick.y === "mid" ? 0.5 : pick.y;
+    const fz = pick.z === "post" ? 0 : pick.z === "ant" ? 1 : pick.z === "mid" ? 0.5 : pick.z;
+    const o = offset || [0, 0, 0];
+    return V(side * (lo + (hi - lo) * fx) + side * o[0],
+             b[1] + (b[4] - b[1]) * fy + o[1],
+             b[2] + (b[5] - b[2]) * fz + o[2]);
+  }
+
+  // Each entry: [muscle name fragment, which face of it, small offset in metres]
+  const PLEXUS = [
+    ["scalenus", { x: "med", y: 0.25, z: "mid" }, [0, 0, 0]],
+    ["pectoralis minor", { x: 0.35, y: "top", z: "post" }, [0, -0.01, -0.012]],
+  ];
+  const NERVE_ROUTES = {
+    // upper limb -------------------------------------------------------
+    median: PLEXUS.concat([
+      ["coracobrachialis", { x: "med", y: "top", z: 0.55 }, [-0.004, 0, 0]],
+      ["biceps brachii", { x: "med", y: 0.45, z: 0.40 }, [-0.005, 0, 0]],
+      ["brachialis", { x: 0.25, y: "bot", z: "ant" }, [0, 0.012, -0.004]],
+      ["pronator teres", { x: 0.45, y: 0.45, z: 0.50 }, [0, 0, 0]],
+      ["flexor digitorum superficialis", { x: 0.30, y: 0.55, z: 0.45 }, [0, 0, 0]],
+      ["flexor retinaculum", { x: 0.45, y: "mid", z: 0.55 }, [0, 0, 0]],
+      ["opponens pollicis", { x: 0.25, y: "top", z: 0.45 }, [0, 0, 0]],
+    ]),
+    ulnar: PLEXUS.concat([
+      ["coracobrachialis", { x: "med", y: 0.5, z: 0.35 }, [-0.006, 0, -0.004]],
+      ["triceps", { x: "med", y: 0.55, z: 0.40 }, [-0.004, 0, 0]],
+      ["flexor carpi ulnaris", { x: "med", y: "top", z: "post" }, [-0.004, 0.012, 0.004]],
+      ["flexor carpi ulnaris", { x: 0.25, y: 0.55, z: 0.40 }, [0, 0, 0]],
+      ["flexor carpi ulnaris", { x: 0.30, y: "bot", z: 0.45 }, [0, 0.012, 0.004]],
+      ["abductor digiti minimi of", { x: 0.45, y: "top", z: 0.45 }, [0, 0, 0], "hand"],
+    ]),
+    radial: PLEXUS.concat([
+      ["triceps", { x: 0.35, y: "top", z: "post" }, [0, -0.01, 0.006]],
+      ["triceps", { x: 0.55, y: 0.45, z: "post" }, [0, 0, 0.008]],
+      ["brachioradialis", { x: 0.45, y: "top", z: 0.45 }, [0, 0, 0]],
+      ["supinator", { x: 0.50, y: 0.45, z: 0.40 }, [0, 0, 0]],
+      ["extensor carpi radialis", { x: 0.45, y: 0.40, z: "post" }, [0, 0, 0.005]],
+      ["extensor carpi radialis", { x: 0.50, y: "bot", z: "post" }, [0, 0.015, 0.010]],
+      ["set of dorsal interossei of", { x: 0.30, y: "top", z: "post" }, [0, 0, 0], "hand"],
+    ]),
+    // lower limb -------------------------------------------------------
+    sciatic: [
+      ["piriformis", { x: 0.45, y: "bot", z: 0.45 }, [0, -0.012, 0]],
+      ["gluteus maximus", { x: 0.45, y: 0.30, z: 0.55 }, [0, 0, 0]],
+      ["biceps femoris", { x: "med", y: 0.80, z: 0.55 }, [0, 0, 0]],
+      ["biceps femoris", { x: "med", y: 0.45, z: 0.55 }, [0, 0, 0]],
+      ["popliteus", { x: 0.45, y: "top", z: 0.40 }, [0, 0.035, 0]],
+    ],
+    tibial: [
+      ["popliteus", { x: 0.45, y: "top", z: 0.40 }, [0, 0.035, 0]],
+      ["gastrocnemius", { x: 0.40, y: 0.60, z: 0.45 }, [0, 0, 0]],
+      ["soleus", { x: 0.35, y: 0.45, z: 0.50 }, [0, 0, 0]],
+      ["tibialis posterior", { x: 0.35, y: 0.25, z: 0.45 }, [0, 0, 0]],
+      ["tibialis posterior", { x: "med", y: "bot", z: 0.50 }, [0, 0.010, 0]],
+      ["abductor hallucis", { x: 0.55, y: "mid", z: 0.40 }, [0, 0, 0]],
+    ],
+    fibular: [
+      ["popliteus", { x: 0.45, y: "top", z: 0.40 }, [0, 0.035, 0]],
+      ["biceps femoris", { x: "lat", y: "bot", z: 0.45 }, [0.004, 0, 0]],
+      ["fibularis longus", { x: "lat", y: "top", z: 0.45 }, [0, 0, 0]],
+      ["tibialis anterior", { x: 0.65, y: 0.55, z: "ant" }, [0, 0, -0.006]],
+      ["extensor hallucis longus", { x: 0.55, y: 0.25, z: 0.60 }, [0, 0, 0]],
+      ["set of dorsal interossei of", { x: 0.40, y: "top", z: 0.55 }, [0, 0, 0], "foot"],
+    ],
+    femoral: [
+      ["psoas", { x: 0.60, y: 0.20, z: "ant" }, [0, 0, -0.008]],
+      ["iliacus", { x: 0.45, y: 0.25, z: "ant" }, [0, 0, -0.006]],
+      ["sartorius", { x: "lat", y: "top", z: "ant" }, [0, -0.02, -0.008]],
+      ["rectus femoris", { x: 0.35, y: 0.80, z: 0.35 }, [0, 0, 0]],
+      ["vastus medialis", { x: "med", y: 0.45, z: 0.45 }, [0, 0, 0]],
+      // The saphenous branch runs over the medial surface of the tibia, where
+      // there is no muscle to hug -- so this last point is deliberately off
+      // muscle rather than mis-anchored.
+      ["tibialis anterior", { x: "med", y: 0.55, z: 0.50 }, [-0.006, 0, 0]],
+    ]
+  };
+  const ROUTE_RADIUS = { median: 0.0042, ulnar: 0.0040, radial: 0.0040,
+                         sciatic: 0.0062, tibial: 0.0046, fibular: 0.0042, femoral: 0.0046 };
+
+  function reroutePeripheral() {
+    const doomed = nerveGroup.children.filter((c) => c.userData && c.userData.peripheral);
+    doomed.forEach((c) => { nerveGroup.remove(c); if (c.geometry) c.geometry.dispose(); });
+    const curves = buildRoutedNerves();
+    if (!curves.length) { doomed.forEach((c) => nerveGroup.add(c)); return false; }
+    impulses.forEach((m, i) => {
+      m.userData.curve = curves[i % curves.length];
+      m.userData.t = (i * 0.19) % 1;
+    });
+    return true;
+  }
+
+  function buildRoutedNerves() {
+    const curves = [];
+    for (const name in NERVE_ROUTES) {
+      [1, -1].forEach((side) => {
+        const pts = [];
+        NERVE_ROUTES[name].forEach(([match, pick, off, group]) => {
+          const p = resolveAnchor(match, pick, off, side, group);
+          if (p) pts.push(p);
+        });
+        if (pts.length < 3) return;   // not enough anchors resolved; skip this one
+        const curve = new THREE.CatmullRomCurve3(pts);
+        const tube = new THREE.Mesh(
+          new THREE.TubeGeometry(curve, 96, ROUTE_RADIUS[name] || 0.0042, 7, false), MAT.nerve);
+        tube.userData.peripheral = true;
+        nerveGroup.add(tube);
+        if (name === "median" || name === "sciatic") curves.push(curve);
+      });
+    }
+    return curves;
+  }
+
+  /* ======================================================================
      3 · Visualisation modes
      ====================================================================== */
   const LEGENDS = {
@@ -4755,7 +4908,7 @@ function boot3d() {
     const rows = measured
       ? [["line", "#E0A21C", "Spinal cord and dura — measured"],
          ["swatch", "#E8B33A", "Dorsal root ganglia — measured, one pair per segment"],
-         ["line", "#C98B12", "Peripheral nerves and cauda equina — drawn, not measured"]]
+         ["line", "#C98B12", "Peripheral nerves — routed through the measured muscles, not measured themselves"]]
       : [["line", "#E0A21C", "Spinal cord — drawn, not measured"],
          ["line", "#C98B12", "Peripheral nerves — drawn, not measured"]];
     rows.forEach(([kind, colour, label]) => {
@@ -4770,9 +4923,11 @@ function boot3d() {
     note.className = "row"; note.style.color = "var(--ink-3)";
     note.style.lineHeight = "1.4"; note.style.marginTop = "6px";
     note.textContent = measured
-      ? "The cord and ganglia come from Z-Anatomy. No open anatomical dataset we could find "
-        + "models the peripheral nerves, so the limb and rib branches are indicative routes only "
-        + "— use them to point at a problem, not to locate a nerve."
+      ? "The cord and ganglia come from Z-Anatomy. No open dataset we could find models the "
+        + "peripheral nerves, so each limb nerve is instead threaded through the muscles that "
+        + "define its course — the ulnar behind the medial epicondyle where flexor carpi ulnaris "
+        + "begins, the sciatic between the hamstrings, the tibial under soleus. Good enough to "
+        + "point at a problem; not a substitute for locating a nerve."
       : "Indicative routes only. Pain that shoots, burns or tingles along one of these is often "
         + "described as nerve pain, which is worth saying in the notes.";
     box.appendChild(note);

@@ -141,6 +141,22 @@ the nerve view are still **drawn, not measured**, and the on-screen legend says 
 If a genuinely accurate peripheral nerve map is needed, it has to come from a licensed commercial
 dataset — the free ones do not have one.
 
+**But the branches are no longer guesses.** A peripheral nerve is defined clinically by the muscles
+it runs between, so each waypoint names a muscle and a face of it, and its position comes from that
+muscle's measured bounding box: the ulnar behind the medial epicondyle where flexor carpi ulnaris
+begins, the sciatic between biceps femoris and semimembranosus, the tibial deep to soleus, the
+median through the two heads of pronator teres and into the carpal tunnel under the flexor
+retinaculum. Change the body and the routes follow it.
+
+`build/check_nerve_routes.py` measures the result: **98 waypoints, median 3.1 mm from real muscle
+surface.** Eight sit beyond 30 mm, and all eight are places a nerve genuinely leaves muscle and runs
+over bone — the ulnar through Guyon's canal over the pisiform, the saphenous over the medial face of
+the tibia, the radial's superficial branch across the distal radius. Those are correct, not misses.
+
+One thing that script documents at length because it cost time: **do not check this with
+`contains()` against the skin.** BodyParts3D's skin is a thin shell, not a solid, so ray-parity
+reports the centre of the abdomen as outside the body. It returns confident nonsense.
+
 Rebuild it with `build/extract_nerves.blender.py` (needs Blender) followed by `build/make_nerves.py`;
 both are documented in their own docstrings.
 
