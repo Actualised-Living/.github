@@ -5126,10 +5126,363 @@
     }
    ]
   },
+  "skull": {
+   "file": "skull.glb",
+   "count": 23,
+   "triangles": 17786,
+   "megabytes": 0.33,
+   "structures": [
+    {
+     "id": "FMA52734",
+     "name": "frontal bone",
+     "side": "midline",
+     "group": "other",
+     "tris": 1982,
+     "bbox": [
+      -0.0592,
+      1.5427,
+      0.0188,
+      0.0592,
+      1.6457,
+      0.0857
+     ]
+    },
+    {
+     "id": "FMA52735",
+     "name": "occipital bone",
+     "side": "midline",
+     "group": "other",
+     "tris": 1666,
+     "bbox": [
+      -0.0582,
+      1.5018,
+      -0.0988,
+      0.0578,
+      1.6029,
+      0.0138
+     ]
+    },
+    {
+     "id": "FMA52736",
+     "name": "sphenoid bone",
+     "side": "midline",
+     "group": "other",
+     "tris": 918,
+     "bbox": [
+      -0.0528,
+      1.5036,
+      0.0033,
+      0.0528,
+      1.5694,
+      0.0557
+     ]
+    },
+    {
+     "id": "FMA52738",
+     "name": "right temporal bone",
+     "side": "right",
+     "group": "other",
+     "tris": 676,
+     "bbox": [
+      -0.07,
+      1.5006,
+      -0.0487,
+      -0.0113,
+      1.572,
+      0.0447
+     ]
+    },
+    {
+     "id": "FMA52739",
+     "name": "left temporal bone",
+     "side": "left",
+     "group": "other",
+     "tris": 672,
+     "bbox": [
+      0.0115,
+      1.5001,
+      -0.0487,
+      0.0699,
+      1.5721,
+      0.0445
+     ]
+    },
+    {
+     "id": "FMA52740",
+     "name": "ethmoid",
+     "side": "midline",
+     "group": "other",
+     "tris": 466,
+     "bbox": [
+      -0.0196,
+      1.52,
+      0.033,
+      0.0165,
+      1.5553,
+      0.076
+     ]
+    },
+    {
+     "id": "FMA52748",
+     "name": "mandible",
+     "side": "midline",
+     "group": "other",
+     "tris": 1298,
+     "bbox": [
+      -0.0501,
+      1.4491,
+      0.003,
+      0.0503,
+      1.5293,
+      0.0824
+     ]
+    },
+    {
+     "id": "FMA52749",
+     "name": "hyoid bone",
+     "side": "midline",
+     "group": "other",
+     "tris": 398,
+     "bbox": [
+      -0.0211,
+      1.4445,
+      0.0043,
+      0.021,
+      1.4635,
+      0.0391
+     ]
+    },
+    {
+     "id": "FMA52788",
+     "name": "right parietal bone",
+     "side": "right",
+     "group": "other",
+     "tris": 1784,
+     "bbox": [
+      -0.0723,
+      1.5399,
+      -0.0956,
+      0.0053,
+      1.6517,
+      0.0389
+     ]
+    },
+    {
+     "id": "FMA52789",
+     "name": "left parietal bone",
+     "side": "left",
+     "group": "other",
+     "tris": 1814,
+     "bbox": [
+      -0.0069,
+      1.5397,
+      -0.096,
+      0.0722,
+      1.6516,
+      0.0425
+     ]
+    },
+    {
+     "id": "FMA52892",
+     "name": "right zygomatic bone",
+     "side": "right",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      -0.0604,
+      1.5048,
+      0.0331,
+      -0.0305,
+      1.558,
+      0.0706
+     ]
+    },
+    {
+     "id": "FMA52893",
+     "name": "left zygomatic bone",
+     "side": "left",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      0.0304,
+      1.5048,
+      0.033,
+      0.0604,
+      1.5578,
+      0.0707
+     ]
+    },
+    {
+     "id": "FMA53645",
+     "name": "right lacrimal bone",
+     "side": "right",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      -0.0166,
+      1.5236,
+      0.0608,
+      -0.0063,
+      1.5479,
+      0.0752
+     ]
+    },
+    {
+     "id": "FMA53646",
+     "name": "left lacrimal bone",
+     "side": "left",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      0.0072,
+      1.5209,
+      0.0603,
+      0.0177,
+      1.5487,
+      0.0741
+     ]
+    },
+    {
+     "id": "FMA53647",
+     "name": "right nasal bone",
+     "side": "right",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      -0.0081,
+      1.5242,
+      0.0782,
+      0.0002,
+      1.5546,
+      0.0985
+     ]
+    },
+    {
+     "id": "FMA53648",
+     "name": "left nasal bone",
+     "side": "left",
+     "group": "other",
+     "tris": 398,
+     "bbox": [
+      -0.0021,
+      1.5248,
+      0.0778,
+      0.0077,
+      1.5548,
+      0.0972
+     ]
+    },
+    {
+     "id": "FMA53649",
+     "name": "right maxilla",
+     "side": "right",
+     "group": "other",
+     "tris": 846,
+     "bbox": [
+      -0.0444,
+      1.489,
+      0.0401,
+      0.0005,
+      1.5548,
+      0.0923
+     ]
+    },
+    {
+     "id": "FMA53650",
+     "name": "left maxilla",
+     "side": "left",
+     "group": "other",
+     "tris": 868,
+     "bbox": [
+      -0.0028,
+      1.4891,
+      0.0378,
+      0.044,
+      1.5548,
+      0.0912
+     ]
+    },
+    {
+     "id": "FMA53655",
+     "name": "right palatine bone",
+     "side": "right",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      -0.0263,
+      1.4953,
+      0.0253,
+      -0.0007,
+      1.5342,
+      0.0595
+     ]
+    },
+    {
+     "id": "FMA53656",
+     "name": "left palatine bone",
+     "side": "left",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      -0.0029,
+      1.4945,
+      0.0226,
+      0.0232,
+      1.5329,
+      0.0616
+     ]
+    },
+    {
+     "id": "FMA54737",
+     "name": "right inferior nasal concha",
+     "side": "right",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      -0.0144,
+      1.5033,
+      0.041,
+      -0.0042,
+      1.5251,
+      0.0745
+     ]
+    },
+    {
+     "id": "FMA54738",
+     "name": "left inferior nasal concha",
+     "side": "left",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      0.0032,
+      1.5065,
+      0.0434,
+      0.0131,
+      1.5217,
+      0.0774
+     ]
+    },
+    {
+     "id": "FMA9710",
+     "name": "vomer",
+     "side": "midline",
+     "group": "other",
+     "tris": 400,
+     "bbox": [
+      -0.0056,
+      1.5084,
+      0.0216,
+      0.0042,
+      1.5319,
+      0.0808
+     ]
+    }
+   ]
+  },
   "nerves": {
    "file": "nerves.glb",
    "count": 3,
-   "triangles": 24248,
+   "triangles": 24251,
    "megabytes": 0.38,
    "source": "Z-Anatomy (CC BY-SA 4.0), registered by a uniform scale of 0.9686 fitted on the vertebral column",
    "coverage": "Central nervous system only: spinal dura and dorsal root ganglia. Z-Anatomy models no peripheral nerves.",
@@ -5137,13 +5490,13 @@
     {
      "id": "spinal_dura",
      "name": "Spinal_dura",
-     "tris": 20888,
+     "tris": 20891,
      "bbox": [
       -0.0185,
       1.0217,
       -0.1006,
       0.0196,
-      1.4963,
+      1.4967,
       -0.0399
      ]
     },
@@ -5190,6 +5543,5 @@
   "wrist": 0.8438,
   "kneeLine": 0.4904,
   "ankle": 0.0413
- },
- "sourceExtra": "Z-Anatomy by Gauthier Kervyn, CC BY-SA 4.0, https://www.z-anatomy.com/"
+ }
 }

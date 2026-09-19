@@ -39,6 +39,22 @@ MUSCLE_STEMS = [
     "multifidus", "intertransversarius", "rotatores", "spinalis", "semispinalis",
 ]
 
+# Cranial bones. "hyoid" also matches geniohyoid, omohyoid, sternohyoid,
+# stylohyoid, thyrohyoid and mylohyoid -- those are muscles and belong to the
+# muscle set, so only the hyoid bone itself is kept.
+SKULL_STEMS = [
+    "frontal bone", "parietal bone", "temporal bone", "occipital bone",
+    "sphenoid bone", "ethmoid", "maxilla", "mandible", "zygomatic bone",
+    "nasal bone", "lacrimal bone", "palatine bone", "vomer",
+    "inferior nasal concha", "hyoid bone",
+]
+
+def is_skull(name):
+    low = name.lower()
+    if not any(st in low for st in SKULL_STEMS):
+        return False
+    return "hyoid" not in low or low.strip().endswith("hyoid bone")
+
 # Coarse group for colour-coding and the legend, tested in order.
 GROUPS = [
     ("head/neck",  ["masseter", "temporalis", "sternocleidomastoid", "digastric",
@@ -201,10 +217,22 @@ def main():
     print("  height: %.3f m   offset applied: %s" % (hi[1] - lo[1], np.round(offset, 3)))
     del skin_raw, sv
 
+    skull = sorted(fid for fid in have if is_skull(names.get(fid, "")))
+    print("cranial bones selected: %d" % len(skull))
     sets = {
         "skin":    (["FMA7163"], 0.05, 40000, 70000),
         "muscles": (muscles,     0.04,   250,   2200),
+        "skull":   (skull,       0.06,   400,   6000),
     }
+    # Keep sets this script does not build (nerves, from make_nerves.py).
+    # Rewriting the manifest wholesale silently drops them.
+    existing = {}
+    mpath = os.path.join(OUT, "manifest.json")
+    if os.path.exists(mpath):
+        try:
+            existing = json.load(open(mpath)).get("sets", {})
+        except Exception:
+            existing = {}
     manifest = {
         "source": "BodyParts3D, (c) The Database Center for Life Science, "
                   "licensed under CC Attribution-Share Alike 2.1 Japan",
@@ -230,7 +258,11 @@ def main():
     print("\nlandmarks (metres above the floor):")
     for k, v in manifest["landmarks"].items():
         print("  %-13s %.3f" % (k, v))
-    with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
+    for k, v in existing.items():
+        if k not in manifest["sets"]:
+            manifest["sets"][k] = v
+            print("kept existing set: %s" % k)
+    with open(mpath, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=1)
     print("\nwrote manifest.json")
 

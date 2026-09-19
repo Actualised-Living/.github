@@ -69,6 +69,8 @@ Run it against a clone of
 |---|---|---|---|
 | `muscles.glb` | 339 individually named muscle structures, FMA-indexed | 7.2 MB | 390k |
 | `skin.glb` | body surface, used as the hit target and the outer shell | 1.2 MB | 70k |
+| `skull.glb` | 23 cranial bones, shown behind the muscle view | 0.3 MB | 18k |
+| `nerves.glb` | spinal dura and dorsal root ganglia (Z-Anatomy) | 0.4 MB | 24k |
 | `manifest.json` | per-structure name, side, muscle group and triangle count | 52 KB | — |
 
 The `.glb` files are gitignored: they are reproducible from the pipeline and belong in attachment
@@ -77,6 +79,12 @@ storage. See `assets/ATTRIBUTION.md` for the required credit and the ShareAlike 
 **Why this matters for naming.** Every mesh carries its FMA identifier, so a tap can be reported as
 "descending part of the left trapezius" straight from the data, rather than inferred from
 coordinates as the schematic version does.
+
+**Why the skull is there.** Without it, temporalis and the facial muscles hang in space where the
+cranium should be and read as a pair of horns above the head. Note that `hyoid` matches six muscles
+(genio-, omo-, sterno-, stylo-, thyro-, mylohyoid) as well as the hyoid bone, so the selector keeps
+only the bone. The neck and deep back muscles still float where the vertebrae would be — adding the
+spine would be the same exercise against `vertebra`.
 
 **Coordinate frame.** BodyParts3D is millimetres, Z-up, +X anatomical left. The pipeline rotates to
 the app's metres, Y-up, +Z anterior, feet on `y = 0`. The rotation has determinant +1, so left and

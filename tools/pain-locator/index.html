@@ -4372,6 +4372,7 @@ function boot3d() {
     loaded: false, manifest: null, meta: {}, landmarks: null,
     skin: null, muscles: null, muscleMeshes: [],
     armCentreX: 0.17, foreCentreX: 0.23, legCentreX: 0.10, handCentreX: 0.26,
+    skull: null, nerves: null,
     armCentreZ: 0, thighCentreZ: 0, shinCentreZ: 0, trunkCentreZ: 0,
     armGapHigh: 0.165, armGapLow: 0.135, edges: null
   };
@@ -4615,6 +4616,21 @@ function boot3d() {
     });
     figure.add(ANAT.skin, ANAT.muscles);
     ANAT.routedNerves = reroutePeripheral();
+    // The cranial bones give the facial and jaw muscles something to sit
+    // against; without them temporalis reads as a pair of horns.
+    try {
+      if (man.sets.skull) {
+        const sk = await loadGLTF(assetUrl(man.sets.skull.file || "skull.glb"));
+        sk.scene.traverse((o) => {
+          if (!o.isMesh) return;
+          o.geometry.computeVertexNormals();
+          o.material = MAT.bone;
+        });
+        ANAT.skull = sk.scene;
+        figure.add(ANAT.skull);
+      }
+    } catch (e) { /* no skull asset: the muscle view simply lacks one */ }
+
     // The measured cord is optional on top of the measured muscles.
     try {
       if (man.sets.nerves) {
@@ -4870,6 +4886,7 @@ function boot3d() {
     muscleGroup.visible = !real && mode === "muscle";
     nerveGroup.visible = mode === "nerve";
     if (ANAT.nerves) ANAT.nerves.visible = mode === "nerve";
+    if (ANAT.skull) ANAT.skull.visible = mode === "muscle";
     if (real) {
       ANAT.muscles.visible = mode === "muscle";
       ANAT.skin.visible = mode !== "muscle";
